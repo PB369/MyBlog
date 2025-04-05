@@ -7,7 +7,7 @@ const NotFound = () => {
     <>
       <Header/>
       <div>
-        <p>404 - Página não encontrada.</p>
+        <p>Error 404 - This URL address doesn't exists.</p>
       </div>
       <Footer/>
     </>
