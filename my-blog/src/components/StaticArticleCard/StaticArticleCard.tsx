@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './css/ArticleCard.module.scss';
+import './css/StaticArticleCard.module.scss';
 
 type Props = {
   id: number,
@@ -11,7 +11,7 @@ type Props = {
   content: string,
 }
 
-const ArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, content}: Props) => {
+const StaticArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, content}: Props) => {
   return (
     <>
       <article>
@@ -32,4 +32,4 @@ const ArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, conten
   )
 }
 
-export default ArticleCard;
+export default StaticArticleCard;

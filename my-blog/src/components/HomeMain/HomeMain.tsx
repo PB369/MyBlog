@@ -1,15 +1,15 @@
 
 import { ReactNode } from 'react';
-import './css/Main.module.scss';
+import './css/HomeMain.module.scss';
 
 type Props = {
   children: ReactNode;
 }
 
-const Main = ({children} : Props) => {
+const HomeMain = ({children} : Props) => {
   return (
     <>
-      <h3>Articles for fun</h3>
+      <h2>Articles for fun</h2>
       <section>
         {children}
       </section>
@@ -17,4 +17,4 @@ const Main = ({children} : Props) => {
   )
 }
 
-export default Main;
+export default HomeMain;
