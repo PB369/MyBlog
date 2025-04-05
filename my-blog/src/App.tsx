@@ -4,6 +4,7 @@ import Home from './pages/Home/Home'
 import NotFound from './pages/NotFound/NotFound'
 import Login from './pages/Login/Login'
 import Article from './pages/Article/Article'
+import ArticlesLayout from './layouts/ArticlesLayout'
 
 
 
@@ -12,10 +13,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path="articles/:id" element={<Article/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='*' element={<NotFound/>}/>
+        {/* Routes with common Context API for articles*/}
+        <Route element={<ArticlesLayout/>}>
+          <Route path='/' element={<Home/>}/>
+          <Route path="articles/:id" element={<Article/>}/>
+        </Route>
       </Routes>
     </Router>
   )

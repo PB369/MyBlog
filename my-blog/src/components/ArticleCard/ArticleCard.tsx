@@ -24,7 +24,7 @@ const ArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, conten
             </div>
             <p>{content}</p>
           </div>
-          <Link to={`/article/${id.toString()}`}>Read it all</Link>
+          <Link to={`/articles/${id.toString()}`}>Read it all</Link>
         </div>
         <img src={bannerURL} alt={bannerAlt}/>
       </article>
