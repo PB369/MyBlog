@@ -27,6 +27,7 @@ const Management = () => {
               heartAmount={article.heartsAmount}
             />
           ))}
+          <button>Create a new article</button>
         </ManagementMain>
       <Footer/>
     </>
