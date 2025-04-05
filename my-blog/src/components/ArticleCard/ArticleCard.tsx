@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import './css/ArticleCard.module.scss';
 
 type Props = {
+  id: number,
   title: string,
   tags: string[],
   publishDate: string,
@@ -9,7 +11,7 @@ type Props = {
   content: string,
 }
 
-const ArticleCard = ({title, tags, publishDate, bannerURL, bannerAlt, content}: Props) => {
+const ArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, content}: Props) => {
   return (
     <>
       <article>
@@ -22,7 +24,7 @@ const ArticleCard = ({title, tags, publishDate, bannerURL, bannerAlt, content}: 
             </div>
             <p>{content}</p>
           </div>
-          <button>Read it all</button>
+          <Link to={`/article/${id.toString()}`}>Read it all</Link>
         </div>
         <img src={bannerURL} alt={bannerAlt}/>
       </article>

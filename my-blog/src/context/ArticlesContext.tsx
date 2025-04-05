@@ -1,10 +1,18 @@
-import ArticleCard from '../../components/ArticleCard/ArticleCard';
-import Footer from '../../components/Footer/Footer';
-import Header from '../../components/Header/Header';
-import Main from '../../components/Main/Main';
-import './css/Home.module.scss';
+import { useContext, createContext, ReactNode } from "react";
 
-const articles = [
+export type Article = {
+  id: number,
+  title: string,
+  tags: string[],
+  publishDate: string,
+  bannerURL: string,
+  bannerAlt: string,
+  heartsAmount: number,
+  viewAmount: number,
+  content: string,
+};
+
+const articles: Article[] = [
   {
     id: 1,
     title: "Article 1",
@@ -30,27 +38,14 @@ const articles = [
   },
 ];
 
-const Home = () => {
+const ArticleContext = createContext<Article[]>([]);
+
+export const useArticles = () => useContext(ArticleContext);
+
+export const ArticlesProvider = ({children}: {children: ReactNode}) => {
   return (
-    <>
-      <Header/>
-      <Main>
-        {articles.map((article) => (
-          <ArticleCard
-            key={article.id}
-            id={article.id}
-            title={article.title}
-            tags={article.tags}
-            publishDate={article.publishDate}
-            bannerURL={article.bannerURL}
-            bannerAlt={article.bannerAlt}
-            content={article.content}
-          />
-        ))}
-      </Main>
-      <Footer/>
-    </>
+    <ArticleContext.Provider value={articles}>
+      {children}
+    </ArticleContext.Provider>
   )
 }
-
-export default Home;

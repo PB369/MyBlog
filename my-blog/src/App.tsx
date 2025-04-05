@@ -1,8 +1,9 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route, Outlet, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import NotFound from './pages/NotFound/NotFound'
 import Login from './pages/Login/Login'
+import Article from './pages/Article/Article'
 
 
 
@@ -12,6 +13,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path="articles/:id" element={<Article/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
