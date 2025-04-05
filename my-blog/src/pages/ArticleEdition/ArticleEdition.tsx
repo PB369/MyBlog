@@ -1,15 +1,15 @@
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
-import './css/Edition.module.scss';
+import './css/ArticleEdition.module.scss';
 
-const Edition = () => {
+const ArticleEdition = () => {
   return (
     <>
       <Header/>
-
+      
       <Footer/>
     </>
   )
 }
 
-export default Edition;
+export default ArticleEdition;
