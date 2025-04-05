@@ -19,10 +19,12 @@ const Management = () => {
               id={article.id}
               title={article.title}
               tags={article.tags}
+              isPublished={article.isPublished}
               publishDate={article.publishDate}
               bannerURL={article.bannerURL}
               bannerAlt={article.bannerAlt}
-              content={article.content}
+              viewAmount={article.viewAmount}
+              heartAmount={article.heartsAmount}
             />
           ))}
         </ManagementMain>

@@ -17,7 +17,7 @@ const StaticArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, 
       <article>
         <div>
           <div>
-            {tags.map((tag) => <span>{tag}</span>)}
+            {tags.map(tag => <span>{tag}</span>)}
             <div>
               <h4>{title}</h4>
               <p>{publishDate}</p>
