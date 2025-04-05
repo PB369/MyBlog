@@ -29,7 +29,7 @@ export default App
 
 /*
 
--adição de conteúdo à página home, login, notfound, article, articleEdition, edition
+-adição de conteúdo à página article, articleEdition, edition
 
 -navegação entre páginas
 

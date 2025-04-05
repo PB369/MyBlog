@@ -22,7 +22,7 @@ const articles: Article[] = [
     bannerAlt: "",
     heartsAmount: 12,
     viewAmount: 34,
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex.",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex.\n\nLorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex.",
   },
 
   {
@@ -34,7 +34,7 @@ const articles: Article[] = [
     bannerAlt: "",
     heartsAmount: 0,
     viewAmount: 4,
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex.",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex.\n\nLorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex.",
   },
 ];
 

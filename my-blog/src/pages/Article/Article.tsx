@@ -17,7 +17,30 @@ const Article = () => {
       article ? // If the article was found, render this:
       (
         <article>
-          <h2>{article.title}</h2>
+          <header>
+            <div>
+              <img src="" alt="" />
+              <div>
+                <div>
+                  <img src="" alt="" />
+                  <p>{article.viewAmount}</p>
+                </div>
+                <div>
+                  <img src="" alt="" />
+                  <p>{article.heartsAmount}</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>{article.title}</h2>
+              <p>{article.publishDate}</p>
+              {article.tags.map((tag, index) => <span key={index}>{tag}</span>)}
+            </div>
+          </header>
+          <main>
+            <img src={article.bannerURL} alt={article.bannerAlt} />
+            {article.content.split("\n\n").map((text, index) => <p key={index}>{text}</p>)}
+          </main>
         </article>
       ) 
       : // If not, render this:
