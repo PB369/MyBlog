@@ -5,6 +5,7 @@ import NotFound from './pages/NotFound/NotFound'
 import Login from './pages/Login/Login'
 import Article from './pages/Article/Article'
 import ArticlesLayout from './layouts/ArticlesLayout'
+import Management from './pages/Management/Management'
 
 
 
@@ -18,7 +19,8 @@ function App() {
         {/* Routes with common Context API for articles*/}
         <Route element={<ArticlesLayout/>}>
           <Route path='/' element={<Home/>}/>
-          <Route path="articles/:id" element={<Article/>}/>
+          <Route path="/articles/:id" element={<Article/>}/>
+          <Route path='/management' element={<Management/>}/>
         </Route>
       </Routes>
     </Router>
@@ -29,7 +31,7 @@ export default App
 
 /*
 
--adição de conteúdo à página article, articleEdition, edition
+-adição de conteúdo à página articleEdition, edition
 
 -navegação entre páginas
 
