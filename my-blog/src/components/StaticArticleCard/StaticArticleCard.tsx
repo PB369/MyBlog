@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import './css/StaticArticleCard.module.scss';
 
 type Props = {
-  id: number,
+  id: number | undefined,
   title: string,
   tags: string[],
   publishDate: string,
@@ -24,7 +24,7 @@ const StaticArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, 
             </div>
             <p>{content}</p>
           </div>
-          <Link to={`/articles/${id.toString()}`}>Read it all</Link>
+          <Link to={`/articles/${typeof(id) === "number" ? id.toString() : undefined}`}>Read it all</Link>
         </div>
         <img src={bannerURL} alt={bannerAlt}/>
       </article>

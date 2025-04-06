@@ -15,7 +15,6 @@ const Article = () => {
       <Header/>
       {
       article ? // If the article was found, render this:
-      (
         <article>
           <header>
             <div>
@@ -42,11 +41,8 @@ const Article = () => {
             {article.content.split("\n\n").map((text, index) => <p key={index}>{text}</p>)}
           </main>
         </article>
-      ) 
       : // If not, render this:
-      (
         <h2>Não foi possível carregar o conteúdo deste artigo.</h2>
-      )
       }
       <Footer/>
     </>

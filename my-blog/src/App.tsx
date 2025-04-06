@@ -34,7 +34,7 @@ export default App
 
 /*
 
--adição de conteúdo à página edition
+-adição de conteúdo à página articleEdition
 
 -navegação entre páginas
 
