@@ -8,8 +8,6 @@ import ArticlesLayout from './layouts/ArticlesLayout'
 import Management from './pages/Management/Management'
 import ArticleEdition from './pages/ArticleEdition/ArticleEdition'
 
-
-
 function App() {
 
   return (
@@ -33,8 +31,6 @@ function App() {
 export default App
 
 /*
-
--adição de conteúdo à página articleEdition
 
 -navegação entre páginas
 

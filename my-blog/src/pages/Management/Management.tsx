@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import EditableArticleCard from '../../components/EditableArticleCard/EditableArticleCard';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
@@ -27,7 +28,7 @@ const Management = () => {
               heartAmount={article.heartsAmount}
             />
           ))}
-          <button>Create a new article</button>
+          <Link to={'/management/create'}>Create a new article</Link>
         </ManagementMain>
       <Footer/>
     </>

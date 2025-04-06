@@ -1,6 +1,7 @@
 import './css/Login.module.scss';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -12,7 +13,7 @@ const Login = () => {
         <input type="text" id="usernameInput"/>
         <label htmlFor="passwordInput">Password:</label>
         <input type="text" id="passwordInput"/>
-        <button type="submit">Access</button>
+        <Link to={'/management'}>Access</Link>
         {/* <p>Username or password is invalid</p> */}
       </form>
       <Footer/>

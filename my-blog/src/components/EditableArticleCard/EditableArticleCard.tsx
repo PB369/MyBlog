@@ -44,11 +44,11 @@ const EditableArticleCard = ({id, title, tags, isPublished, publishDate, bannerU
         <img src={bannerURL ? bannerURL : ""} alt={bannerAlt} />
       </article>
       <div>
-        <Link to={`/edit/${id.toString()}`}>
-          <img src="" alt="" />
+        <Link to={`edit/${id.toString()}`}>
+          <img src="../../../public/edit-icon.png" alt="" />
         </Link>
         <button>
-          <img src="" alt="" />
+          <img src="../../../public/trash-icon.png" alt="" />
         </button>
       </div>
     </>

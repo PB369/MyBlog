@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import './css/ArticleEdition.module.scss';
@@ -31,7 +31,9 @@ const ArticleEdition = () => {
           <article>
             <header>
               <div>
-                <img src="" alt="" />
+                <Link to={'/management'}>
+                  <img src="../../../public/arrow-icon.png" alt="arrow-icon" />
+                </Link>
                 <div>
                   <div>
                     <img src="" alt="" />
