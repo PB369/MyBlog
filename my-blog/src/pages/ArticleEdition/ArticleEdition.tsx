@@ -32,7 +32,7 @@ const ArticleEdition = () => {
             <header>
               <div>
                 <Link to={'/management'}>
-                  <img src="../../../public/arrow-icon.png" alt="arrow-icon" />
+                  <img src="../../../arrow-icon.png" alt="arrow-icon" />
                 </Link>
                 <div>
                   <div>

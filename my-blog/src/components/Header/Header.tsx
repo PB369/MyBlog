@@ -11,7 +11,7 @@ const Header = () => {
       <div>
         <Link to={'/login'}>Login</Link>
         <button onClick={toggleTheme}>
-          <img src={theme === "light" ? "../../../public/moon-icon.png" : "../../../public/sun-icon.png"} alt={theme === "light" ? "moon-icon" : "sun-icon"} />
+          <img src={theme === "light" ? "../../../moon-icon.png" : "../../../sun-icon.png"} alt={theme === "light" ? "moon-icon" : "sun-icon"} />
         </button>
       </div>
     </header>

@@ -19,7 +19,7 @@ const Article = () => {
           <header>
             <div>
               <Link to={'/'}>
-                <img src="../../../public/arrow-icon.png" alt="arrow-icon" />
+                <img src="../../../arrow-icon.png" alt="arrow-icon" />
               </Link>
               <div>
                 <div>

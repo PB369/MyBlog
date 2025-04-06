@@ -45,10 +45,10 @@ const EditableArticleCard = ({id, title, tags, isPublished, publishDate, bannerU
       </article>
       <div>
         <Link to={`edit/${id.toString()}`}>
-          <img src="../../../public/edit-icon.png" alt="" />
+          <img src="../../../edit-icon.png" alt="" />
         </Link>
         <button>
-          <img src="../../../public/trash-icon.png" alt="" />
+          <img src="../../../trash-icon.png" alt="" />
         </button>
       </div>
     </>
