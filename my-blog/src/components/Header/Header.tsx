@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import './css/Header.module.scss';
+import styles from './css/Header.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 
 const Header = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header>
+    <header className={styles.header}>
       <h1>My Blog</h1>
       <div>
         <Link to={'/login'}>Login</Link>

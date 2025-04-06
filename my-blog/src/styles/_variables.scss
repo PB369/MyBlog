@@ -1,13 +1,15 @@
 //Light Mode Colors:
 
-$primary-color: #fff;
-$secondary-color: #061A40;
-$tertiary-color: #000;
+.light {
+  --primary-color: #882020;
+  --secondary-color: #061A40;
+  --tertiary-color: #000;
+}
 
 //Dark Mode Colors:
 .dark {
-  $primary-color: #0D1333;
-  $secondary-color: #061A40;
-  $tertiary-color: #1D2F51;
-  $quaternary-color: #C8D0DE;
+  --primary-color: #0D1333;
+  --secondary-color: #061A40;
+  --tertiary-color: #1D2F51;
+  --quaternary-color: #C8D0DE;
 }

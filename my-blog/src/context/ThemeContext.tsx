@@ -14,13 +14,13 @@ export const ThemeProvider = ({children}: {children: ReactNode}) => {
     return (localStorage.getItem("theme") as Theme || "light") //If the localStorage value is truthy, then return it. If the value is falsy, return light.
   });
 
-  const toggleTheme = () => setTheme(prev => (prev === "light" ? "dark" : "light"));
-
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.className = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  const toggleTheme = () => setTheme(prev => (prev === "light" ? "dark" : "light"));
+  
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
