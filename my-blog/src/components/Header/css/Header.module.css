@@ -34,11 +34,18 @@
   color: var(--quaternary-color);
   font-weight: bold;
 }
+.pageHeader h1:hover, .pageHeader .link {
+  cursor: pointer;
+}
 .pageHeader .link {
-  border: 3px solid var(--quaternary-color);
   font-size: 20px;
   padding: 0 20px;
   margin-right: 20px;
+}
+@media screen and (max-witdh: var(--medium-device)) {
+  .pageHeader .link {
+    border: 3px solid var(--quaternary-color);
+  }
 }
 .pageHeader img {
   width: 42px;

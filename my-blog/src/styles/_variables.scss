@@ -5,6 +5,7 @@
   --secondary-color: #061A40;
   --tertiary-color: #000;
   --quaternary-color: #fff;
+  --shadow-color: rgba(0,0,0,0.25);
 }
 
 //Dark Mode Colors:
@@ -13,4 +14,10 @@
   --secondary-color: #061A40;
   --tertiary-color: #1D2F51;
   --quaternary-color: #C8D0DE;
+  --shadow-color: #FFF;
 }
+
+//Device sizes:
+$large-device: 1024px;
+$medium-device: 768px;
+$small-device: 290px;
