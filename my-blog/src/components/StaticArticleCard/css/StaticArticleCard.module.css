@@ -1,1 +1,50 @@
-/*# sourceMappingURL=StaticArticleCard.module.css.map */
+article {
+  border: 2px solid var(--border-color);
+  margin-bottom: 25px;
+  box-shadow: 0 0 8px var(--shadow-color);
+  padding: 30px;
+  border-radius: 8px;
+  background-color: var(--tertiary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+article .articleTextualContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 25px;
+}
+article .articleTextualContent .articleMainContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+article .articleTextualContent .articleMainContent .tagsContainer .tags {
+  margin-right: 15px;
+  padding: 8px 15px;
+  border: 1px solid black;
+  border-radius: 8px;
+  align-self: flex-start;
+  font-weight: bold;
+}
+article .articleTextualContent .articleMainContent .articleHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-top: 15px;
+}
+article .articleTextualContent .articleMainContent .articleHead h4 {
+  font-size: 24px;
+}
+article .articleTextualContent .articleMainContent .articleHead p {
+  font-weight: bold;
+}
+article img {
+  border: 1px solid black;
+  min-width: 500px;
+  height: 400px;
+  background-color: #ebebeb;
+  border-radius: 8px;
+}/*# sourceMappingURL=StaticArticleCard.module.css.map */
