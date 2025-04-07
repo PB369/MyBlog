@@ -7,9 +7,9 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-  padding: 40px 15px;
+  padding: 40px 0px;
   @media screen and (min-width: $medium-device) {
-    padding: 40px;
+    padding: 40px 70px;
   }
 
   #center, #right {
@@ -38,7 +38,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 20px;
   }
 
   h1, .link {
