@@ -6,10 +6,10 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.pageHeader} ${styles[theme]}`}>
       <h1>My Blog</h1>
       <div>
-        <Link to={'/login'}>Login</Link>
+        <Link to={'/login'} className={styles.link}>Login</Link>
         <button onClick={toggleTheme}>
           <img src={theme === "light" ? "../../../moon-icon.png" : "../../../sun-icon.png"} alt={theme === "light" ? "moon-icon" : "sun-icon"} />
         </button>
