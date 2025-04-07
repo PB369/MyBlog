@@ -4,19 +4,48 @@
   background-color: var(--secondary-color);
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  padding: 40px;
 
-  div {
-    align-self: flex-end;
+  #left, #center, #right {
+    flex: 1;
+  }
+
+  #right {
+    justify-self: flex-end;
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  #center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      font-size: 38px;
+    }
+  }
+
+  #right {
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
   }
 
   h1, .link {
-    color: white;
+    color: var(--quaternary-color);
+    font-weight: bold;
+  }
+
+  .link {
+    border: 3px solid var(--quaternary-color);
+    font-size: 20px;
+    padding: 0 20px;
+    margin-right: 20px;
   }
 
   img {

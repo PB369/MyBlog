@@ -7,11 +7,14 @@ const Header = () => {
 
   return (
     <header className={`${styles.pageHeader} ${styles[theme]}`}>
-      <h1>My Blog</h1>
-      <div>
+      <div id={styles.left}/> {/*This empty div is to allow the desired position for h1 and the login/themeToggle div */}
+      <div id={styles.center}>
+        <h1>My Blog</h1>
+      </div>
+      <div id={styles.right}>
         <Link to={'/login'} className={styles.link}>Login</Link>
         <button onClick={toggleTheme}>
-          <img src={theme === "light" ? "../../../moon-icon.png" : "../../../sun-icon.png"} alt={theme === "light" ? "moon-icon" : "sun-icon"} />
+          <img src={theme === "light" ? "../../../moon-icon.png" : "../../../sun-icon-dark.png"} alt={theme === "light" ? "moon-icon" : "sun-icon"} />
         </button>
       </div>
     </header>
