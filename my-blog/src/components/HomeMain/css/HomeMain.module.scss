@@ -3,9 +3,17 @@ h2 {
     margin: 25px 0;
     font-size: 28px;
     color: var(--text-color);
-  }
-  
+    
+    @media screen and (max-width: $medium-device) {
+      font-size: 20px;
+    }
+}
+
 section {
   width: 70%;
   margin: auto;
+
+  @media screen and (max-width: $medium-device) {
+    width: 85%;
+  }
 }

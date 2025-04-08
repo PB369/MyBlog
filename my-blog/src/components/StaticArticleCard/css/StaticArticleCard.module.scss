@@ -8,17 +8,28 @@ article {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 450px;
+
+  @media screen and (max-width: $medium-device) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    max-height: 1000px;
+  }
 
   .articleTextualContent {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-right: 25px;
+    max-width: 590px;
 
     .articleMainContent {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      @media screen and (max-width: $medium-device) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
 
       .tagsContainer {
         .tags {
@@ -32,13 +43,19 @@ article {
         }
       }
 
-
       .articleHead {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 10px 0;
         margin-top: 15px;
+        height: 50px;
+
+        @media screen and (max-width: $medium-device) {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
 
         h4 {
           font-size: 24px;
@@ -54,6 +71,11 @@ article {
       p {
         font-weight: bold;
         color: var(--text-color);
+        height: 200px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 999; // número alto para usar "toda a altura"
       }
     }
 
@@ -64,14 +86,29 @@ article {
       border-radius: 8px;
       align-self: flex-end;
       background-color: var(--quaternary-color);
+
+      @media screen and (max-width: $small-device) {
+        align-self: auto;
+      }
     }
   }
 
   img {
     border: 1px solid black;
-    min-width: 500px;
+    width: 500px;
     height: 400px;
     background-color: #c1c1c1;
     border-radius: 8px;
+    object-fit: cover;
+
+    @media screen and (max-width: $small-device) {
+      width: 200px;
+      height: 200px;
+    }
+
+    @media screen and (max-width: $medium-device) {
+      min-width: 300px;
+      height: 300px;
+    }
   }
 }
