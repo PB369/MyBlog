@@ -1,1 +1,14 @@
-/*# sourceMappingURL=Footer.module.css.map */
+footer {
+  background-color: var(--secondary-color);
+  padding: 40px 0;
+  text-align: center;
+}
+footer p {
+  color: var(--quaternary-color);
+  font-size: 18px;
+  font-style: italic;
+  font-weight: bold;
+}
+footer p a {
+  border-bottom: 1px solid var(--quaternary-color);
+}/*# sourceMappingURL=Footer.module.css.map */
