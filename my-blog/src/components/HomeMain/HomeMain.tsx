@@ -11,7 +11,7 @@ const HomeMain = ({children} : Props) => {
   const { theme } = useTheme();
 
   return (
-    <div className={styles[theme]}>
+  <div className={`${styles.homeMain} ${styles[theme]}`}>
       <h2>Articles for fun</h2>
       <section>
         {children}

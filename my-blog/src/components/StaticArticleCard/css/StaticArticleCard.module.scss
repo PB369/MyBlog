@@ -22,12 +22,13 @@ article {
 
       .tagsContainer {
         .tags {
-          margin-right: 15px;
-          padding: 8px 15px;
+          margin-right: 10px;
+          padding: 6px 15px;
           border: 1px solid black;
           border-radius: 8px;
           align-self: flex-start;
           font-weight: bold;
+          background-color: var(--quaternary-color);
         }
       }
 
@@ -41,12 +42,28 @@ article {
 
         h4 {
           font-size: 24px;
+          color: var(--text-color);
         }
 
         p {
           font-weight: bold;
+          color: var(--text-color);
         }
       }
+
+      p {
+        font-weight: bold;
+        color: var(--text-color);
+      }
+    }
+
+    .link {
+      border: 1px solid black;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 8px;
+      align-self: flex-end;
+      background-color: var(--quaternary-color);
     }
   }
 
@@ -54,7 +71,7 @@ article {
     border: 1px solid black;
     min-width: 500px;
     height: 400px;
-    background-color: #ebebeb;
+    background-color: #c1c1c1;
     border-radius: 8px;
   }
 }
