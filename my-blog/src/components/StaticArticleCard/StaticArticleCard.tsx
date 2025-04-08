@@ -23,9 +23,9 @@ const StaticArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, 
             <div className={styles.tagsContainer}>{tags.map(tag => <span className={styles.tags}>{tag}</span>)}</div>
             <div className={styles.articleHead}>
               <h4>{title}</h4>
-              <p>{publishDate}</p>
+              <p className={styles.publishDate}>{publishDate}</p>
             </div>
-            <p>{content}</p>
+            <p className={styles.articleText}>{content}</p>
           </div>
           <Link to={`/articles/${typeof(id) === "number" ? id.toString() : undefined}`} className={styles.link}>Read it all</Link>
         </div>
