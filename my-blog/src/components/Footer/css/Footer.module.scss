@@ -1,13 +1,17 @@
 footer {
     background-color: var(--secondary-color);
-    padding: 40px 0;
+    padding: 40px 4%;
     text-align: center;
 
     p {
         color: var(--quaternary-color);
-        font-size: 18px;
+        font-size: 16px;
         font-style: italic;
         font-weight: bold;
+
+        @media screen and (min-width: $small-device) {
+            font-size: 18px;
+        }
 
         a {
             border-bottom: 1px solid var(--quaternary-color);
