@@ -28,6 +28,16 @@ article {
         justify-content: center;
         align-items: center;
 
+        .hiddenTags {
+          visibility: hidden;
+          position: absolute;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+          height: 0;
+          overflow: hidden;
+        }
+
         .tags {
           margin: 15px 5px 0 5px;
           padding: 5px 15px;

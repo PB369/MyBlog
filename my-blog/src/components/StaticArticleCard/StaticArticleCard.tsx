@@ -15,15 +15,19 @@ type Props = {
 
 const StaticArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, content}: Props) => {
   const { theme } = useTheme();
-  const { hasEllipsis, visibleTags, tagsContainer } = useCheckEllipsisTag(tags);
+  const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags);
 
   return (
     <>
       <article className={`${styles.article} ${styles[theme]}`}>
         <div className={styles.articleTextualContent}>
           <div className={styles.articleMainContent}>
-            <div className={styles.tagsContainer} ref={tagsContainer}>
-              {visibleTags.map(tag => <span className={styles.tags}>{tag}</span>)}
+            <div className={styles.tagsContainer}>
+              <div ref={divRef} className={styles.hiddenTags}>
+                {tags.map(tag => <span key={tag} className={styles.tags}>{tag}</span>)}
+                {hasEllipsis && <span className={styles.ellipsisTag}>...</span>}
+              </div>
+              {visibleTags.map(tag => <span key={tag} className={styles.tags}>{tag}</span>)}
               {hasEllipsis && <span className={styles.ellipsisTag}>...</span>}
             </div>
             <div className={styles.articleHead}>
