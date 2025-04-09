@@ -14,33 +14,45 @@ export const useCheckEllipsisTag = (tagsList: string[]):UseCheckEllipsisTagRetur
   const divRef = useRef<HTMLDivElement>(null);
 
   useEffect(()=>{
-    if(!divRef.current) return;
+    const totalTagsNum = tagsList.length;
+    const tagsContainer = divRef.current!;
+    const grandParant = tagsContainer.parentElement?.parentElement;
+    if(!grandParant) return;
     
     const observer = new ResizeObserver(() => {
-      const tagsContainer = divRef.current!;
+      if(!grandParant) return;
+      const grandParantWidth = grandParant.offsetWidth;
       const spanList = Array.from(tagsContainer.children) as HTMLElement[];
-      let tagsTotalWidth = 0;
+      let tagsTotalWidth = 40; // the initial value is for correct calculation
       let tagsOverflow = false;
       const visibleTagsList:string[] = [];
 
       for(let i = 0; i < spanList.length; i++) {
-        const span = spanList[i];
-        tagsTotalWidth += span.offsetWidth;
-        if(tagsTotalWidth > tagsContainer.offsetWidth){
-          tagsOverflow = true;
+        if ((i) === totalTagsNum){
+          tagsOverflow = false;
           break;
+        } else {
+          const span = spanList[i];
+          const marginRight = parseFloat(getComputedStyle(span).marginRight);
+          const marginLeft = parseFloat(getComputedStyle(span).marginLeft);
+          tagsTotalWidth += (span.offsetWidth + marginRight + marginLeft);
+          if(tagsTotalWidth > grandParantWidth){
+            tagsOverflow = true;
+            break;
+          }
+          visibleTagsList.push(span.innerHTML);
         }
         
-        visibleTagsList.push(span.innerHTML);
-        console.log(`Tags Width: ${tagsTotalWidth} px`)
-        console.log(`Container Width: ${tagsContainer.offsetWidth} px`)
       }
-    
+      console.log(`Tags Width: ${tagsTotalWidth} px`)
+      console.log(`Container Width: ${grandParantWidth} px`)
+      
       setHasEllipsis(tagsOverflow);
       setVisibleTags(visibleTagsList);
+      tagsOverflow = false;
     });
 
-    observer.observe(divRef.current);
+    observer.observe(grandParant);
     return () => observer.disconnect();
   }, [tagsList])
 
