@@ -2,41 +2,35 @@ article {
   border: 2px solid var(--border-color);
   margin-bottom: 25px;
   box-shadow: 0 0 8px var(--shadow-color);
-  padding: 30px;
+  padding: 12px; //!!!!!!!!!!!!
   border-radius: 8px;
   background-color: var(--tertiary-color);
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  height: 450px;
-
-  @media screen and (max-width: $medium-device) {
-    flex-direction: column-reverse;
-    justify-content: center;
-    max-height: 1000px;
-  }
+  // max-height: 1000px;
+  flex-direction: column-reverse;
 
   .articleTextualContent {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-right: 25px;
-    max-width: 590px;
+    // margin-right: 25px;
 
     .articleMainContent {
       margin-bottom: 10px;
-
-      @media screen and (max-width: $medium-device) {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
+      justify-content: center;
+      align-items: center;
 
       .tagsContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         .tags {
-          margin-right: 10px;
-          padding: 6px 15px;
+          margin: 15px 5px 0 5px;
+          padding: 5px 15px;
           border: 1px solid black;
           border-radius: 8px;
           align-self: flex-start;
@@ -99,20 +93,19 @@ article {
 
   img {
     border: 1px solid black;
-    width: 500px;
-    height: 400px;
+    min-width: 200px;
     background-color: #c1c1c1;
     border-radius: 8px;
     object-fit: cover;
 
-    @media screen and (max-width: $small-device) {
-      width: 200px;
-      height: 200px;
-    }
+    // @media screen and (max-width: $large-device) {
+    //   min-width: 400px;
+    //   height: 350px;
+    // }
 
-    @media screen and (max-width: $medium-device) {
-      min-width: 300px;
-      height: 300px;
-    }
+    // @media screen and (max-width: $medium-device) {
+    //   min-width: 300px;
+    //   height: 300px;
+    // }
   }
 }
