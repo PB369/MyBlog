@@ -7,7 +7,7 @@ interface UseCheckEllipsisTagReturn {
 }
 
 export const useCheckEllipsisTag = (tagsList: string[]):UseCheckEllipsisTagReturn => {
-  const [hasEllipsis , setHasEllipsis] = useState<boolean>(false);
+  const [hasEllipsis, setHasEllipsis] = useState<boolean>(false);
   
   const [visibleTags, setVisibleTags] = useState<string[]>([]);
   
@@ -18,21 +18,22 @@ export const useCheckEllipsisTag = (tagsList: string[]):UseCheckEllipsisTagRetur
     
     const observer = new ResizeObserver(() => {
       const tagsContainer = divRef.current!;
-      
       const spanList = Array.from(tagsContainer.children) as HTMLElement[];
       let tagsTotalWidth = 0;
       let tagsOverflow = false;
       const visibleTagsList:string[] = [];
-    
+
       for(let i = 0; i < spanList.length; i++) {
         const span = spanList[i];
         tagsTotalWidth += span.offsetWidth;
-    
         if(tagsTotalWidth > tagsContainer.offsetWidth){
           tagsOverflow = true;
           break;
         }
-        visibleTagsList.push(span.innerText);
+        
+        visibleTagsList.push(span.innerHTML);
+        console.log(`Tags Width: ${tagsTotalWidth} px`)
+        console.log(`Container Width: ${tagsContainer.offsetWidth} px`)
       }
     
       setHasEllipsis(tagsOverflow);
