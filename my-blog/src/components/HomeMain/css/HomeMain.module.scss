@@ -24,4 +24,8 @@ section {
   @media screen and (min-width: $medium-device) {
     width: 85%;
   }
+
+  @media screen and (min-width: $semi-large-device) {
+    width: 65%;
+  }
 }
