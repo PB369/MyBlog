@@ -46,12 +46,12 @@ const StaticArticle = ({title, tags, publishDate, bannerURL, bannerAlt, content,
       </header>
       <main>
         <img src={bannerURL} alt={bannerAlt} />
-        {content.split("\n\n").map((text, index, arr) => (
-          <div key={index}>
+        {content.split("\n\n").map((text, index, arr) =>
+          (<div key={index}>
             <p>{text}</p>
-            {index === (arr.length - 1) && <br/>}
-          </div>
-        ))}
+            {index !== (arr.length - 1) && <br/>}
+          </div>)
+        )}
       </main>
     </article>
   )
