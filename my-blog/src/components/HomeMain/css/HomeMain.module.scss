@@ -9,7 +9,19 @@ section {
   width: 70%;
   margin: auto;
 
-  @media screen and (max-width: $medium-device) {
+  @media screen and (min-width: $small-device) {
+    width: 85%;
+  }
+
+  @media screen and (max-width: $small-device) {
+    width: 85%;
+  }
+
+  @media screen and (min-width: $semi-medium-device) {
+    width: 65%;
+  }
+
+  @media screen and (min-width: $medium-device) {
     width: 85%;
   }
 }

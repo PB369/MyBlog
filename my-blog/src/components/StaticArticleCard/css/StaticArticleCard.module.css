@@ -2,28 +2,44 @@ article {
   border: 2px solid var(--border-color);
   margin-bottom: 25px;
   box-shadow: 0 0 8px var(--shadow-color);
-  padding: 30px;
+  padding: 20px;
   border-radius: 8px;
   background-color: var(--tertiary-color);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 article .articleTextualContent {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-right: 25px;
 }
 article .articleTextualContent .articleMainContent {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 10px;
   justify-content: center;
+  align-items: center;
 }
-article .articleTextualContent .articleMainContent .tagsContainer .tags {
-  margin-right: 10px;
-  padding: 6px 15px;
+article .articleTextualContent .articleMainContent .tagsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+article .articleTextualContent .articleMainContent .tagsContainer .hiddenTags {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+article .articleTextualContent .articleMainContent .tagsContainer .tags, article .articleTextualContent .articleMainContent .tagsContainer .ellipsisTag {
+  white-space: nowrap;
+  display: inline-block;
+  margin: 15px 5px 0 5px;
+  padding: 5px 15px;
   border: 1px solid black;
   border-radius: 8px;
   align-self: flex-start;
@@ -32,35 +48,46 @@ article .articleTextualContent .articleMainContent .tagsContainer .tags {
 }
 article .articleTextualContent .articleMainContent .articleHead {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 10px 0;
-  margin-top: 15px;
 }
 article .articleTextualContent .articleMainContent .articleHead h4 {
   font-size: 24px;
   color: var(--text-color);
 }
-article .articleTextualContent .articleMainContent .articleHead p {
+article .articleTextualContent .articleMainContent .articleHead .publishDate {
   font-weight: bold;
   color: var(--text-color);
 }
-article .articleTextualContent .articleMainContent p {
+article .articleTextualContent .articleMainContent .articleText {
   font-weight: bold;
   color: var(--text-color);
+  height: 190px;
+  text-align: justify;
+  line-height: 24px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  line-clamp: 8;
+  overflow: hidden;
 }
 article .articleTextualContent .link {
   border: 1px solid black;
   font-weight: bold;
   padding: 8px 15px;
   border-radius: 8px;
-  align-self: flex-end;
+  margin-top: 5px;
   background-color: var(--quaternary-color);
+  align-self: auto;
+  text-align: center;
 }
 article img {
   border: 1px solid black;
-  min-width: 500px;
-  height: 400px;
+  min-width: 200px;
   background-color: #c1c1c1;
   border-radius: 8px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=StaticArticleCard.module.css.map */
