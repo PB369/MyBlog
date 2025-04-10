@@ -1,0 +1,137 @@
+.article {
+  border: 2px solid var(--border-color);
+  box-shadow: 0 0 8px var(--shadow-color);
+  padding: 15px;
+  margin: 25px auto;
+  border-radius: 8px;
+  background-color: var(--tertiary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 85%;
+
+  @media screen and (min-width: $semi-medium-device) {
+    width: 65%;
+    padding: 20px;
+  }
+
+  @media screen and (min-width: $semi-large-device) {
+    width: 40%;
+  }
+
+  header {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .articleInteractions {
+      border: 1px solid black;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .viewAndHeart, .link {
+        border-radius: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .viewAndHeart {
+        .viewDiv, .heartDiv {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var();
+          margin: 0 5px;
+
+          img {width: 24px;}
+
+          p {
+            color: var(--text-color);
+            font-weight: bold;
+            margin-left: 5px;
+          }
+        }
+
+        .heartDiv img:hover {
+          cursor: pointer;
+          opacity: 80%;
+        }
+      }
+
+      img {width: 32px;}
+      img:not(.viewDiv img):hover{opacity: 80%;}
+    }
+  }
+
+  .articleInfos {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+
+    .titleAndDate {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 10px 0;
+      color: var(--text-color);
+      font-weight: bold;
+    }
+
+    .tagsContainer{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      .hiddenTags {
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        height: 0;
+        overflow: hidden;
+      }
+
+      .tags, .ellipsisTag {
+        font-size: 14px;
+        white-space: nowrap;
+        display: inline-block;
+        margin: 0px 5px 5px 0;
+        padding: 3px 15px;
+        border: 1px solid black;
+        border-radius: 8px;
+        align-self: center;
+        justify-content: center;
+        font-weight: bold;
+        background-color: var(--quaternary-color);
+      }
+    }
+  }
+
+  main {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    img {
+      border: 2px solid black;
+      min-width: 180px;
+      object-fit: cover;
+    }
+
+    p {
+      color: var(--text-color);
+      text-align: justify;
+      text-indent: 15px;
+    }
+  }
+}

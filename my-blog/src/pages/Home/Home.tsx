@@ -4,13 +4,16 @@ import Header from '../../components/Header/Header';
 import HomeMain from '../../components/HomeMain/HomeMain';
 import { useArticles } from '../../context/ArticlesContext';
 import styles from './css/Home.module.scss';
+import { useTheme } from '../../context/ThemeContext';
 
 const Home = () => {
 
   const articles = useArticles();
+  
+  const { theme } = useTheme();
 
   return (
-    <div className={styles.homeContainer}>
+    <div className={`${styles.homePageContainer} ${styles[theme]}`}>
       <Header/>
       <HomeMain>
         {articles.map((article) => (

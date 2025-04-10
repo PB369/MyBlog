@@ -1,18 +1,16 @@
 
 import { ReactNode } from 'react';
 import styles from './css/HomeMain.module.scss';
-import { useTheme } from '../../context/ThemeContext';
 
 type Props = {
   children: ReactNode;
 }
 
 const HomeMain = ({children} : Props) => {
-  const { theme } = useTheme();
 
   return (
-  <div className={`${styles.homeMain} ${styles[theme]}`}>
-      <h2>Articles for fun</h2>
+  <div className={styles.homeMain}>
+      <h2 className={styles.homeTitle}>Articles for fun</h2>
       <section>
         {children}
       </section>

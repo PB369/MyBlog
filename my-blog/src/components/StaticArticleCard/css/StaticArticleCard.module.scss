@@ -1,8 +1,8 @@
-article {
+.article {
   border: 2px solid var(--border-color);
   margin-bottom: 25px;
   box-shadow: 0 0 8px var(--shadow-color);
-  padding: 20px; //!!!!!!!!!!!!
+  padding: 20px;
   border-radius: 8px;
   background-color: var(--tertiary-color);
   display: flex;
@@ -54,7 +54,7 @@ article {
           white-space: nowrap;
           display: inline-block;
           margin: 15px 5px 0 5px;
-          padding: 5px 15px;
+          padding: 3px 15px;
           border: 1px solid black;
           border-radius: 8px;
           align-self: flex-start;

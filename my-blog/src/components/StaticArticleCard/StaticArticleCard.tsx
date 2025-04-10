@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styles from './css/StaticArticleCard.module.scss';
-import { useTheme } from '../../context/ThemeContext';
 import { useCheckEllipsisTag } from '../../utils/ellipsisTagHook';
 
 type Props = {
@@ -14,11 +13,10 @@ type Props = {
 }
 
 const StaticArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, content}: Props) => {
-  const { theme } = useTheme();
   const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags);
   return (
     <>
-      <article className={`${styles.article} ${styles[theme]}`}>
+      <article className={`${styles.article}`}>
         <div className={styles.articleTextualContent}>
           <div className={styles.articleMainContent}>
             <div className={styles.tagsContainer}>

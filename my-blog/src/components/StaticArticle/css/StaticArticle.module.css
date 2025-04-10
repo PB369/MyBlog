@@ -1,0 +1,108 @@
+.article {
+  border: 2px solid var(--border-color);
+  margin: 40px 0;
+  box-shadow: 0 0 8px var(--shadow-color);
+  padding: 20px;
+  border-radius: 8px;
+  background-color: var(--tertiary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.article header {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.article header .articleInteractions {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.article header .articleInteractions .viewAndHeart, .article header .articleInteractions .link {
+  border-radius: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.article header .articleInteractions .viewAndHeart .viewDiv, .article header .articleInteractions .viewAndHeart .heartDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var();
+  margin: 0 5px;
+}
+.article header .articleInteractions .viewAndHeart .viewDiv img, .article header .articleInteractions .viewAndHeart .heartDiv img {
+  width: 36px;
+}
+.article header .articleInteractions .viewAndHeart .viewDiv p, .article header .articleInteractions .viewAndHeart .heartDiv p {
+  color: var(--text-color);
+  font-weight: bold;
+  margin-left: 5px;
+}
+.article header .articleInteractions .viewAndHeart .heartDiv img:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+.article header .articleInteractions img {
+  width: 42px;
+}
+.article header .articleInteractions img:not(.viewDiv img):hover {
+  opacity: 80%;
+}
+.article .articleInfos {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+.article .articleInfos .titleAndDate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  font-weight: bold;
+}
+.article .articleInfos .tagsContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.article .articleInfos .tagsContainer .hiddenTags {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+.article .articleInfos .tagsContainer .tags, .article .articleInfos .tagsContainer .ellipsisTag {
+  font-size: 16px;
+  white-space: nowrap;
+  display: inline-block;
+  margin: 5px 10px 5px 0;
+  padding: 3px 15px;
+  border: 1px solid black;
+  border-radius: 8px;
+  align-self: flex-start;
+  font-weight: bold;
+  background-color: var(--quaternary-color);
+}
+.article main {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.article main img {
+  border: 2px solid black;
+  min-width: 700px;
+  height: 400px;
+}
+.article main p {
+  border: 1px solid black;
+}/*# sourceMappingURL=StaticArticle.module.css.map */
