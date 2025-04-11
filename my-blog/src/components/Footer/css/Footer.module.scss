@@ -17,5 +17,9 @@ footer {
         a {
             border-bottom: 1px solid var(--quaternary-color);
         }
+
+        a:hover {
+            opacity: 80%;
+        }
     }
 }

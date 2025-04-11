@@ -15,7 +15,6 @@
     justify-content: space-between;
   }
 
-
   .articleTextualContent {
     display: flex;
     flex-direction: column;
@@ -113,6 +112,10 @@
       @media screen and (min-width: $medium-device) {
         align-self: flex-end;
       }
+    }
+
+    .link:hover {
+      opacity: 80%;
     }
   }
 

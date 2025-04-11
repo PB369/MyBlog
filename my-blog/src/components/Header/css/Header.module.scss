@@ -60,11 +60,19 @@
     }
   }
 
+  .link:hover {
+    opacity: 80%;
+  }
+
   
   img {
     width: 34px;
     @media screen and (min-width: $small-device) {
       width: 42px;
     }
+  }
+
+  img:hover {
+    opacity: 80%;
   }
 }
