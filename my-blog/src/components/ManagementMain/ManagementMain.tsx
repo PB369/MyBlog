@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import './css/ManagementMain.module.scss';
+import styles from './css/ManagementMain.module.scss';
 
 type Props = {
   children: ReactNode;
@@ -7,12 +7,12 @@ type Props = {
 
 const ManagementMain = ({children} : Props) => {
   return (
-    <>
-      <h2>Your Articles</h2>
+    <div className={styles.managementMain}>
+      <h2 className={styles.managementTitle}>Your Articles</h2>
       <section>
         {children}
       </section>
-    </>
+    </div>
   )
 }
 

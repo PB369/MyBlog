@@ -1,5 +1,3 @@
-// bg-primary w-full text-white text-center p-8 shadow-[0_4px_8px_rgba(0,0,0,0.25)];
-
 .pageHeader {
   background-color: var(--secondary-color);
   display: flex;
@@ -46,8 +44,9 @@
     font-weight: bold;
   }
 
-  h1:hover, .link {
+  h1:hover, .link:hover {
     cursor: pointer;
+    opacity: 80%;
   }
 
   .link {
@@ -60,11 +59,6 @@
     }
   }
 
-  .link:hover {
-    opacity: 80%;
-  }
-
-  
   img {
     width: 34px;
     @media screen and (min-width: $small-device) {

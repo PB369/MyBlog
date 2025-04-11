@@ -9,7 +9,6 @@ import { useTheme } from '../../context/ThemeContext';
 const Home = () => {
 
   const articles = useArticles();
-  
   const { theme } = useTheme();
 
   return (
