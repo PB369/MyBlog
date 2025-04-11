@@ -41,7 +41,9 @@ const StaticArticle = ({title, tags, publishDate, bannerURL, bannerAlt, content,
             <h2>{title}</h2>
             <p>{publishDate}</p>
           </div>
-          <div className={styles.tagsContainer}>{tags.map((tag, index) => <span key={index} className={styles.tags}>{tag}</span>)}</div>
+          <div className={styles.tagsContainer}>
+            {tags.map((tag, index) => <span key={index} className={styles.tags}>{tag}</span>)}
+          </div>
         </div>
       </header>
       <main>

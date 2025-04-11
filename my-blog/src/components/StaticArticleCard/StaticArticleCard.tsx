@@ -20,6 +20,7 @@ const StaticArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, 
         <div className={styles.articleTextualContent}>
           <div className={styles.articleMainContent}>
             <div className={styles.tagsContainer}>
+              {/* This rendering of hiddenTags is required for the useCheckEllipsisTag hook to work properly */}
               <div className={styles.hiddenTags} ref={divRef}>
                 {tags.map(tag => <span key={tag} className={styles.tags}>{tag}</span>)}
                 {hasEllipsis && <span className={styles.ellipsisTag}>...</span>}

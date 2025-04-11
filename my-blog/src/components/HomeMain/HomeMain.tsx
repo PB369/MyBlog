@@ -11,7 +11,7 @@ const HomeMain = ({children} : Props) => {
   return (
     <div className={styles.homeMain}>
       <h2 className={styles.homeTitle}>Articles for fun</h2>
-      <section>
+      <section className={styles.section}>
         {children}
       </section>
     </div>

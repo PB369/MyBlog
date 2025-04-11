@@ -1,5 +1,9 @@
 .managementMain {
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
   .managementTitle {
     text-align: center;
     margin: 25px 0;
@@ -7,20 +11,12 @@
     color: var(--text-color);
   }
 
-  section {
-    width: 70%;
+  .section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
-    @media screen and (min-width: $small-device) {
-      width: 85%;
-    }
-  
-    @media screen and (max-width: $small-device) {
-      width: 85%;
-    }
+    width: 85%;
   
     @media screen and (min-width: $semi-medium-device) {
       width: 65%;

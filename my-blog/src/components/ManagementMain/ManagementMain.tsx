@@ -9,7 +9,7 @@ const ManagementMain = ({children} : Props) => {
   return (
     <div className={styles.managementMain}>
       <h2 className={styles.managementTitle}>Your Articles</h2>
-      <section>
+      <section className={styles.section}>
         {children}
       </section>
     </div>

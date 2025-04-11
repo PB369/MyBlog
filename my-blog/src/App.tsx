@@ -32,13 +32,7 @@ export default App
 
 /*
 
--estilização das páginas em light mode
-
--adição de toggle theme
-
--estilização das páginas em dark mode
-
--responsividade das páginas
+-estilização das páginas em light e dark mode
 
 -integrar banco de dados
 

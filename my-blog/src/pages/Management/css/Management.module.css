@@ -1,1 +1,16 @@
-/*# sourceMappingURL=Management.module.css.map */
+.managementPageContainer {
+  background-color: var(--primary-color);
+}
+.managementPageContainer .link {
+  background-color: var(--button-color);
+  color: var(--buttonText-color);
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+  margin-bottom: 30px;
+  text-align: center;
+}
+.managementPageContainer .link:hover {
+  opacity: 85%;
+}/*# sourceMappingURL=Management.module.css.map */

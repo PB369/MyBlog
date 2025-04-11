@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"Management.module.css"}
+{"version":3,"sources":["Management.module.scss","Management.module.css"],"names":[],"mappings":"AAAA;EACE,sCAAA;ACCF;ADCE;EACE,qCAAA;EACA,8BAAA;EACA,iBAAA;EACA,kBAAA;EACA,kBAAA;EACA,uCAAA;EACA,mBAAA;EACA,kBAAA;ACCJ;ADEE;EACE,YAAA;ACAJ","file":"Management.module.css"}
