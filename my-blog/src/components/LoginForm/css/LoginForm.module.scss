@@ -1,3 +1,112 @@
-.loginForm {
+.formContainer {
+  height: calc(100% - (122px + 104px)); //The pixels measurements are from the height of header and footer.
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (min-width: $small-device) {
+    height: calc(100% - (122px + 107px));
+  }
+
+  @media screen and (min-width: $semi-medium-device) {
+    height: calc(100% - (137px + 107px));
+  }
   
+  .loginForm {
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--tertiary-color);
+    box-shadow: 0 0 8px var(--shadow-color);
+    width: 85%;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (min-width: $small-device) {
+      padding: 80px 20px;
+    }
+
+    @media screen and (min-width: $semi-medium-device) {
+      padding: 120px 20px;
+      width: 60%;
+    }
+
+    @media screen and (min-width: $medium-device) {
+      width: 50%;
+    }
+
+    @media screen and (min-width: $semi-large-device) {
+      width: 40%;
+    }
+
+    @media screen and (min-width: $large-device) {
+      width: 35%;
+    }
+  
+    h2 {
+      text-align: center;
+      color: var(--text-color);
+      text-decoration: underline;
+      margin-bottom: 15px;
+      font-size: 20px;
+
+      @media screen and (min-width: $small-device) {
+        font-size: 24px;
+      }
+    }
+  
+    fieldset {
+      border: none;
+      padding: 0;
+      margin-bottom: 15px;
+      
+      label {
+        font-weight: bold;
+        color: var(--text-color);
+      }
+    
+      .inputContainer {
+        position: relative;
+        display: flex;
+        align-items: center;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        background-color: var(--primary-color);
+        padding: 5px 8px;
+    
+        input {
+          width: 100%;
+          outline: none;
+          color: var(--text-color);
+        }
+    
+        input::selection {
+          background-color: var(--text-color);
+          color: var(--tertiary-color);
+        }
+    
+        img {
+          width: 24px;
+          margin-left: 5px;
+        }
+      } 
+    }
+  
+    .link {
+      background-color: var(--button-color);
+      color: var(--buttonText-color);
+      width: 150px;
+      text-align: center;
+      font-weight: bold;
+      margin: 10px auto 0 auto;
+      padding: 8px 25px;
+      border-radius: 8px;
+
+      @media screen and (min-width: $small-device) {
+        margin: 20px auto 0 auto;
+      }
+    }
+  }
 }

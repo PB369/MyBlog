@@ -9,7 +9,7 @@ type Props = {
 const HomeMain = ({children} : Props) => {
 
   return (
-  <div className={styles.homeMain}>
+    <div className={styles.homeMain}>
       <h2 className={styles.homeTitle}>Articles for fun</h2>
       <section>
         {children}
