@@ -29,7 +29,7 @@ export const useCheckEllipsisTag = (tagsList: string[], urlPage: string):UseChec
       // the initial value is for correct calculation
       let tagsTotalWidth: number;
       if(urlPage === "/management" && isDesktop){
-        tagsTotalWidth = 40 + 127;
+        tagsTotalWidth = 40 + 80;
       } else {
         tagsTotalWidth = 40;
       }
