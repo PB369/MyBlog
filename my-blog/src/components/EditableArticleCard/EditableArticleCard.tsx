@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './css/EditableArticleCard.module.scss';
 import { useThemedIcon } from '../../utils/conditionalsHooks';
 import { useState } from 'react';
@@ -20,7 +20,10 @@ const EditableArticleCard = ({id, title, tags, isPublished, publishDate, bannerU
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const trashIconPath = useThemedIcon("trash-icon.png");
   const redTrashIconPath = "../../../OtherIcons/red-trash-icon.png";
-  const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags);
+  const urlPage: string = useLocation().pathname;
+  const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags, urlPage);
+
+
   return (
     <div className={styles.articleCardContainer}>
       <article className={styles.article}>

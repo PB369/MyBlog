@@ -26,6 +26,7 @@ const StaticArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, 
                 {hasEllipsis && <span className={styles.ellipsisTag}>...</span>}
               </div>
               {visibleTags.map(tag => <span key={tag} className={styles.tags}>{tag}</span>)}
+              
               {hasEllipsis && <span className={styles.ellipsisTag}>...</span>}
             </div>
             <div className={styles.articleHead}>

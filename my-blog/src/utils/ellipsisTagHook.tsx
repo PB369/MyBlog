@@ -6,8 +6,10 @@ interface UseCheckEllipsisTagReturn {
   divRef: React.RefObject<HTMLDivElement | null>;
 }
 
-export const useCheckEllipsisTag = (tagsList: string[]):UseCheckEllipsisTagReturn => {
+export const useCheckEllipsisTag = (tagsList: string[], urlPage: string):UseCheckEllipsisTagReturn => {
   const [hasEllipsis, setHasEllipsis] = useState<boolean>(false);
+
+  const isDesktop = window.matchMedia("(min-width: 768px)");
   
   const [visibleTags, setVisibleTags] = useState<string[]>([]);
   
@@ -23,7 +25,15 @@ export const useCheckEllipsisTag = (tagsList: string[]):UseCheckEllipsisTagRetur
       if(!grandParant) return;
       const grandParantWidth = grandParant.offsetWidth;
       const spanList = Array.from(tagsContainer.children) as HTMLElement[];
-      let tagsTotalWidth = 40; // the initial value is for correct calculation
+
+      // the initial value is for correct calculation
+      let tagsTotalWidth: number;
+      if(urlPage === "/management" && isDesktop){
+        tagsTotalWidth = 40 + 127;
+      } else {
+        tagsTotalWidth = 40;
+      }
+
       let tagsOverflow = false;
       const visibleTagsList:string[] = [];
 

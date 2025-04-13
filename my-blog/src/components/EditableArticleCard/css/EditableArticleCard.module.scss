@@ -2,7 +2,13 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 30px;
+
+  @media screen and (min-width: $semi-medium-device) {
+    flex-direction: row;
+  }
   
   .article {
     background-color: var(--tertiary-color);
@@ -12,8 +18,22 @@
     padding: 15px;
     display: flex;
     flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    @media screen and (min-width: $semi-medium-device) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
     
     .textualContent {
+      width: 100%;
+
+      @media screen and (min-width: $semi-medium-device) {
+        width: 70%;
+      }
+      
       .titleAndDate {
         display: flex;
         flex-direction: column;
@@ -24,8 +44,23 @@
         font-weight: bold;
         color: var(--text-color);
 
+        @media screen and (min-width: $semi-medium-device) {
+          align-items: flex-start;
+          margin: 0;
+          text-align: justify;
+        }
+        
+        div {
+          @media screen and (min-width: $semi-medium-device) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+
         div h3 {
           font-size: 22px;
+          margin-right: 10px;
         }
 
         > p {
@@ -37,16 +72,35 @@
         display: flex;
         flex-direction: column;
 
+        @media screen and (min-width: $semi-medium-device) {
+          flex-direction: row;
+          width: 100%;
+          justify-content: flex-start;
+          align-items: flex-start;
+        }
+
         .viewsAndHearts {
           display: flex;
           justify-content: center;
           align-items: center;
+
+          @media screen and (min-width: $semi-medium-device) {
+            margin-right: 15px;
+            min-width: 20%;
+            justify-content: flex-start;
+          }
+          
 
           div {
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0 3px;
+
+            @media screen and (min-width: $semi-medium-device) {
+              margin-right: 6px;
+              margin-left: 0;
+            }
 
             p {
               font-weight: bold;
@@ -66,8 +120,9 @@
           align-items: center;
           flex-wrap: nowrap;
           
-          @media screen and (min-width: $medium-device) {
+          @media screen and (min-width: $semi-medium-device) {
             justify-content: flex-start;
+            min-width: 80%;
           }
 
           .hiddenTags {
@@ -90,6 +145,10 @@
             align-self: flex-start;
             font-weight: bold;
             background-color: var(--quaternary-color);
+
+            @media screen and (min-width: $semi-medium-device) {
+              margin: 0 5px;
+            }
           }
         }
       }
@@ -99,7 +158,33 @@
       background-color: #c1c1c1;
       border: 1px solid black;
       border-radius: 8px;
-      min-width: 0px;
+      min-width: 180px;
+      object-fit: cover;
+      
+      @media screen and (min-width: $small-device) {
+        min-width: 300px;
+        margin: 10px 0 20px 0;
+      }
+
+      @media screen and (min-width: $semi-medium-device) {
+        min-width: 150px;
+        height: 150px;
+      }
+
+      // @media screen and (min-width: $medium-device) {
+      //   min-width: 600px;
+      //   height: 400px;
+      // }
+
+      // @media screen and (min-width: $semi-large-device) {
+      //   min-width: 450px;
+      //   height: 350px;
+      // }
+
+      // @media screen and (min-width: $large-device) {
+      //   min-width: 100%;
+      //   height: 400px;
+      // }
     }
   }
 
@@ -108,7 +193,15 @@
     justify-content: center;
     align-items: center;
     margin-top: 15px;
+    width: 100%;
 
+    @media screen and (min-width: $semi-medium-device) {
+      width: auto;
+      flex-direction: column;
+      margin-top: 0px;
+      margin-left: 15px;
+    }
+    
     .editButton, .deleteButton {
       img {
         width: 42px;
