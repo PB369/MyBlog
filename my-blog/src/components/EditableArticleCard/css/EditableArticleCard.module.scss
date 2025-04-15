@@ -40,13 +40,13 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        margin: 10px 0;
+        margin: 0;
         font-weight: bold;
         color: var(--text-color);
 
         @media screen and (min-width: $semi-medium-device) {
           align-items: flex-start;
-          margin: 0;
+          margin-bottom: 20px;
           text-align: justify;
         }
         

@@ -23,7 +23,6 @@ const EditableArticleCard = ({id, title, tags, isPublished, publishDate, bannerU
   const urlPage: string = useLocation().pathname;
   const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags, urlPage);
 
-
   return (
     <div className={styles.articleCardContainer}>
       <article className={styles.article}>

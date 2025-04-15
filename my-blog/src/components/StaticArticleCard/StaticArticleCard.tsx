@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './css/StaticArticleCard.module.scss';
 import { useCheckEllipsisTag } from '../../utils/ellipsisTagHook';
 
@@ -13,7 +13,8 @@ type Props = {
 }
 
 const StaticArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, content}: Props) => {
-  const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags);
+  const urlPage: string = useLocation().pathname;
+  const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags, urlPage);
   return (
     <>
       <article className={`${styles.article}`}>
