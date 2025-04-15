@@ -78,6 +78,31 @@
         h4 {
           font-size: 24px;
           color: var(--text-color);
+          text-align: justify;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 170px;
+
+          @media screen and (min-width: $semi-small-device) {
+            max-width: 230px;
+          }
+
+          @media screen and (min-width: $small-device) {
+            max-width: 320px;
+          }
+
+          @media screen and (min-width: $semi-medium-device) {
+            max-width: 430px;
+          }
+
+          @media screen and (min-width: $medium-device) {
+            max-width: 370px;
+          }
+
+          @media screen and (min-width: $semi-large-device) {
+            min-width: 370px;
+          }
         }
 
         .publishDate {

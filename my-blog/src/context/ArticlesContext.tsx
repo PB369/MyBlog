@@ -16,7 +16,7 @@ export type Article = {
 const articles: Article[] = [
   {
     id: 1,
-    title: "Article 1",
+    title: "Article 1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     tags: ["Tag 1", "Tag 2", "Tag 3", "Tag 4", "Tag 5"],
     isPublished: false,
     publishDate: "12/03/2025",
