@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
-import './css/ArticleEdition.module.scss';
+import styles from './css/ArticleEdition.module.scss';
 import { useArticles } from '../../context/ArticlesContext';
 import EditableArticle from '../../components/EditableArticle/EditableArticle';
+import { useTheme } from '../../context/ThemeContext';
 
 const ArticleEdition = () => {
 
@@ -23,9 +24,10 @@ const ArticleEdition = () => {
   };
 
   const isNewArticle = !id;
+  const { theme } = useTheme();
 
   return (
-    <>
+    <div className={`${styles.articleEditionPageContainer} ${styles[theme]}`}>
       <Header/>
       {
         article ? // If the article was found, render this:
@@ -43,9 +45,8 @@ const ArticleEdition = () => {
         : // If not, render this:
           <h2>Não foi possível carregar o conteúdo deste artigo.</h2>
       }
-
       <Footer/>
-    </>
+    </div>
   )
 }
 

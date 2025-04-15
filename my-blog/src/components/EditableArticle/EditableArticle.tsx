@@ -16,28 +16,36 @@ type Props = {
 
 const EditableArticle = ({isNewArticle, title, tags, publishDate, bannerURL, bannerAlt, content, viewAmount, heartsAmount}: Props) => {
   let haveAddParagraph: boolean = false;
+  const arrowIconPath = useThemedIcon("arrow-icon.png");
+  const eyeIconPath = useThemedIcon("eye-icon.png");
+  const heartIconPath = "../../../OtherIcons/heart-icon.png";
+
   return (
-    <article>
+    <article className={styles.article}>
       <header>
-        <div>
-          <Link to={'/management'}>
-            <img src={useThemedIcon("arrow-icon.png")} alt="arrow-icon" />
+        <div className={styles.articleInteractions}>
+          <Link to={'/management'} className={styles.link}>
+            <img src={arrowIconPath} alt="arrow-icon" />
           </Link>
-          <div>
-            <div>
-              <img src={useThemedIcon("eye-icon.png")} alt="eye-icon" />
+          <div className={styles.viewAndHeart}>
+            <div className={styles.viewDiv}>
+              <img src={eyeIconPath} alt="eye-icon" />
               <p>{isNewArticle ? 0 : viewAmount}</p>
             </div>
-            <div>
-              <img src={useThemedIcon("heart-icon.png")} alt="heart-icon" />
+            <div className={styles.heartDiv}>
+              <img src={heartIconPath} alt="heart-icon" />
               <p>{isNewArticle ? 0 : heartsAmount}</p>
             </div>
           </div>
         </div>
-        <div>
-          <h2>{isNewArticle ? "Add a title" : title}</h2>
-          <p>{isNewArticle ? "Add a publish date" : publishDate}</p>
-          {isNewArticle ? <span>+</span> : tags.map((tag, index) => <span key={index}>{tag}</span>)}
+        <div className={styles.articleInfos}>
+          <div className={styles.titleAndDate}>
+            <h2>{isNewArticle ? "Add a title" : title}</h2>
+            <p>{isNewArticle ? "Add a publish date" : publishDate}</p>
+          </div>
+          <div className={styles.tagsContainer}>
+            {isNewArticle ? <span className={styles.tags}>+</span> : tags.map((tag, index) => <span key={index} className={styles.tags}>{tag}</span>)}
+          </div>
         </div>
       </header>
       <main>
@@ -48,16 +56,17 @@ const EditableArticle = ({isNewArticle, title, tags, publishDate, bannerURL, ban
             haveAddParagraph = true;
             return <p>Add a paragraph</p>
           } else {
-              haveAddParagraph = false
+              haveAddParagraph = false;
               return content.split("\n\n").map((text, index, arr) =>
-                (<div key={index}>
+              (
+                <div key={index}>
                   <p>{text}</p>
                   {index !== (arr.length - 1) && <br/>}
                 </div>)
               )
           }
         })()}
-        {haveAddParagraph ? null : <p>Add a paragraph</p>}
+        {haveAddParagraph ? null : <><br/><p>Add a paragraph</p></>}
       </main>
     </article>
   )
