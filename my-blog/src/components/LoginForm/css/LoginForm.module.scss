@@ -1,24 +1,8 @@
 .formContainer {
-  height: calc(100% - (122px + 104px)); //The pixels measurements are from the height of header and footer.
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media screen and (max-height: 650px) {
-    height: auto;
-  }
-
-  @media screen and (min-width: $small-device) {
-    height: calc(100% - (122px + 107px));
-  }
-
-  @media screen and (min-width: $semi-medium-device) {
-    height: calc(100% - (137px + 107px));
-  }
-
-  @media screen and (max-height: 650px) {
-      height: auto;
-  }
+  flex: 1;
   
   .loginForm {
     border: 2px solid var(--border-color);
@@ -54,7 +38,7 @@
     }
     
     @media screen and (min-width: $large-device) {
-      width: 35%;
+      width: 30%;
     }
     
 

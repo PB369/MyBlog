@@ -1,8 +1,6 @@
 .loginPageContainer {
   background-color: var(--primary-color);
-  height: 100vh;
-
-  @media screen and (max-height: 650px) {
-    height: auto;
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
