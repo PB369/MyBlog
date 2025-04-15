@@ -1,4 +1,8 @@
 .loginPageContainer {
   background-color: var(--primary-color);
   height: 100vh;
+
+  @media screen and (max-height: 650px) {
+    height: auto;
+  }
 }

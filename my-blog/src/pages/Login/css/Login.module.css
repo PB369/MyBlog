@@ -1,4 +1,9 @@
 .loginPageContainer {
   background-color: var(--primary-color);
   height: 100vh;
+}
+@media screen and (max-height: 650px) {
+  .loginPageContainer {
+    height: auto;
+  }
 }/*# sourceMappingURL=Login.module.css.map */

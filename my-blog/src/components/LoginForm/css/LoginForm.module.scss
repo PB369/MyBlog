@@ -4,12 +4,20 @@
   justify-content: center;
   align-items: center;
 
+  @media screen and (max-height: 650px) {
+    height: auto;
+  }
+
   @media screen and (min-width: $small-device) {
     height: calc(100% - (122px + 107px));
   }
 
   @media screen and (min-width: $semi-medium-device) {
     height: calc(100% - (137px + 107px));
+  }
+
+  @media screen and (max-height: 650px) {
+      height: auto;
   }
   
   .loginForm {
@@ -18,33 +26,38 @@
     background-color: var(--tertiary-color);
     box-shadow: 0 0 8px var(--shadow-color);
     width: 85%;
-    padding: 60px 20px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    @media screen and (min-width: $small-device) {
-      padding: 80px 20px;
+    @media screen and (max-height: 650px) {
+      margin: 5% 0;
     }
-
+    
+    @media screen and (min-width: $small-device) {
+      padding: 60px 20px;
+    }
+    
     @media screen and (min-width: $semi-medium-device) {
-      padding: 120px 20px;
+      padding: 60px 20px;
       width: 60%;
     }
-
+    
     @media screen and (min-width: $medium-device) {
       width: 50%;
     }
-
+    
     @media screen and (min-width: $semi-large-device) {
       width: 40%;
     }
-
+    
     @media screen and (min-width: $large-device) {
       width: 35%;
     }
-  
+    
+
     h2 {
       text-align: center;
       color: var(--text-color);
