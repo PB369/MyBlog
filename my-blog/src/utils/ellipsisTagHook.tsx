@@ -23,13 +23,16 @@ export const useCheckEllipsisTag = (tagsList: string[], urlPage: string):UseChec
     
     const observer = new ResizeObserver(() => {
       if(!grandParant) return;
-      const grandParantWidth = grandParant.offsetWidth;
+      let grandParantWidth = grandParant.offsetWidth;
       const spanList = Array.from(tagsContainer.children) as HTMLElement[];
 
       // the initial value is for correct calculation
       let tagsTotalWidth: number;
       if(urlPage === "/management" && isDesktop){
-        tagsTotalWidth = 40 + (0.3 * grandParantWidth);
+        const viewsAndHeartsDiv = document.querySelector("._viewsAndHearts_eguz0_107");
+        const vAhDivWidth = viewsAndHeartsDiv instanceof HTMLElement ? viewsAndHeartsDiv.offsetWidth : 0;
+        tagsTotalWidth = 40 + (0.30 * grandParantWidth);
+        grandParantWidth -= vAhDivWidth;
       } else {
         tagsTotalWidth = 40;
       }
@@ -52,10 +55,10 @@ export const useCheckEllipsisTag = (tagsList: string[], urlPage: string):UseChec
           }
           visibleTagsList.push(span.innerHTML);
         }
-        
       }
-      // console.log(`Tags Width: ${tagsTotalWidth} px`)
-      // console.log(`Container Width: ${grandParantWidth} px`)
+
+      console.log(`Tags Width: ${tagsTotalWidth} px`);
+      console.log(`Container Width: ${grandParantWidth} px`);
       
       setHasEllipsis(tagsOverflow);
       setVisibleTags(visibleTagsList);

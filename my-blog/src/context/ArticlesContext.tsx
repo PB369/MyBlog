@@ -22,8 +22,8 @@ const articles: Article[] = [
     publishDate: "12/03/2025",
     bannerURL: "../../public/LightIcons/blocked-icon.png",
     bannerAlt: "block-icon",
-    heartsAmount: 12,
-    viewAmount: 34,
+    heartsAmount: 120,
+    viewAmount: 340,
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex.\n\nLorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex.\n\nLorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam atque enim amet dolor deleniti et voluptatem. Odio quod at, hic fugiat suscipit sed magnam ad alias, asperiores, omnis ex.",
   },
 
