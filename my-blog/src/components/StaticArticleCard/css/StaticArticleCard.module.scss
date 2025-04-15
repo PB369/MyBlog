@@ -101,7 +101,11 @@
           }
 
           @media screen and (min-width: $semi-large-device) {
-            min-width: 370px;
+            max-width: 440px;
+          }
+
+          @media screen and (min-width: $large-device) {
+            max-width: 450px;
           }
         }
 
