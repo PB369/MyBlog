@@ -32,8 +32,6 @@ export default App
 
 /*
 
--estilização das páginas em light e dark mode
-
 -integrar banco de dados
 
 -criar autenticação para administrador
