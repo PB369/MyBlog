@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './css/EditableArticle.module.scss';
-import { useThemedIcon } from '../../utils/conditionalsHooks';
+import { useThemedIcon } from '../../hooks/conditionalsHooks';
 
 type Props = {
   isNewArticle: boolean,

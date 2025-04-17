@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useThemedIcon } from '../../utils/conditionalsHooks';
+import { useThemedIcon } from '../../hooks/conditionalsHooks';
 import styles from './css/StaticArticle.module.scss';
 
 type Props = {

@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './css/StaticArticleCard.module.scss';
-import { useCheckEllipsisTag } from '../../utils/ellipsisTagHook';
+import { useCheckEllipsisTag } from '../../hooks/EllipsisTagHook';
 
 type Props = {
   id: number | undefined,

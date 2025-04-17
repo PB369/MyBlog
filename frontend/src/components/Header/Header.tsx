@@ -1,8 +1,8 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './css/Header.module.scss';
 import { useTheme } from '../../context/ThemeContext';
-import { useMediaQuery } from '../../utils/windowWidth';
-import { useCheckDarkMode, useThemedIcon } from '../../utils/conditionalsHooks';
+import { useMediaQuery } from '../../hooks/WindowWidth';
+import { useCheckDarkMode, useThemedIcon } from '../../hooks/conditionalsHooks';
 
 const Header = () => {
   const { theme, toggleTheme } = useTheme();

@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './css/EditableArticleCard.module.scss';
-import { useThemedIcon } from '../../utils/conditionalsHooks';
+import { useThemedIcon } from '../../hooks/conditionalsHooks';
 import { useState } from 'react';
-import { useCheckEllipsisTag } from '../../utils/ellipsisTagHook';
+import { useCheckEllipsisTag } from '../../hooks/EllipsisTagHook';
 
 type Props = {
   id: number,
