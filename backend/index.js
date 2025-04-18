@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('./articles', (req, res) => {
+app.post('/articles', (req, res) => {
   articleModel.createArticle(req.body)
   .then(response => {
     res.status(200).send(response);
@@ -32,7 +32,7 @@ app.post('./articles', (req, res) => {
   });
 });
 
-app.delete('/article/:id', (req, res) => {
+app.delete('/articles/:id', (req, res) => {
   articleModel.deleteArticle(req.params.id)
   .then(response => {
     res.status(200).send(response);
@@ -42,7 +42,7 @@ app.delete('/article/:id', (req, res) => {
   });
 });
 
-app.put('articles/:id', (req, res) => {
+app.put('/articles/:id', (req, res) => {
   articleModel.updateArticle(req.params.id, req.body)
   .then(response => {
     res.status(200).send(response);
