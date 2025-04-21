@@ -6,13 +6,13 @@ type Props = {
   id: number | undefined,
   title: string,
   tags: string[],
-  publishDate: string,
-  bannerURL: string,
-  bannerAlt: string,
-  content: string,
+  publish_date: string,
+  banner_url: string,
+  banner_alt: string,
+  article_content: string,
 }
 
-const StaticArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, content}: Props) => {
+const StaticArticleCard = ({id, title, tags, publish_date, banner_url, banner_alt, article_content}: Props) => {
   const urlPage: string = useLocation().pathname;
   const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags, urlPage);
   return (
@@ -32,13 +32,13 @@ const StaticArticleCard = ({id, title, tags, publishDate, bannerURL, bannerAlt, 
             </div>
             <div className={styles.articleHead}>
               <h4>{title}</h4>
-              <p className={styles.publishDate}>{publishDate}</p>
+              <p className={styles.publishDate}>{publish_date}</p>
             </div>
-            <p className={styles.articleText}>{content}</p>
+            <p className={styles.articleText}>{article_content}</p>
           </div>
           <Link to={`/articles/${typeof(id) === "number" ? id.toString() : undefined}`} className={styles.link}>Read it all</Link>
         </div>
-        <img src={bannerURL} alt={bannerAlt}/>
+        <img src={banner_url} alt={banner_alt}/>
       </article>
     </>
   )
