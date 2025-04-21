@@ -8,19 +8,22 @@ type Props = {
   id: number,
   title: string,
   tags: string[],
-  isPublished: boolean,
-  publishDate: string,
-  bannerURL: string,
-  bannerAlt: string,
-  viewAmount: number,
-  heartAmount: number,
+  is_published: boolean,
+  publish_date: string,
+  banner_url: string,
+  banner_alt: string,
+  views_amount: number,
+  hearts_amount: number,
 }
 
-const EditableArticleCard = ({id, title, tags, isPublished, publishDate, bannerURL, bannerAlt, viewAmount, heartAmount}: Props) => {
-  const [isHovered, setIsHovered] = useState<boolean>(false);
+const EditableArticleCard = ({id, title, tags, is_published, publish_date, banner_url, banner_alt, views_amount, hearts_amount}: Props) => {
+  const blockedIconPath = useThemedIcon("blocked-icon.png");
   const trashIconPath = useThemedIcon("trash-icon.png");
   const redTrashIconPath = "../../../OtherIcons/red-trash-icon.png";
+  const heartIconPath = "../../../OtherIcons/heart-icon.png";
+  
   const urlPage: string = useLocation().pathname;
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags, urlPage);
 
   return (
@@ -29,20 +32,20 @@ const EditableArticleCard = ({id, title, tags, isPublished, publishDate, bannerU
         <div className={styles.textualContent}>
           <div className={styles.titleAndDate}>
             <div>
-              <h3>{title}</h3>
-              {isPublished ? null : <p>[Draft Article]</p>}
+              {title === "" ? <h3>Untitled</h3>: <h3>{title}</h3>}
+              {is_published ? null : <p>[Draft Article]</p>}
             </div>
-            <p>Publish Date: {publishDate}</p>
+            <p>Publish Date: {publish_date}</p>
           </div>
           <div className={styles.interactionsAndTags}>
             <div className={styles.viewsAndHearts}>
               <div className={styles.viewsContainer}>
                 <img src={useThemedIcon("eye-icon.png")} alt="eye-icon" />
-                <p>{viewAmount}</p>
+                <p>{views_amount}</p>
               </div>
               <div className={styles.heartsContainer}>
-                <img src="../../../OtherIcons/heart-icon.png" alt="heart-icon" />
-                <p>{heartAmount}</p>
+                <img src={heartIconPath} alt="heart-icon" />
+                <p>{hearts_amount}</p>
               </div>
             </div>
             <div className={styles.tagsContainer}>
@@ -57,7 +60,7 @@ const EditableArticleCard = ({id, title, tags, isPublished, publishDate, bannerU
             </div>
           </div>
         </div>
-        <img src={bannerURL ? bannerURL : ""} alt={bannerAlt} className={styles.articleBanner}/>
+        <img src={banner_url ? banner_url : blockedIconPath} alt={banner_alt} className={styles.articleBanner}/>
       </article>
       <div className={styles.editAndDelete}>
         <Link to={`edit/${id.toString()}`} className={styles.editButton}>

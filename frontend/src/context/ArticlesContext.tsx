@@ -4,13 +4,13 @@ export type Article = {
   id: number,
   title: string,
   tags: string[],
-  isPublished: boolean,
-  publishDate: string,
-  bannerURL: string,
-  bannerAlt: string,
-  heartsAmount: number,
-  viewAmount: number,
-  content: string,
+  is_published: boolean,
+  publish_date: string,
+  banner_url: string,
+  banner_alt: string,
+  hearts_amount: number,
+  views_amount: number,
+  article_content: string,
 };
 
 const articles: Article[] = [
