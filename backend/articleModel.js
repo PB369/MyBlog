@@ -3,7 +3,7 @@ const pool = require('./db');
 const getArticles = async () => {
   try {
     return await new Promise((resolve, reject) => {
-      pool.query("SELECT * FROM articles", (error, results) => {
+      pool.query("SELECT * FROM articles ORDER BY id", (error, results) => {
         if(error){
           reject(error);
         }
