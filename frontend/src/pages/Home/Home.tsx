@@ -2,14 +2,13 @@ import StaticArticleCard from '../../components/StaticArticleCard/StaticArticleC
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import HomeMain from '../../components/HomeMain/HomeMain';
-import { useArticles } from '../../context/ArticlesContext';
 import styles from './css/Home.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
-import { Article, getArticles } from '../../api/articlesAPI';
+import { ArticleType, getArticles } from '../../api/articlesAPI';
 
 const Home = () => {
-  const [articles, setArticles] = useState<Article[] | null>(null);
+  const [articles, setArticles] = useState<ArticleType[] | null>(null);
   
   useEffect(()=>{
       getArticles()
@@ -17,7 +16,6 @@ const Home = () => {
       .catch(console.error);
   }, []);
 
-  // const articles = useArticles();
   const { theme } = useTheme();
 
   return (
@@ -31,10 +29,10 @@ const Home = () => {
               id={article.id}
               title={article.title}
               tags={article.tags}
-              publishDate={article.publish_date}
-              bannerURL={article.banner_url}
-              bannerAlt={article.banner_alt}
-              content={article.article_content}
+              publish_date={article.publish_date}
+              banner_url={article.banner_url}
+              banner_alt={article.banner_alt}
+              article_content={article.article_content}
             />
           ))
           :
