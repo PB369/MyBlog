@@ -22,8 +22,8 @@ const Home = () => {
     <div className={`${styles.homePageContainer} ${styles[theme]}`}>
       <Header/>
       <HomeMain>
-        {articles ? 
-          articles.map((article) => (
+        {articles ? //This filter() and the getArticle() are not safe. Remember to replace it with a proper backend autentication logic.
+          articles.filter((article) => article.is_published === true).map((article) => (
             <StaticArticleCard
               key={article.id}
               id={article.id}

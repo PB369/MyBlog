@@ -8,11 +8,13 @@ import styles from './css/Management.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
 import { getArticles } from '../../api/articlesAPI';
+import ChoiceModal from '../../components/ChoiceModal/ChoiceModal';
 
 const Management = () => {
 
   const [articles, setArticles] = useState<Article[] | null>(null);
-  
+  const [showChoiceModal, setShowChoiceModal] = useState<boolean>(false);
+
   useEffect(()=>{
       getArticles()
       .then(setArticles)
@@ -37,11 +39,13 @@ const Management = () => {
             banner_alt={article.banner_alt}
             views_amount={article.views_amount}
             hearts_amount={article.hearts_amount}
+            onShowChoiceModal={() => setShowChoiceModal(true)}
           />
         ))
         :
         <p>There are no posts yet.</p>
         }
+        {showChoiceModal && <ChoiceModal modalType='delete' isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)}/>}
         <Link to={'/management/create'} className={styles.link}>Create a new article</Link>
       </ManagementMain>
       <Footer/>

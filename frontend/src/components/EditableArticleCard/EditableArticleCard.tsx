@@ -14,9 +14,10 @@ type Props = {
   banner_alt: string,
   views_amount: number,
   hearts_amount: number,
+  onShowChoiceModal: () => void,
 }
 
-const EditableArticleCard = ({id, title, tags, is_published, publish_date, banner_url, banner_alt, views_amount, hearts_amount}: Props) => {
+const EditableArticleCard = ({id, title, tags, is_published, publish_date, banner_url, banner_alt, views_amount, hearts_amount, onShowChoiceModal}: Props,) => {
   const blockedIconPath = useThemedIcon("blocked-icon.png");
   const trashIconPath = useThemedIcon("trash-icon.png");
   const redTrashIconPath = "../../../OtherIcons/red-trash-icon.png";
@@ -25,6 +26,7 @@ const EditableArticleCard = ({id, title, tags, is_published, publish_date, banne
   const urlPage: string = useLocation().pathname;
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags, urlPage);
+
 
   return (
     <div className={styles.articleCardContainer}>
@@ -67,7 +69,7 @@ const EditableArticleCard = ({id, title, tags, is_published, publish_date, banne
           <img src={useThemedIcon("edit-icon.png")} alt="" />
         </Link>
         <button className={styles.deleteButton}>
-          <img src={isHovered ? redTrashIconPath : trashIconPath} alt="trash-icon" onMouseEnter={() => setIsHovered(true)} onMouseLeave={()=> setIsHovered(false)}/>
+          <img src={isHovered ? redTrashIconPath : trashIconPath} alt="trash-icon" onMouseEnter={() => setIsHovered(true)} onMouseLeave={()=> setIsHovered(false)} onClick={onShowChoiceModal}/>
         </button>
       </div>
     </div>

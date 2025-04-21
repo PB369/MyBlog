@@ -32,14 +32,12 @@ export default App
 
 /*
 
--integrar banco de dados
+-criar funcionalidade de criar, editar e remover artigo
+
+-criar funcionalidades de salvar e publicar artigo
 
 -criar autenticação para administrador
 
 -logout para administrador
-
--criar funcionalidade de criar, editar e remover artigo
-
--criar funcionalidades de salvar e publicar artigo
 
 */
