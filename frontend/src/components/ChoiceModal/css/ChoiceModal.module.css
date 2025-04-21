@@ -12,15 +12,20 @@
   border: 2px solid var(--border-color);
   border-radius: 8px;
   box-shadow: 0 0 8px var(--shadow-color);
+  min-width: 85%;
 }
 .modalContainer p {
   margin-bottom: 20px;
   font-weight: bold;
   font-size: 22px;
   color: var(--text-color);
+  text-align: center;
 }
 .modalContainer .buttonsContainer {
-  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .modalContainer .buttonsContainer .cancelButton {
   border: 2px solid var(--border-color);
@@ -31,7 +36,7 @@
   font-size: 18px;
   min-width: 80px;
   padding: 5px 15px;
-  margin-right: 10px;
+  margin-bottom: 10px;
 }
 .modalContainer .buttonsContainer .yesButton {
   border: 2px solid var(--button-color);
@@ -42,5 +47,4 @@
   font-size: 18px;
   min-width: 80px;
   padding: 5px 15px;
-  margin-right: 10px;
 }/*# sourceMappingURL=ChoiceModal.module.css.map */
