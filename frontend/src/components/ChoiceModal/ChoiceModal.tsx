@@ -5,9 +5,10 @@ type Modal = {
   modalType: 'delete' | 'logout',
   closeModal: () => void,
   isVisible: boolean,
+  confirmChoice: () => void,
 }
 
-const ChoiceModal = ({modalType, isVisible, closeModal} : Modal) => {
+const ChoiceModal = ({modalType, isVisible, closeModal, confirmChoice} : Modal) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(()=>{
@@ -28,7 +29,7 @@ const ChoiceModal = ({modalType, isVisible, closeModal} : Modal) => {
       <p>{modalType === 'delete' ? 'Do you want to delete this article?' : 'Do you want to log out?'}</p>
       <div className={styles.buttonsContainer}>
         <button className={styles.cancelButton} onClick={closeModal}>Cancel</button>
-        <button className={styles.yesButton}>Yes</button>
+        <button className={styles.yesButton} onClick={confirmChoice}>Yes</button>
       </div>
     </div>
   )

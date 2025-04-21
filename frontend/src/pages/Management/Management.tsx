@@ -7,12 +7,13 @@ import { Article } from '../../context/ArticlesContext';
 import styles from './css/Management.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
-import { getArticles } from '../../api/articlesAPI';
+import { deleteArticle, getArticles } from '../../api/articlesAPI';
 import ChoiceModal from '../../components/ChoiceModal/ChoiceModal';
 
 const Management = () => {
 
   const [articles, setArticles] = useState<Article[] | null>(null);
+  const [articleId, setArticleId] = useState<number | null>(null);
   const [showChoiceModal, setShowChoiceModal] = useState<boolean>(false);
 
   useEffect(()=>{
@@ -20,6 +21,18 @@ const Management = () => {
       .then(setArticles)
       .catch(console.error);
   }, []);
+
+  const handleDeleteArticle = () => {
+    if(articleId !== null) {
+      deleteArticle(articleId)
+      .then(() => {
+        setArticles(prev => prev ? prev.filter(article => article.id !== articleId) : []);
+        setShowChoiceModal(false);
+        setArticleId(null);
+      })
+      .catch(console.error);
+    }
+  }
 
   const { theme } = useTheme();
 
@@ -39,13 +52,13 @@ const Management = () => {
             banner_alt={article.banner_alt}
             views_amount={article.views_amount}
             hearts_amount={article.hearts_amount}
-            onShowChoiceModal={() => setShowChoiceModal(true)}
+            onShowChoiceModal={() => {setShowChoiceModal(true); setArticleId(article.id)}}
           />
         ))
         :
         <p>There are no posts yet.</p>
         }
-        {showChoiceModal && <ChoiceModal modalType='delete' isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)}/>}
+        {showChoiceModal && <ChoiceModal modalType='delete' isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)} confirmChoice={handleDeleteArticle}/>}
         <Link to={'/management/create'} className={styles.link}>Create a new article</Link>
       </ManagementMain>
       <Footer/>
