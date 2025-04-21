@@ -39,18 +39,20 @@ const ArticleEdition = () => {
     <div className={`${styles.articleEditionPageContainer} ${styles[theme]}`}>
       <Header/>
       {
-        article ? // If the article was found, render this:
-          <EditableArticle
-            isNewArticle={isNewArticle}
-            title={article.title}
-            tags={article.tags}
-            publish_date={article.publish_date}
-            banner_url={article.banner_url}
-            banner_alt={article.banner_alt}
-            article_content={article.article_content}
-            views_amount={article.views_amount}
-            hearts_amount={article.hearts_amount}
-          />
+        article ?// If the article was found, render this:
+          <>
+            <EditableArticle
+              isNewArticle={isNewArticle}
+              title={article.title}
+              tags={article.tags}
+              publish_date={article.publish_date}
+              banner_url={article.banner_url}
+              banner_alt={article.banner_alt}
+              article_content={article.article_content}
+              views_amount={article.views_amount}
+              hearts_amount={article.hearts_amount}
+            />
+          </>
         : // If not, render this:
           <h2>It was not possible to load the article.</h2>
       }
