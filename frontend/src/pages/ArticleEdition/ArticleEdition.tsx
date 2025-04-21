@@ -2,25 +2,34 @@ import { useParams } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import styles from './css/ArticleEdition.module.scss';
-import { useArticles } from '../../context/ArticlesContext';
 import EditableArticle from '../../components/EditableArticle/EditableArticle';
 import { useTheme } from '../../context/ThemeContext';
+import { useEffect, useState } from 'react';
+import { ArticleType, getArticles } from '../../api/articlesAPI';
 
 const ArticleEdition = () => {
 
   const { id } = useParams();
-  const articles = useArticles();
-  const article  = id ? articles.find(article => article.id === Number(id)) : {
+
+  const [articles, setArticles] = useState<ArticleType[] | null>(null);
+    
+    useEffect(()=>{
+      getArticles()
+      .then(setArticles)
+      .catch(console.error);
+    }, []);
+
+  const article  = articles && id ? articles.find(article => article.id === Number(id)) : {
     id: 0,
     title: "",
     tags: [],
-    isPublished: false,
-    publishDate: "",
-    bannerURL: "",
-    bannerAlt: "",
-    heartsAmount: 0,
-    viewAmount: 0,
-    content: "",
+    is_published: false,
+    publish_date: "",
+    banner_url: "",
+    banner_alt: "",
+    hearts_amount: 0,
+    views_amount: 0,
+    article_content: "",
   };
 
   const isNewArticle = !id;
@@ -35,15 +44,15 @@ const ArticleEdition = () => {
             isNewArticle={isNewArticle}
             title={article.title}
             tags={article.tags}
-            publishDate={article.publishDate}
-            bannerURL={article.bannerURL}
-            bannerAlt={article.bannerAlt}
-            content={article.content}
-            viewAmount={article.viewAmount}
-            heartsAmount={article.heartsAmount}
+            publish_date={article.publish_date}
+            banner_url={article.banner_url}
+            banner_alt={article.banner_alt}
+            article_content={article.article_content}
+            views_amount={article.views_amount}
+            hearts_amount={article.hearts_amount}
           />
         : // If not, render this:
-          <h2>Não foi possível carregar o conteúdo deste artigo.</h2>
+          <h2>It was not possible to load the article.</h2>
       }
       <Footer/>
     </div>
