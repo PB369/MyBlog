@@ -1,5 +1,18 @@
 import axiosAPI from "./axiosAPI";
 
+export type Article = {
+  id: number,
+  title: string,
+  tags: string[],
+  is_published: boolean,
+  publish_date: string,
+  banner_url: string,
+  banner_alt: string,
+  hearts_amount: number,
+  views_amount: number,
+  article_content: string,
+};
+
 export const getArticles = async () => {
   const response = await axiosAPI.get('/');
   return response.data;
@@ -10,12 +23,12 @@ export const createArticle = async () => {
   return response.data;
 }
 
-export const updateArticle = async (article) => {
+export const updateArticle = async (article: Article) => {
   const response = await axiosAPI.put(`/articles/${article.id}`, article);
   return response.data;
 }
 
-export const deleteArticle = async (id) => {
+export const deleteArticle = async (id: Article["id"]) => {
   const response = await axiosAPI.delete(`/articles/${id}`);
   return response.data;
 }
