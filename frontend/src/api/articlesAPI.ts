@@ -1,6 +1,6 @@
 import axiosAPI from "./axiosAPI";
 
-export type Article = {
+export type ArticleType = {
   id: number,
   title: string,
   tags: string[],
@@ -23,12 +23,12 @@ export const createArticle = async () => {
   return response.data;
 }
 
-export const updateArticle = async (article: Article) => {
+export const updateArticle = async (article: ArticleType) => {
   const response = await axiosAPI.put(`/articles/${article.id}`, article);
   return response.data;
 }
 
-export const deleteArticle = async (id: Article["id"]) => {
+export const deleteArticle = async (id: ArticleType["id"]) => {
   const response = await axiosAPI.delete(`/articles/${id}`);
   return response.data;
 }
