@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './css/EditableArticle.module.scss';
 import { useThemedIcon } from '../../hooks/conditionalsHooks';
+import { createArticle } from '../../api/articlesAPI';
 
 type Props = {
   isNewArticle: boolean,
@@ -19,6 +20,25 @@ const EditableArticle = ({isNewArticle, title, tags, publish_date, banner_url, b
   const arrowIconPath = useThemedIcon("arrow-icon.png");
   const eyeIconPath = useThemedIcon("eye-icon.png");
   const heartIconPath = "../../../OtherIcons/heart-icon.png";
+
+  const article = {
+    title: title,
+    tags: tags,
+    publish_date: publish_date,
+    banner_url: banner_url,
+    banner_alt: banner_alt,
+    article_content: article_content,
+    views_amount: views_amount,
+    hearts_amount: hearts_amount,
+  }
+
+  const saveArticle = () => {
+    if(isNewArticle) {
+      createArticle(article)
+      .then(() => alert('Saved!'))
+      .catch(console.error);
+    }
+  }
 
   return (
     <div className={styles.editableArticleContainer}>
@@ -71,8 +91,8 @@ const EditableArticle = ({isNewArticle, title, tags, publish_date, banner_url, b
         </main>
       </article>
       <div className={styles.buttonsContainer}>
-        <button className={styles.saveButton}>Save</button>
-        <button className={styles.publishButton}>Publish</button>
+        <button className={styles.saveButton} onClick={'a'}>Save</button>
+        <button className={styles.publishButton} onClick={'a'}>Publish</button>
       </div>
     </div>
   )
