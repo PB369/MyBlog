@@ -13,11 +13,11 @@ const ArticleEdition = () => {
 
   const [articles, setArticles] = useState<ArticleType[] | null>(null);
     
-    useEffect(()=>{
-      getArticles()
-      .then(setArticles)
-      .catch(console.error);
-    }, []);
+  useEffect(()=>{
+    getArticles()
+    .then(setArticles)
+    .catch(console.error);
+  }, []);
 
   const article  = articles && id ? articles.find(article => article.id === Number(id)) : {
     id: 0,
@@ -45,6 +45,7 @@ const ArticleEdition = () => {
               isNewArticle={isNewArticle}
               title={article.title}
               tags={article.tags}
+              is_published={article.is_published}
               publish_date={article.publish_date}
               banner_url={article.banner_url}
               banner_alt={article.banner_alt}

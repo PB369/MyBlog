@@ -1,3 +1,6 @@
+console.log('🚀 Backend index.js carregado!');
+
+
 const express = require('express');
 const app = express();
 const port = 3001;
@@ -22,12 +25,17 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/teste', (req, res) => {
+  res.send('Servidor funcionando!');
+});
+
 app.post('/articles', (req, res) => {
   articleModel.createArticle(req.body)
   .then(response => {
     res.status(200).send(response);
   })
   .catch(error => {
+    console.error("Erro ao inserir no DB")
     res.status(500).send(error);
   });
 });

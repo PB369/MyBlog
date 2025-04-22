@@ -21,8 +21,9 @@ const getArticles = async () => {
 
 const createArticle = (body) => {
   return new Promise((resolve, reject) => {
-    pool.query("INSERT INTO articles (title, tags, isPublished, publishDate, bannerURL, bannerAlt, heartsAmount, viewsAmount, content) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *", [body.title, body.tags, body.isPublished, body.publishDate, body.bannerURL, body.bannerAlt, body.heartsAmount, body.viewsAmount, body.content], (error, results) => {
+    pool.query("INSERT INTO articles (title, tags, is_published, publish_date, banner_url, banner_alt, hearts_amount, views_amount, article_content) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *", [body.title, body.tags, body.is_published, body.publish_date, body.banner_url, body.banner_alt, body.hearts_amount, body.views_amount, body.article_content], (error, results) => {
       if (error){
+        console.log('Erro ao inserir', error)
         reject(error);
       }
       if (results && results.rows){
@@ -46,9 +47,10 @@ const deleteArticle = (id) => {
 }
 
 const updateArticle = (id, body) => {
-  return Promise((resolve, reject) => {
-    pool.query("UPDATE articles SET title = $1, tags = $2, isPublished = $3, publishDate = $4, bannerURL = $5, bannerAlt = $6, heartsAmount = $7, viewsAmount = $8, content = $9 WHERE id = $10 RETURNING *", [body.title, body.tags, body.isPublished, body.publishDate, body.bannerURL, body.bannerAlt, body.heartsAmount, body.viewsAmount, body.content, body.id], (error, results) => {
+  return new Promise((resolve, reject) => {
+    pool.query("UPDATE articles SET title = $1, tags = $2, is_published = $3, publish_date = $4, banner_url = $5, banner_alt = $6, hearts_amount = $7, views_amount = $8, article_content = $9 WHERE id = $10 RETURNING *", [body.title, body.tags, body.is_published, body.publish_date, body.banner_url, body.banner_alt, body.hearts_amount, body.views_amount, body.article_content, body.id], (error, results) => {
         if(error){
+          console.log('Erro ao inserir', error)
           reject(error);
         }
         if(results && results.rows){

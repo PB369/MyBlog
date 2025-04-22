@@ -36,7 +36,7 @@ const Home = () => {
             />
           ))
           :
-          <p>There are no posts yet.</p>
+          <p className={styles.pageMessage}>There are no posts yet.</p>
         }
       </HomeMain>
       <Footer/>
