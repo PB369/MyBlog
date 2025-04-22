@@ -15,10 +15,13 @@
   .section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 85%;
+    min-height: 100%;
     margin: auto;
+
+    flex: 2;
   
     @media screen and (min-width: $semi-medium-device) {
       width: 75%;
@@ -30,6 +33,20 @@
   
     @media screen and (min-width: $semi-large-device) {
       width: 50%;
+    }
+  }
+
+  p {
+    margin: auto 0;
+    align-self: center;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    color: var(--pageMessage-color);
+    font-size: 20px;
+
+    @media screen and (min-width: $small-device) {
+      font-size: 24px;
     }
   }
 }

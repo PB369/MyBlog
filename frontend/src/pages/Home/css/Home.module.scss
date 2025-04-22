@@ -1,3 +1,6 @@
 .homePageContainer {
     background-color: var(--primary-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }

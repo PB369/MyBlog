@@ -1,1 +1,9 @@
-{"version":3,"sources":["Management.module.scss","Management.module.css"],"names":[],"mappings":"AAAA;EACE,sCAAA;EACA,iBAAA;EACA,aAAA;EACA,sBAAA;ACCF;ADCE;EACE,qCAAA;EACA,8BAAA;EACA,iBAAA;EACA,kBAAA;EACA,kBAAA;EACA,uCAAA;EACA,mBAAA;EACA,kBAAA;ACCJ;ADEE;EACE,YAAA;ACAJ","file":"Management.module.css"}
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,wBAAwB,CAAC;EACvB,gBAAgB,EAAE,oBAAoB;EACtC,UAAU,EAAE,KAAK;EACjB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;CAgBvB;;AApBD,AAME,wBANsB,CAMtB,KAAK,CAAC;EACJ,gBAAgB,EAAE,mBAAmB;EACrC,KAAK,EAAE,uBAAuB;EAC9B,WAAW,EAAE,IAAI;EACjB,OAAO,EAAE,SAAS;EAClB,aAAa,EAAE,GAAG;EAClB,UAAU,EAAE,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,mBAAmB;EACvC,aAAa,EAAE,IAAI;EACnB,UAAU,EAAE,MAAM;CACnB;;AAfH,AAiBE,wBAjBsB,CAiBtB,KAAK,AAAA,MAAM,CAAC;EACV,OAAO,EAAE,GAAG;CACb",
+    "sources": [
+        "Management.module.scss"
+    ],
+    "names": [],
+    "file": "Management.module.css"
+}

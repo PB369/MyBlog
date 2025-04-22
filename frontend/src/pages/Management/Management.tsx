@@ -58,7 +58,9 @@ const Management = () => {
         :
         <p>There are no posts yet.</p>
         }
+        
         {showChoiceModal && <ChoiceModal modalType='delete' isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)} confirmChoice={handleDeleteArticle}/>}
+
         <Link to={'/management/create'} className={styles.link}>Create a new article</Link>
       </ManagementMain>
       <Footer/>

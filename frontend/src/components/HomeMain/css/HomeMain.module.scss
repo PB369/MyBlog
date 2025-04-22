@@ -1,31 +1,51 @@
-.homeTitle {
-    text-align: center;
-    margin: 25px 0;
-    font-size: 24px;
-    color: var(--text-color);
-}
+.homeMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 
-.section {
-  width: 70%;
-  margin: auto;
-
-  @media screen and (min-width: $small-device) {
-    width: 85%;
+  .homeTitle {
+      text-align: center;
+      margin: 25px 0;
+      font-size: 24px;
+      color: var(--text-color);
   }
+  
+  .section {
+    width: 70%;
+    margin: auto;
+  
+    @media screen and (min-width: $small-device) {
+      width: 85%;
+    }
+  
+    @media screen and (max-width: $small-device) {
+      width: 85%;
+    }
+  
+    @media screen and (min-width: $semi-medium-device) {
+      width: 65%;
+    }
+  
+    @media screen and (min-width: $medium-device) {
+      width: 85%;
+    }
+  
+    @media screen and (min-width: $semi-large-device) {
+      width: 65%;
+    }
 
-  @media screen and (max-width: $small-device) {
-    width: 85%;
-  }
+    p {
+      text-align: center;
+      font-weight: bold;
+      font-style: italic;
+      color: var(--pageMessage-color);
+      font-size: 20px;
 
-  @media screen and (min-width: $semi-medium-device) {
-    width: 65%;
-  }
-
-  @media screen and (min-width: $medium-device) {
-    width: 85%;
-  }
-
-  @media screen and (min-width: $semi-large-device) {
-    width: 65%;
+      @media screen and (min-width: $small-device) {
+        font-size: 24px;
+      }
+    }
   }
 }
