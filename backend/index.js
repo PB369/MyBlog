@@ -1,6 +1,3 @@
-console.log('🚀 Backend index.js carregado!');
-
-
 const express = require('express');
 const app = express();
 const port = 3001;

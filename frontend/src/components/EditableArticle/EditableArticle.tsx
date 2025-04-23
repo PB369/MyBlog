@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import styles from './css/EditableArticle.module.scss';
 import { useThemedIcon } from '../../hooks/conditionalsHooks';
 import { ArticleType, createArticle, updateArticle } from '../../api/articlesAPI';
-import { useState } from 'react';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { ReactNode, useState } from 'react';
+import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
 
 type Props = {
   isNewArticle: boolean,
@@ -26,8 +26,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
   const heartIconPath = "../../../OtherIcons/heart-icon.png";
 
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
-  const [errorCategory, setErrorCategory] = useState<"LoginInvalid" | "ServerIssues">();
-  const [actionType, setActionType] = useState<"login" | "save" | "publish">();
+  const [errorCategory, setErrorCategory] = useState<Errors | null>(null);
 
   const article: ArticleType = {
     id: id,
@@ -42,32 +41,64 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
     hearts_amount: hearts_amount,
   }
 
-  const saveArticle = () => {
+  const [saveButtonText, setSaveButtonText] = useState<string | ReactNode>("Save");
+  const [publishButtonText, setpublishButtonText] = useState<string | ReactNode>("Publish");
+
+  const buttonsTextReset = () => {return setTimeout(() => {
+    setSaveButtonText("Save");
+    setpublishButtonText("Publish");
+  }, 2000)};
+  const timeoutId = buttonsTextReset()
+
+  const submitArticle = (buttonName: string) => {
+    setShowErrorMessage(false);
     if(isNewArticle) {
       createArticle(article)
-      .then(() => console.log(article.is_published))
+      .then(() => {
+        if(buttonName==="saveBtn"){
+          setSaveButtonText("Saved!");
+          buttonsTextReset();
+          clearTimeout(timeoutId);
+        }
+        else{
+          setpublishButtonText("Published!");
+          buttonsTextReset();
+          clearTimeout(timeoutId);
+        }
+      })
       .catch((error) => {
         console.error(error);
         setShowErrorMessage(true);
-        setErrorCategory('ServerIssues');
-        setActionType('save');
+        setErrorCategory(Errors.ServerError);
       });
     } else {
       updateArticle(article)
-      .then(() => console.log(article.is_published))
+      .then(() => {
+        if(buttonName==="saveBtn"){
+          setSaveButtonText("Saved!");
+          buttonsTextReset();
+          clearTimeout(buttonsTextReset);
+        }
+        else{
+          setpublishButtonText("Published!");
+          buttonsTextReset();
+          clearTimeout(buttonsTextReset);
+        }
+      })
       .catch((error) => {
         console.error(error);
         setShowErrorMessage(true);
-        setErrorCategory('ServerIssues');
-        setActionType('save');
+        setErrorCategory(Errors.ServerError);
       });
     }
   }
+  const saveArticle = (buttonName: string) => {
+    submitArticle(buttonName)
+  }
 
-  const publishArticle = () => {
+  const publishArticle = (buttonName: string) => {
     article.is_published = true;
-    saveArticle();
-    setActionType('publish');
+    submitArticle(buttonName);
   }
 
 
@@ -122,11 +153,11 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
         </main>
       </article>
       <div className={styles.buttonsContainer}>
-        <button className={styles.saveButton} onClick={saveArticle}>Save</button>
-        <button className={styles.publishButton} onClick={publishArticle}>Publish</button>
+        <button className={styles.saveButton} onClick={() => saveArticle('saveBtn')}>{saveButtonText}</button>
+        <button className={styles.publishButton} onClick={() => publishArticle('publishBtn')}>{publishButtonText}</button>
       </div>
 
-      {showErrorMessage && <ErrorMessage actionName={actionType} errorCategory={errorCategory} isVisible={showErrorMessage} hideMessage={() => setShowErrorMessage(false)}/>}
+      {showErrorMessage && errorCategory && <ErrorMessage category={errorCategory}/>}
     </div>
   )
 }

@@ -1,27 +1,25 @@
-import { useRef } from 'react';
 import styles from './css/ErrorModal.module.scss';
 
-type Props = {
-  hideMessage: () => void,
-  isVisible: boolean,
-  actionName: string,
-  errorCategory: string,
+export enum Errors {
+  LoginValidation = "LoginValidation",
+  ServerError = "ServerError",
 }
 
-const ErrorMessage = ({actionName, errorCategory, isVisible, hideMessage} : Props) => {
+export const errorTexts: Record<Errors, string> = {
+  [Errors.LoginValidation]: "Username or password is invalid.",
+  [Errors.ServerError]: "This action couldn't be done due to server issues.",
+}
 
-  const errorMessages = {
-    "LoginInvalidError": "Username or password is invalid.",
-    "ServerIssuesError": `The ${actionName} action couldn't be done due to server issues.`,
-    
-  }
+interface Props {
+  category: Errors,
+}
 
-  const modalRef = useRef<HTMLDivElement>(null);
+const ErrorMessage: React.FC<Props> = ({category}) => {
 
   return (
-    <div className={styles.errorContainer} ref={modalRef}>
+    <div className={styles.errorContainer}>
       <img src="../../../OtherIcons/error-icon.png" alt="Error-icon" />
-      <p>{errorMessages[errorCategory]}</p>
+      <p>{errorTexts[category]}</p>
     </div>
   )
 }
