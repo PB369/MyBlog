@@ -3,7 +3,7 @@ import styles from './css/EditableArticle.module.scss';
 import { useThemedIcon } from '../../hooks/conditionalsHooks';
 import { ArticleType, createArticle, updateArticle } from '../../api/articlesAPI';
 import { useState } from 'react';
-import ErrorModal from '../ErrorModal/ErrorModal';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 type Props = {
   isNewArticle: boolean,
@@ -25,7 +25,9 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
   const eyeIconPath = useThemedIcon("eye-icon.png");
   const heartIconPath = "../../../OtherIcons/heart-icon.png";
 
-  const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
+  const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
+  const [errorCategory, setErrorCategory] = useState<"LoginInvalid" | "ServerIssues">();
+  const [actionType, setActionType] = useState<"login" | "save" | "publish">();
 
   const article: ArticleType = {
     id: id,
@@ -46,19 +48,28 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
       .then(() => console.log(article.is_published))
       .catch((error) => {
         console.error(error);
-        setShowErrorModal(true);
+        setShowErrorMessage(true);
+        setErrorCategory('ServerIssues');
+        setActionType('save');
       });
     } else {
       updateArticle(article)
       .then(() => console.log(article.is_published))
-      .catch(console.error);
+      .catch((error) => {
+        console.error(error);
+        setShowErrorMessage(true);
+        setErrorCategory('ServerIssues');
+        setActionType('save');
+      });
     }
   }
 
   const publishArticle = () => {
     article.is_published = true;
     saveArticle();
+    setActionType('publish');
   }
+
 
   return (
     <div className={styles.editableArticleContainer}>
@@ -115,7 +126,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
         <button className={styles.publishButton} onClick={publishArticle}>Publish</button>
       </div>
 
-      {showErrorModal && <ErrorModal isVisible={showErrorModal} closeModal={() => setShowErrorModal(false)}/>}
+      {showErrorMessage && <ErrorMessage actionName={actionType} errorCategory={errorCategory} isVisible={showErrorMessage} hideMessage={() => setShowErrorMessage(false)}/>}
     </div>
   )
 }

@@ -1,0 +1,21 @@
+.errorContainer {
+  margin-bottom: 40px;
+  margin-top: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 85%;
+
+  img {
+    width: 22px;
+    margin-right: 10px;
+  }
+
+  p {
+    font-weight: bold;
+    font-size: 14px;
+    color: #EA3323;
+    min-width: 70%;
+    text-align: justify;
+  }
+}
