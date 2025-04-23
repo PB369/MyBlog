@@ -4,6 +4,8 @@ import { useThemedIcon } from '../../hooks/conditionalsHooks';
 import { ArticleType, createArticle, updateArticle } from '../../api/articlesAPI';
 import { ReactNode, useState } from 'react';
 import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
+import SaveButton from '../Save&PublishButtons/SaveButton';
+import PublishButton from '../Save&PublishButtons/PublishButton';
 
 type Props = {
   isNewArticle: boolean,
@@ -77,12 +79,12 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
         if(buttonName==="saveBtn"){
           setSaveButtonText("Saved!");
           buttonsTextReset();
-          clearTimeout(buttonsTextReset);
+          clearTimeout(timeoutId);
         }
         else{
           setpublishButtonText("Published!");
           buttonsTextReset();
-          clearTimeout(buttonsTextReset);
+          clearTimeout(timeoutId);
         }
       })
       .catch((error) => {
@@ -153,10 +155,11 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
         </main>
       </article>
       <div className={styles.buttonsContainer}>
+        <SaveButton isNewArticle={isNewArticle} setShowErrorMessage={setShowErrorMessage}/>
+        <PublishButton/>
         <button className={styles.saveButton} onClick={() => saveArticle('saveBtn')}>{saveButtonText}</button>
         <button className={styles.publishButton} onClick={() => publishArticle('publishBtn')}>{publishButtonText}</button>
       </div>
-
       {showErrorMessage && errorCategory && <ErrorMessage category={errorCategory}/>}
     </div>
   )
