@@ -255,5 +255,9 @@
       min-width: 98px;
       padding: 8px 15px;
     }
+
+    .saveButton:hover, .publishButton:hover {
+      opacity: 70%;
+    }
   }
 }

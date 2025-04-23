@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import styles from './css/EditableArticle.module.scss';
 import { useThemedIcon } from '../../hooks/conditionalsHooks';
 import { ArticleType, createArticle, updateArticle } from '../../api/articlesAPI';
+import { useState } from 'react';
+import ErrorModal from '../ErrorModal/ErrorModal';
 
 type Props = {
   isNewArticle: boolean,
@@ -23,6 +25,8 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
   const eyeIconPath = useThemedIcon("eye-icon.png");
   const heartIconPath = "../../../OtherIcons/heart-icon.png";
 
+  const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
+
   const article: ArticleType = {
     id: id,
     title: title,
@@ -40,7 +44,10 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
     if(isNewArticle) {
       createArticle(article)
       .then(() => console.log(article.is_published))
-      .catch(console.error);
+      .catch((error) => {
+        console.error(error);
+        setShowErrorModal(true);
+      });
     } else {
       updateArticle(article)
       .then(() => console.log(article.is_published))
@@ -83,7 +90,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
           </div>
         </header>
         <main>
-          <img src={isNewArticle ? "" : banner_url} alt={isNewArticle ? "" :banner_alt} />
+          <img src={isNewArticle ? undefined : banner_url} alt={isNewArticle ? "" :banner_alt} />
           {/* Logic to render or not the Add Paragraph option: */}
           {(() => {
             if(isNewArticle) {
@@ -107,6 +114,8 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
         <button className={styles.saveButton} onClick={saveArticle}>Save</button>
         <button className={styles.publishButton} onClick={publishArticle}>Publish</button>
       </div>
+
+      {showErrorModal && <ErrorModal isVisible={showErrorModal} closeModal={() => setShowErrorModal(false)}/>}
     </div>
   )
 }
