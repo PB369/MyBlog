@@ -43,6 +43,7 @@ const ArticleEdition = () => {
           <>
             <EditableArticle
               isNewArticle={isNewArticle}
+              id={article.id}
               title={article.title}
               tags={article.tags}
               is_published={article.is_published}
