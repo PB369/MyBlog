@@ -6,10 +6,10 @@
   flex: 1;
 
   .homeTitle {
-      text-align: center;
-      margin: 25px 0;
-      font-size: 24px;
-      color: var(--text-color);
+    text-align: center;
+    margin: 25px 0;
+    font-size: 24px;
+    color: var(--text-color);
   }
   
   .section {
@@ -34,18 +34,6 @@
   
     @media screen and (min-width: $semi-large-device) {
       width: 65%;
-    }
-
-    .pageMessage {
-      text-align: center;
-      font-weight: bold;
-      font-style: italic;
-      color: var(--pageMessage-color);
-      font-size: 20px;
-
-      @media screen and (min-width: $small-device) {
-        font-size: 24px;
-      }
     }
   }
 }

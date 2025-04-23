@@ -56,7 +56,10 @@ const Management = () => {
           />
         ))
         :
-        <p className={styles.pageMessage}>There are no posts yet.</p>
+        <>
+          <div></div>
+          <p className={styles.pageMessage}>There are no posts yet.</p>
+        </>
         }
         
         {showChoiceModal && <ChoiceModal modalType='delete' isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)} confirmChoice={handleDeleteArticle}/>}
