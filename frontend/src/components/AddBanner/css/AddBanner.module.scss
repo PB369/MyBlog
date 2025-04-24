@@ -70,6 +70,7 @@
 
         .addText {
             font-size: 14px;
+            color: black;
             @media screen and (min-width: $semi-medium-device) {
               font-size: 16px;
             }
