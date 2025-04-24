@@ -1,13 +1,16 @@
 import { ReactNode, useState } from 'react';
 import styles from './css/Save&PublishButtons.module.scss'
-import { createArticle, updateArticle } from '../../api/articlesAPI';
+import { ArticleType, createArticle, updateArticle } from '../../api/articlesAPI';
+import { Errors } from '../ErrorMessage/ErrorMessage';
 
 type Props = {
   isNewArticle: boolean,
   setShowErrorMessage: (argument: boolean) => void,
+  setErrorCategory: (argument: Errors) => void,
+  article: ArticleType,
 }
 
-const SaveButton = ({isNewArticle, setShowErrorMessage}: Props) => {
+const SaveButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, article}: Props) => {
 
   const [saveButtonText, setSaveButtonText] = useState<string | ReactNode>("Save");
 
