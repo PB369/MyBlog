@@ -17,14 +17,26 @@
   }
 
   .link {
-    background-color: var(--button-color);
+    background-color: #0D1333;
     color: var(--buttonText-color);
     font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--shadow-color);
     margin-bottom: 30px;
     text-align: center;
+
+    @media screen and (min-width: $small-device) {
+      padding: 10px 15px;
+      border-radius: 8px;
+      background-color: var(--button-color);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    }
+
+    img {
+      width: 36px;
+      border-radius: 50%;
+    }
   }
 
   .link:hover {

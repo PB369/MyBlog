@@ -74,7 +74,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
           </div>
         </header>
         <main>
-          <AddBanner isNewArticle={isNewArticle} banner_url={banner_url} banner_alt={banner_alt}/>
+         <AddBanner isNewArticle={isNewArticle} banner_url={banner_url} banner_alt={banner_alt}/>
          <AddParagraph isNewArticle={isNewArticle} content={article_content}/>
         </main>
       </article>

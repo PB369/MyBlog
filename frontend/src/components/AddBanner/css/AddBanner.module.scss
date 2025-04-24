@@ -6,16 +6,15 @@
 
     .banner {
         border: 1px solid black;
+        border-radius: 8px;
         min-width: 180px;
         height: 180px;
-        margin-bottom: 15px;
         object-fit: cover;
         background-color: #c1c1c1;
     
         @media screen and (min-width: $small-device) {
           min-width: 300px;
           height: 200px;
-          margin: 10px 0 20px 0;
         }
     
         @media screen and (min-width: $semi-medium-device) {
@@ -62,12 +61,18 @@
             padding: 10px;
             
             img {
-                width: 58px;
+                width: 36px;
+                @media screen and (min-width: $semi-medium-device) {
+                  width: 58px;
+                }
             }
         }
 
         .addText {
-            
+            font-size: 14px;
+            @media screen and (min-width: $semi-medium-device) {
+              font-size: 16px;
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ type Props = {
 
 const PublishButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, article}: Props) => {
   
-  const [publishButtonText, setPublishButtonText] = useState<string | ReactNode>("Save");
+  const [publishButtonText, setPublishButtonText] = useState<string | ReactNode>("Publish");
 
   const buttonsTextReset = () => {return setTimeout(() => {
     setPublishButtonText("Publish");

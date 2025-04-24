@@ -9,12 +9,15 @@ import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
 import { deleteArticle, getArticles } from '../../api/articlesAPI';
 import ChoiceModal from '../../components/ChoiceModal/ChoiceModal';
+import { useMediaQuery } from '../../hooks/WindowWidth';
+import whitePlusIcon from '../../../public/OtherIcons/whitePlus-icon.png'
 
 const Management = () => {
 
   const [articles, setArticles] = useState<Article[] | null>(null);
   const [articleId, setArticleId] = useState<number | null>(null);
   const [showChoiceModal, setShowChoiceModal] = useState<boolean>(false);
+  const isDesktop = useMediaQuery("(min-width: 425px)");
 
   useEffect(()=>{
       getArticles()
@@ -64,7 +67,7 @@ const Management = () => {
         
         {showChoiceModal && <ChoiceModal modalType='delete' isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)} confirmChoice={handleDeleteArticle}/>}
 
-        <Link to={'/management/create'} className={styles.link}>Create a new article</Link>
+        <Link to={'/management/create'} className={styles.link}>{isDesktop ? "Create a new article" : <img src={whitePlusIcon}/>}</Link>
       </ManagementMain>
       <Footer/>
     </div>
