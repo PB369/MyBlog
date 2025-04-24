@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import styles from './css/EditableArticle.module.scss';
 import { useThemedIcon } from '../../hooks/conditionalsHooks';
-import { ArticleType, createArticle, updateArticle } from '../../api/articlesAPI';
-import { ReactNode, useState } from 'react';
+import { ArticleType } from '../../api/articlesAPI';
+import { useState } from 'react';
 import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
 import SaveButton from '../Save&PublishButtons/SaveButton';
 import PublishButton from '../Save&PublishButtons/PublishButton';
+import AddParagraph from '../AddParagraph/AddParagraph';
 
 type Props = {
   isNewArticle: boolean,
@@ -43,67 +44,6 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
     hearts_amount: hearts_amount,
   }
 
-  const [saveButtonText, setSaveButtonText] = useState<string | ReactNode>("Save");
-  const [publishButtonText, setpublishButtonText] = useState<string | ReactNode>("Publish");
-
-  const buttonsTextReset = () => {return setTimeout(() => {
-    setSaveButtonText("Save");
-    setpublishButtonText("Publish");
-  }, 2000)};
-  const timeoutId = buttonsTextReset()
-
-  const submitArticle = (buttonName: string) => {
-    setShowErrorMessage(false);
-    if(isNewArticle) {
-      createArticle(article)
-      .then(() => {
-        if(buttonName==="saveBtn"){
-          setSaveButtonText("Saved!");
-          buttonsTextReset();
-          clearTimeout(timeoutId);
-        }
-        else{
-          setpublishButtonText("Published!");
-          buttonsTextReset();
-          clearTimeout(timeoutId);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        setShowErrorMessage(true);
-        setErrorCategory(Errors.ServerError);
-      });
-    } else {
-      updateArticle(article)
-      .then(() => {
-        if(buttonName==="saveBtn"){
-          setSaveButtonText("Saved!");
-          buttonsTextReset();
-          clearTimeout(timeoutId);
-        }
-        else{
-          setpublishButtonText("Published!");
-          buttonsTextReset();
-          clearTimeout(timeoutId);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        setShowErrorMessage(true);
-        setErrorCategory(Errors.ServerError);
-      });
-    }
-  }
-  const saveArticle = (buttonName: string) => {
-    submitArticle(buttonName)
-  }
-
-  const publishArticle = (buttonName: string) => {
-    article.is_published = true;
-    submitArticle(buttonName);
-  }
-
-
   return (
     <div className={styles.editableArticleContainer}>
       <article className={styles.article}>
@@ -136,29 +76,13 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
         <main>
           <img src={isNewArticle ? undefined : banner_url} alt={isNewArticle ? "" :banner_alt} />
           {/* Logic to render or not the Add Paragraph option: */}
-          {(() => {
-            if(isNewArticle) {
-              haveAddParagraph = true;
-              return <p>Add a paragraph</p>
-            } else {
-                haveAddParagraph = false;
-                return article_content.split("\n\n").map((text, index, arr) =>
-                (
-                  <div key={index}>
-                    <p>{text}</p>
-                    {index !== (arr.length - 1) && <br/>}
-                  </div>)
-                )
-            }
-          })()}
-          {haveAddParagraph ? null : <><br/><p>Add a paragraph</p></>}
+         <AddParagraph isNewArticle={isNewArticle} content={article_content}/>
         </main>
       </article>
       <div className={styles.buttonsContainer}>
-        <SaveButton isNewArticle={isNewArticle} setShowErrorMessage={setShowErrorMessage}/>
-        <PublishButton/>
-        <button className={styles.saveButton} onClick={() => saveArticle('saveBtn')}>{saveButtonText}</button>
-        <button className={styles.publishButton} onClick={() => publishArticle('publishBtn')}>{publishButtonText}</button>
+        <SaveButton isNewArticle={isNewArticle} article={article} setShowErrorMessage={setShowErrorMessage} setErrorCategory={setErrorCategory}/>
+
+        <PublishButton isNewArticle={isNewArticle} article={article} setShowErrorMessage={setShowErrorMessage} setErrorCategory={setErrorCategory}/>
       </div>
       {showErrorMessage && errorCategory && <ErrorMessage category={errorCategory}/>}
     </div>
