@@ -7,6 +7,7 @@ import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
 import SaveButton from '../Save&PublishButtons/SaveButton';
 import PublishButton from '../Save&PublishButtons/PublishButton';
 import AddParagraph from '../AddParagraph/AddParagraph';
+import AddBanner from '../AddBanner/AddBanner';
 
 type Props = {
   isNewArticle: boolean,
@@ -23,7 +24,6 @@ type Props = {
 }
 
 const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_date, banner_url, banner_alt, article_content, views_amount, hearts_amount}: Props) => {
-  let haveAddParagraph: boolean = false;
   const arrowIconPath = useThemedIcon("arrow-icon.png");
   const eyeIconPath = useThemedIcon("eye-icon.png");
   const heartIconPath = "../../../OtherIcons/heart-icon.png";
@@ -74,8 +74,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
           </div>
         </header>
         <main>
-          <img src={isNewArticle ? undefined : banner_url} alt={isNewArticle ? "" :banner_alt} />
-          {/* Logic to render or not the Add Paragraph option: */}
+          <AddBanner isNewArticle={isNewArticle} banner_url={banner_url} banner_alt={banner_alt}/>
          <AddParagraph isNewArticle={isNewArticle} content={article_content}/>
         </main>
       </article>
