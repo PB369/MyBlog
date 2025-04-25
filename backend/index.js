@@ -28,6 +28,16 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/articles/:id', (req, res) => {
+  articleModel.getArticleById()
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  });
+});
+
 app.get('/teste', (req, res) => {
   res.send('Servidor funcionando!');
 });

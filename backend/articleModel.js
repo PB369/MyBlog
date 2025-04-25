@@ -19,6 +19,25 @@ const getArticles = async () => {
   }
 }
 
+const getArticleById = async (id) => {
+  try {
+    return await new Promise((resolve, reject) => {
+      pool.query("SELECT * FROM articles WHERE id = $1", [id], (error, results) => {
+        if(error){
+          reject(error);
+        }
+        if(results && results.rows){
+          resolve(results.rows);
+        } else {
+          reject(new Error("No results found"));
+        }
+      });
+    });
+  } catch (error1) {
+    console.error(error1);
+  }
+}
+
 const createArticle = (body) => {
   return new Promise((resolve, reject) => {
     pool.query("INSERT INTO articles (title, tags, is_published, publish_date, banner_url, banner_alt, hearts_amount, views_amount, article_content) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *", [body.title, body.tags, body.is_published, body.publish_date, body.banner_url, body.banner_alt, body.hearts_amount, body.views_amount, body.article_content], (error, results) => {
@@ -65,6 +84,7 @@ const updateArticle = (id, body) => {
 
 module.exports = {
   getArticles,
+  getArticleById,
   createArticle,
   deleteArticle,
   updateArticle
