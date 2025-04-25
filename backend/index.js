@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/articles/:id', (req, res) => {
-  articleModel.getArticleById()
+  articleModel.getArticleById(req.params.id)
   .then(response => {
     res.status(200).send(response);
   })
