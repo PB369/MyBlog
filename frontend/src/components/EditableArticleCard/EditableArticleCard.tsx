@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './css/EditableArticleCard.module.scss';
-import { useThemedIcon } from '../../hooks/conditionalsHooks';
+import { useThemedIcon } from '../../hooks/ConditionalsHooks';
 import { useState } from 'react';
 import { useCheckEllipsisTag } from '../../hooks/EllipsisTagHook';
 

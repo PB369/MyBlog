@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from './css/LoginForm.module.scss';
-import { useThemedIcon } from "../../hooks/conditionalsHooks";
+import { useThemedIcon } from "../../hooks/ConditionalsHooks";
 
 const LoginForm = () => {
 

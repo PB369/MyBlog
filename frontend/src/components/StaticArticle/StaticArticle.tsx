@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useThemedIcon } from '../../hooks/conditionalsHooks';
 import styles from './css/StaticArticle.module.scss';
+import { useThemedIcon } from '../../hooks/ConditionalsHooks';
 
 type Props = {
   title: string,

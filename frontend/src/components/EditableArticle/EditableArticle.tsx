@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styles from './css/EditableArticle.module.scss';
-import { useThemedIcon } from '../../hooks/conditionalsHooks';
 import { ArticleType } from '../../api/articlesAPI';
 import { useState } from 'react';
 import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
@@ -8,6 +7,7 @@ import SaveButton from '../Save&PublishButtons/SaveButton';
 import PublishButton from '../Save&PublishButtons/PublishButton';
 import AddParagraph from '../AddParagraph/AddParagraph';
 import AddBanner from '../AddBanner/AddBanner';
+import { useThemedIcon } from '../../hooks/ConditionalsHooks';
 
 type Props = {
   isNewArticle: boolean,
