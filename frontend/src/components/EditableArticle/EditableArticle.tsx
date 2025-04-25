@@ -26,7 +26,7 @@ type Props = {
 const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_date, banner_url, banner_alt, article_content, views_amount, hearts_amount}: Props) => {
   const arrowIconPath = useThemedIcon("arrow-icon.png");
   const eyeIconPath = useThemedIcon("eye-icon.png");
-  const heartIconPath = "../../../OtherIcons/heart-icon.png";
+  const heartIconPath = "/OtherIcons/heart-icon.png";
 
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const [errorCategory, setErrorCategory] = useState<Errors | null>(null);

@@ -15,10 +15,11 @@ interface Props {
 }
 
 const ErrorMessage: React.FC<Props> = ({category}) => {
+  const errorIconPath = "/OtherIcons/error-icon.png";
 
   return (
     <div className={styles.errorContainer}>
-      <img src="../../../OtherIcons/error-icon.png" alt="Error-icon" />
+      <img src={errorIconPath} alt="Error-icon" />
       <p>{errorTexts[category]}</p>
     </div>
   )

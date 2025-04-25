@@ -16,7 +16,7 @@ type Props = {
 const StaticArticle = ({title, tags, publish_date, banner_url, banner_alt, article_content, views_amount, hearts_amount}: Props) => {
   const arrowIconPath = useThemedIcon("arrow-icon.png");
   const eyeIconPath = useThemedIcon("eye-icon.png");
-  const heartIconPath = "../../../OtherIcons/heart-icon.png";
+  const heartIconPath = "/OtherIcons/heart-icon.png";
   
   return (
     <article className={styles.article}>

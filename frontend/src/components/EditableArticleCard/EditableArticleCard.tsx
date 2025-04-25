@@ -20,8 +20,8 @@ type Props = {
 const EditableArticleCard = ({id, title, tags, is_published, publish_date, banner_url, banner_alt, views_amount, hearts_amount, onShowChoiceModal}: Props,) => {
   const blockedIconPath = useThemedIcon("blocked-icon.png");
   const trashIconPath = useThemedIcon("trash-icon.png");
-  const redTrashIconPath = "../../../OtherIcons/red-trash-icon.png";
-  const heartIconPath = "../../../OtherIcons/heart-icon.png";
+  const redTrashIconPath = "/OtherIcons/red-trash-icon.png";
+  const heartIconPath = "/OtherIcons/heart-icon.png";
   
   const urlPage: string = useLocation().pathname;
   const [isHovered, setIsHovered] = useState<boolean>(false);

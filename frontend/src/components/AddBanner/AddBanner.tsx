@@ -1,5 +1,4 @@
 import styles from './css/AddBanner.module.scss'
-import blackPlusIcon from '../../../public/OtherIcons/blackPlus-icon.png'
 import { useRef, useState } from 'react'
 
 type Props = {
@@ -11,6 +10,7 @@ type Props = {
 const AddBanner = ({isNewArticle, banner_url, banner_alt}: Props) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [bannerURL, setBannerURL] = useState(banner_url);
+    const blackPlusIconPath = "/OtherIcons/blackPlus-icon.png";
 
     const handleBtnClick = () => {
         inputRef.current?.click()
@@ -31,7 +31,7 @@ const AddBanner = ({isNewArticle, banner_url, banner_alt}: Props) => {
                 <img src={bannerURL} alt={isNewArticle ? "" :banner_alt} className={styles.banner}/>
                 <div className={styles.addDivLabel}>
                     <div className={styles.plusIcon}>
-                        <img src={blackPlusIcon} alt="plus-icon" />
+                        <img src={blackPlusIconPath} alt="plus-icon" />
                     </div>
                     <p className={styles.addText}>Add an image</p>
                 </div>
