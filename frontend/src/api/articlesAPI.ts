@@ -18,6 +18,11 @@ export const getArticles = async () => {
   return response.data;
 }
 
+export const getArticleById = async (id: ArticleType["id"]) => {
+  const response = await axiosAPI.get(`/articles/${id}`);
+  return response.data;
+}
+
 export const createArticle = async (article: ArticleType) => {
   const response = await axiosAPI.post('/articles', article);
   return response.data;

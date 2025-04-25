@@ -57,8 +57,8 @@ export const useCheckEllipsisTag = (tagsList: string[], urlPage: string):UseChec
         }
       }
 
-      console.log(`Tags Width: ${tagsTotalWidth} px`);
-      console.log(`Container Width: ${grandParantWidth} px`);
+      // console.log(`Tags Width: ${tagsTotalWidth} px`);
+      // console.log(`Container Width: ${grandParantWidth} px`);
       
       setHasEllipsis(tagsOverflow);
       setVisibleTags(visibleTagsList);

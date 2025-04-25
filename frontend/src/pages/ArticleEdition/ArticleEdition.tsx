@@ -5,21 +5,21 @@ import styles from './css/ArticleEdition.module.scss';
 import EditableArticle from '../../components/EditableArticle/EditableArticle';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
-import { ArticleType, getArticles } from '../../api/articlesAPI';
+import { ArticleType, getArticleById } from '../../api/articlesAPI';
 
 const ArticleEdition = () => {
 
   const { id } = useParams();
 
-  const [articles, setArticles] = useState<ArticleType[] | null>(null);
+  const [articleData, setArticleData] = useState<ArticleType | null>(null);
     
   useEffect(()=>{
-    getArticles()
-    .then(setArticles)
+    getArticleById(Number(id))
+    .then(setArticleData)
     .catch(console.error);
-  }, []);
+  }, [id]);
 
-  const article  = articles && id ? articles.find(article => article.id === Number(id)) : {
+  const article  = articleData && id ? articleData : {
     id: 0,
     title: "",
     tags: [],

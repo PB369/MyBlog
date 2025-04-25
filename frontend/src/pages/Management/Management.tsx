@@ -9,7 +9,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
 import { deleteArticle, getArticles } from '../../api/articlesAPI';
 import ChoiceModal from '../../components/ChoiceModal/ChoiceModal';
-import { useMediaQuery } from '../../hooks/WindowWidth';
+import { useMediaQuery } from '../../hooks/MatchMediaQuery';
 
 const Management = () => {
 
