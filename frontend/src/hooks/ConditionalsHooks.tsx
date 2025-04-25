@@ -1,7 +1,7 @@
 import { useTheme } from "../context/ThemeContext"
 
 export const useThemedIcon = (iconURL: string) => {
-  return useCheckDarkMode() ? `../../public/DarkIcons/${iconURL}` : `../../public/LightIcons/${iconURL}`;
+  return useCheckDarkMode() ? `/DarkIcons/${iconURL}` : `/LightIcons/${iconURL}`;
 }
 
 export const useCheckDarkMode = () => {
