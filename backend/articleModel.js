@@ -27,7 +27,7 @@ const getArticleById = async (id) => {
           reject(error);
         }
         if(results && results.rows){
-          resolve(results.rows);
+          resolve(results.rows[0]);
         } else {
           reject(new Error("No results found"));
         }
