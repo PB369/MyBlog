@@ -13,7 +13,6 @@ export type ArticleType = {
   article_content: string,
 };
 
-
 export const getArticles = async () => {
   const response = await axiosAPI.get('/');
   return response.data;
