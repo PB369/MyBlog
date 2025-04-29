@@ -1,23 +1,17 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const port = 3001;
 
 const articleModel = require("./articleModel");
 // const { uploadFile } = require('./s3');
 
 app.use(express.json());
-app.use((req, res, next) => {
-  const allowedOrigins = ["http://localhost:5173", "https://pb369-projects-myblog.vercel.app"]
-  const origin = req.headers.origin;
-
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers");
-  next();
-})
+app.use(cors({
+  origin: ["http://localhost:5173", "https://pb369-projects-myblog.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type"],
+}));
 
 app.get('/', (req, res) => {
   articleModel.getArticles()
