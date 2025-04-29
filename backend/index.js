@@ -3,7 +3,7 @@ const app = express();
 const port = 3001;
 
 const articleModel = require("./articleModel");
-const { uploadFile } = require('./s3');
+// const { uploadFile } = require('./s3');
 
 app.use(express.json());
 app.use((req, res, next) => {
@@ -74,12 +74,12 @@ app.put('/articles/:id', (req, res) => {
   });
 });
 
-app.post('/images', upload.single('image'), async (req, res) => {
-  const file = req.file;
-  console.log(file);
-  await uploadFile(file);
-  res.send("Image upload successfully done!")
-})
+// app.post('/images', upload.single('image'), async (req, res) => {
+//   const file = req.file;
+//   console.log(file);
+//   await uploadFile(file);
+//   res.send("Image upload successfully done!")
+// })
 
 app.listen(port, () => {
   console.log(`Running on port ${port}`);
