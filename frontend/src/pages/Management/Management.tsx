@@ -7,7 +7,7 @@ import { Article } from '../../context/ArticlesContext';
 import styles from './css/Management.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
-import { deleteArticle, getArticles } from '../../api/articlesAPI';
+import { deleteArticle, getArticles, getArticlesWithBanner } from '../../api/articlesAPI';
 import ChoiceModal from '../../components/ChoiceModal/ChoiceModal';
 import { useMediaQuery } from '../../hooks/MatchMediaQuery';
 
@@ -20,7 +20,7 @@ const Management = () => {
   const whitePlusIconPath = "/OtherIcons/whitePlus-icon.png";
 
   useEffect(()=>{
-      getArticles()
+      getArticlesWithBanner()
       .then(setArticles)
       .catch(console.error);
   }, []);
@@ -51,7 +51,8 @@ const Management = () => {
             tags={article.tags}
             is_published={article.is_published}
             publish_date={article.publish_date}
-            banner_url={article.banner_url}
+            banner_name={article.banner_name}
+            banner_ref={article.banner_ref}
             banner_alt={article.banner_alt}
             views_amount={article.views_amount}
             hearts_amount={article.hearts_amount}

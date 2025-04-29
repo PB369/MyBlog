@@ -5,7 +5,7 @@ import styles from './css/ArticleEdition.module.scss';
 import EditableArticle from '../../components/EditableArticle/EditableArticle';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
-import { ArticleType, getArticleById } from '../../api/articlesAPI';
+import { ArticleType, getArticleById, getArticlesByIdWithBanner } from '../../api/articlesAPI';
 
 const ArticleEdition = () => {
 
@@ -14,7 +14,7 @@ const ArticleEdition = () => {
   const [articleData, setArticleData] = useState<ArticleType | null>(null);
     
   useEffect(()=>{
-    getArticleById(Number(id))
+    getArticlesByIdWithBanner(Number(id))
     .then(setArticleData)
     .catch(console.error);
   }, [id]);
@@ -25,6 +25,7 @@ const ArticleEdition = () => {
     tags: [],
     is_published: false,
     publish_date: "",
+    banner_name: "",
     banner_url: "",
     banner_alt: "",
     hearts_amount: 0,
@@ -39,7 +40,7 @@ const ArticleEdition = () => {
     <div className={`${styles.articleEditionPageContainer} ${styles[theme]}`}>
       <Header/>
       {
-        article ?// If the article was found, render this:
+        article ? // If the article was found, render this:
           <>
             <EditableArticle
               isNewArticle={isNewArticle}
@@ -48,6 +49,7 @@ const ArticleEdition = () => {
               tags={article.tags}
               is_published={article.is_published}
               publish_date={article.publish_date}
+              banner_name={article.banner_name}
               banner_url={article.banner_url}
               banner_alt={article.banner_alt}
               article_content={article.article_content}

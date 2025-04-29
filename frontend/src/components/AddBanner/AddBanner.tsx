@@ -3,11 +3,13 @@ import { useRef, useState } from 'react'
 
 type Props = {
     isNewArticle: boolean,
+    setBannerFile: (image: File) => void,
+    banner_name: string,
     banner_url: string,
     banner_alt: string,
 }
 
-const AddBanner = ({isNewArticle, banner_url, banner_alt}: Props) => {
+const AddBanner = ({isNewArticle, setBannerFile, banner_name, banner_url, banner_alt}: Props) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [bannerURL, setBannerURL] = useState(banner_url);
@@ -21,8 +23,10 @@ const AddBanner = ({isNewArticle, banner_url, banner_alt}: Props) => {
         const image = event.target.files?.[0]
         if(image){
             console.log(image);
+            setBannerFile(image)
             banner_url=URL.createObjectURL(image);
-            setBannerURL(banner_url)
+            console.log(banner_url);
+            setBannerURL(URL.createObjectURL(image))
         }
     }
 

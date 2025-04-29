@@ -16,6 +16,7 @@ type Props = {
   tags: string[],
   is_published: boolean,
   publish_date: string,
+  banner_name: string,
   banner_url: string,
   banner_alt: string,
   article_content: string,
@@ -23,13 +24,14 @@ type Props = {
   hearts_amount: number,
 }
 
-const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_date, banner_url, banner_alt, article_content, views_amount, hearts_amount}: Props) => {
+const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_date, banner_name, banner_url, banner_alt, article_content, views_amount, hearts_amount}: Props) => {
   const arrowIconPath = useThemedIcon("arrow-icon.png");
   const eyeIconPath = useThemedIcon("eye-icon.png");
   const heartIconPath = "/OtherIcons/heart-icon.png";
 
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const [errorCategory, setErrorCategory] = useState<Errors | null>(null);
+  const [bannerFile, setBannerFile] = useState<File | undefined>(undefined);
 
   const article: ArticleType = {
     id: id,
@@ -37,12 +39,16 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
     tags: tags,
     is_published: is_published,
     publish_date: publish_date,
+    banner_file: bannerFile,
+    banner_name: banner_name,
     banner_url: banner_url,
     banner_alt: banner_alt,
     article_content: article_content,
     views_amount: views_amount,
     hearts_amount: hearts_amount,
   }
+
+  console.log(article.banner_url)
 
   return (
     <div className={styles.editableArticleContainer}>
@@ -74,7 +80,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
           </div>
         </header>
         <main>
-         <AddBanner isNewArticle={isNewArticle} banner_url={banner_url} banner_alt={banner_alt}/>
+         <AddBanner isNewArticle={isNewArticle} setBannerFile={setBannerFile} banner_name={article.banner_name} banner_url={article.banner_url} banner_alt={banner_alt}/>
          <AddParagraph isNewArticle={isNewArticle} content={article_content}/>
         </main>
       </article>

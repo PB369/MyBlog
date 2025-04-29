@@ -6,6 +6,8 @@ export type ArticleType = {
   tags: string[],
   is_published: boolean,
   publish_date: string,
+  banner_file?: File,
+  banner_name: string,
   banner_url: string,
   banner_alt: string,
   hearts_amount: number,
@@ -43,7 +45,7 @@ export const getArticleBanner = async (banner_name: string) => {
   return response.data.url;
 }
 
-export const putArticleBanner = async (file: File, article:  ArticleType) => {
+export const putArticleBanner = async (file: File) => {
   //Generate the putURL
   const response = await axiosAPI.post(`/images/put-url`, { fileType: file.type });
   const { putURL, fileName } = response.data;
@@ -53,8 +55,18 @@ export const putArticleBanner = async (file: File, article:  ArticleType) => {
     headers: { 'Content-Type': file.type }
   });
 
-  //Update the article on DB:
-  await axiosAPI.post(`/articles/${article.id}`, article);
+  // //Update the article on DB:
+  // await axiosAPI.post(`/articles/${article.id}`, article);
 
-  return response.data.url;
+  return fileName;
+}
+
+export const getArticlesWithBanner = async () => {
+  const response = await axiosAPI.get('/articles-with-urls');
+  return response.data;
+}
+
+export const getArticlesByIdWithBanner = async (id: ArticleType["id"]) => {
+  const response = await axiosAPI.get(`/articles-with-urls/${id}`);
+  return response.data;
 }

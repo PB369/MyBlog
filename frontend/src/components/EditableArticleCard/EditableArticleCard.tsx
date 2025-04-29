@@ -10,14 +10,15 @@ type Props = {
   tags: string[],
   is_published: boolean,
   publish_date: string,
-  banner_url: string,
+  banner_name: string,
+  banner_ref: string,
   banner_alt: string,
   views_amount: number,
   hearts_amount: number,
   onShowChoiceModal: () => void,
 }
 
-const EditableArticleCard = ({id, title, tags, is_published, publish_date, banner_url, banner_alt, views_amount, hearts_amount, onShowChoiceModal}: Props,) => {
+const EditableArticleCard = ({id, title, tags, is_published, publish_date, banner_name, banner_ref, banner_alt, views_amount, hearts_amount, onShowChoiceModal}: Props,) => {
   const blockedIconPath = '/LightIcons/blocked-icon.png';
   const trashIconPath = useThemedIcon("trash-icon.png");
   const redTrashIconPath = "/OtherIcons/red-trash-icon.png";
@@ -62,7 +63,7 @@ const EditableArticleCard = ({id, title, tags, is_published, publish_date, banne
             </div>
           </div>
         </div>
-        <img src={banner_url ? banner_url : blockedIconPath} alt={banner_alt} className={styles.articleBanner}/>
+        <img src={banner_ref ? banner_ref : blockedIconPath} alt={banner_alt} className={styles.articleBanner}/>
       </article>
       <div className={styles.editAndDelete}>
         <Link to={`edit/${id.toString()}`} className={styles.editButton}>

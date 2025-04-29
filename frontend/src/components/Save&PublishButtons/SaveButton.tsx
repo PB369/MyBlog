@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 import styles from './css/Save&PublishButtons.module.scss'
-import { ArticleType, createArticle, updateArticle } from '../../api/articlesAPI';
+import { ArticleType, createArticle, putArticleBanner, updateArticle } from '../../api/articlesAPI';
 import { Errors } from '../ErrorMessage/ErrorMessage';
 
 type Props = {
@@ -21,6 +21,16 @@ const SaveButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, articl
 
   const saveArticle = () => {
     setShowErrorMessage(false);
+
+    if(article.banner_file !== undefined){
+      putArticleBanner(article.banner_file)
+      .then((response) => {
+        console.log(response);
+        article.banner_name = response;
+      })
+      .catch((error) => console.error(error));
+    }
+
     if(isNewArticle) {
       createArticle(article)
       .then(() => {

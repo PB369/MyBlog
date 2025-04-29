@@ -1,5 +1,68 @@
 const pool = require('./db');
 
+const getArticlesWithBannersURLs = async () => {
+  const result = await pool.query('SELECT * FROM articles ORDER BY id');
+  
+  const articlesWithBannersURLs = await Promise.all(
+    result.rows.map(async (article) => {
+      if(!article.banner_url) return article;
+
+      try {
+        const params = {
+          Bucket: process.env.AWS_BUCKET_NAME,
+          Key: article.banner_url,
+        };
+
+        const command = new GetObjectCommand(params);
+        const bannerUrl = await getSignedUrl(s3, command, { expiresIn: 1800 });
+
+        return {
+          ...article,
+          banner_url: bannerUrl,
+        }
+      } catch (error) {
+        console.error(`Presigned URL generation failed to ${article.banner_url}`);
+        return article;
+      }
+    })
+  );
+  return articlesWithBannersURLs;
+}
+
+const getArticlesByIdWithBannersURLs = async (id) => {
+  const result = await pool.query('SELECT * FROM articles WHERE id = $1', [id]);
+
+  const article = result.rows[0];
+
+  if(!article) {
+    console.log("caiu aqui 1")
+    return null;
+  }
+
+  if(!article.banner_url){
+    console.log(result)
+    return article;
+  }
+
+  try {
+    const params = {
+      Bucket: process.env.AWS_BUCKET_NAME,
+      Key: article.banner_url,
+    };
+
+    const command = new GetObjectCommand(params);
+    const bannerUrl = await getSignedUrl(s3, command, { expiresIn: 1800 }); // 30 min
+
+    return {
+      ...article,
+      banner_url: bannerUrl,
+    };
+  } catch (error) {
+    console.error(`Erro ao gerar presigned URL para ${article.banner_url}:`, error);
+    return article; // Retorna o artigo mesmo sem a URL se houver erro
+  }
+}
+
 const getArticles = async () => {
   try {
     return await new Promise((resolve, reject) => {
@@ -40,7 +103,7 @@ const getArticleById = async (id) => {
 
 const createArticle = (body) => {
   return new Promise((resolve, reject) => {
-    pool.query("INSERT INTO articles (title, tags, is_published, publish_date, banner_url, banner_alt, hearts_amount, views_amount, article_content) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *", [body.title, body.tags, body.is_published, body.publish_date, body.banner_url, body.banner_alt, body.hearts_amount, body.views_amount, body.article_content], (error, results) => {
+    pool.query("INSERT INTO articles (title, tags, is_published, publish_date, banner_name, banner_alt, hearts_amount, views_amount, article_content) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *", [body.title, body.tags, body.is_published, body.publish_date, body.banner_name, body.banner_alt, body.hearts_amount, body.views_amount, body.article_content], (error, results) => {
       if (error){
         console.log('Erro ao inserir', error)
         reject(error);
@@ -68,7 +131,7 @@ const deleteArticle = (id) => {
 const updateArticle = (id, body) => {
   console.log(body)
   return new Promise((resolve, reject) => {
-    pool.query("UPDATE articles SET title = $1, tags = $2, is_published = $3, publish_date = $4, banner_url = $5, banner_alt = $6, hearts_amount = $7, views_amount = $8, article_content = $9 WHERE id = $10 RETURNING *", [body.title, body.tags, body.is_published, body.publish_date, body.banner_url, body.banner_alt, body.hearts_amount, body.views_amount, body.article_content, body.id], (error, results) => {
+    pool.query("UPDATE articles SET title = $1, tags = $2, is_published = $3, publish_date = $4, banner_name = $5, banner_alt = $6, hearts_amount = $7, views_amount = $8, article_content = $9 WHERE id = $10 RETURNING *", [body.title, body.tags, body.is_published, body.publish_date, body.banner_name, body.banner_alt, body.hearts_amount, body.views_amount, body.article_content, body.id], (error, results) => {
         if(error){
           console.log('Erro ao inserir', error)
           reject(error);
@@ -83,6 +146,8 @@ const updateArticle = (id, body) => {
 }
 
 module.exports = {
+  getArticlesWithBannersURLs,
+  getArticlesByIdWithBannersURLs,
   getArticles,
   getArticleById,
   createArticle,
