@@ -2,11 +2,12 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = 3001;
-
 const articleModel = require("./articleModel");
-// const { uploadFile } = require('./s3');
+const { uploadFile, generatePutURL, generateGetURL } = require('./s3');
+const { v4: uuid } = require('uuid');
 
 app.use(express.json());
+
 app.use(cors({
   origin: ["http://localhost:5173", "https://pb369-projects-myblog.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -68,12 +69,23 @@ app.put('/articles/:id', (req, res) => {
   });
 });
 
-// app.post('/images', upload.single('image'), async (req, res) => {
-//   const file = req.file;
-//   console.log(file);
-//   await uploadFile(file);
-//   res.send("Image upload successfully done!")
-// })
+app.get('/images/:fileName', async (req, res) => {
+  const { fileName } = req.params;
+
+  const getURL = await generateGetURL(fileName);
+  res.json({ url: getURL});
+});
+
+app.post('/images/put-url', async (req, res) => {
+  const { fileType } = req.body;
+  if(!fileType) return res.status(400).json({ error: 'Missing fileType' });
+
+  const fileExtension = fileType.split('/')[1];
+  const fileName = `${uuidv4()}.${fileExtension}`;
+
+  const putURL = await generatePutURL(fileName, fileType);
+  res.json({ putURL, fileName });
+});
 
 app.listen(port, () => {
   console.log(`Running on port ${port}`);

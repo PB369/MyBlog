@@ -37,3 +37,24 @@ export const deleteArticle = async (id: ArticleType["id"]) => {
   const response = await axiosAPI.delete(`/articles/${id}`);
   return response.data;
 }
+
+export const getArticleBanner = async (banner_name: string) => {
+  const response = await axiosAPI.get(`images/${banner_name}`);
+  return response.data.url;
+}
+
+export const putArticleBanner = async (file: File, article:  ArticleType) => {
+  //Generate the putURL
+  const response = await axiosAPI.post(`/images/put-url`, { fileType: file.type });
+  const { putURL, fileName } = response.data;
+
+  //Put the article banner:
+  await axiosAPI.put(putURL, file, {
+    headers: { 'Content-Type': file.type }
+  });
+
+  //Update the article on DB:
+  await axiosAPI.post(`/articles/${article.id}`, article);
+
+  return response.data.url;
+}

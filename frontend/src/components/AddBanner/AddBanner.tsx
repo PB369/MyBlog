@@ -9,6 +9,7 @@ type Props = {
 
 const AddBanner = ({isNewArticle, banner_url, banner_alt}: Props) => {
     const inputRef = useRef<HTMLInputElement>(null);
+
     const [bannerURL, setBannerURL] = useState(banner_url);
     const addBannerIconPath = bannerURL === "" ? "/OtherIcons/blackPlus-icon.png" : "/OtherIcons/blackChange-icon.png";
 
@@ -24,8 +25,6 @@ const AddBanner = ({isNewArticle, banner_url, banner_alt}: Props) => {
             setBannerURL(banner_url)
         }
     }
-
-    console.log(banner_url)
 
     return (
         <>
