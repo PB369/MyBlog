@@ -38,42 +38,54 @@
         }
     }
 
+    &:hover {
+      .addDivLabel {
+        opacity: 1;
+      }
+      // .banner {
+      //   filter: blur(5px);
+      // }
+    }
+    
     .addDivLabel {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: absolute;
+      
+      opacity: 0;
+      transition: opacity 0.35s;
 
-        .plusIcon, .addText {
-            text-align: center;
-            text-indent: 0;
-        }
+      .plusIcon, .addText {
+        text-align: center;
+        text-indent: 0;
+      }
 
-        .plusIcon {
-            background-color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
-            padding: 10px;
-            
-            img {
-                width: 36px;
-                @media screen and (min-width: $semi-medium-device) {
-                  width: 58px;
-                }
-            }
-        }
+      .plusIcon {
+          background-color: white;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 10px;
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+          padding: 10px;
+          
+          img {
+              width: 36px;
+              @media screen and (min-width: $semi-medium-device) {
+                width: 58px;
+              }
+          }
+      }
 
-        .addText {
-            font-size: 14px;
-            color: black;
-            @media screen and (min-width: $semi-medium-device) {
-              font-size: 16px;
-            }
-        }
+      .addText {
+          font-size: 14px;
+          color: black;
+          @media screen and (min-width: $semi-medium-device) {
+            font-size: 16px;
+          }
+      }
     }
 }
