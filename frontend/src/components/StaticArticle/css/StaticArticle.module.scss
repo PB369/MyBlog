@@ -182,7 +182,8 @@
     width: 100%;
 
     img {
-      border: 2px solid black;
+      border: 1px solid black;
+      border-radius: 8px;
       min-width: 180px;
       margin-bottom: 15px;
       object-fit: cover;

@@ -23,7 +23,6 @@ const PublishButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, art
 
   useEffect(()=>{ 
     counter.current += 1;
-    console.log(counter.current)
   })
 
 

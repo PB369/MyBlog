@@ -10,10 +10,10 @@ type Props = {
 const AddBanner = ({isNewArticle, banner_url, banner_alt}: Props) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [bannerURL, setBannerURL] = useState(banner_url);
-    const blackPlusIconPath = "/OtherIcons/blackPlus-icon.png";
+    const addBannerIconPath = bannerURL === "" ? "/OtherIcons/blackPlus-icon.png" : "/OtherIcons/blackChange-icon.png";
 
     const handleBtnClick = () => {
-        inputRef.current?.click()
+        inputRef.current?.click();
     }
 
     const handleBannerChoice = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,15 +25,17 @@ const AddBanner = ({isNewArticle, banner_url, banner_alt}: Props) => {
         }
     }
 
+    console.log(banner_url)
+
     return (
         <>
             <button className={styles.addBannerBtn} onClick={handleBtnClick}>
                 <img src={bannerURL} alt={isNewArticle ? "" :banner_alt} className={styles.banner}/>
                 <div className={styles.addDivLabel}>
                     <div className={styles.plusIcon}>
-                        <img src={blackPlusIconPath} alt="plus-icon" />
+                        <img src={addBannerIconPath} alt="plus-icon" />
                     </div>
-                    <p className={styles.addText}>Add an image</p>
+                    <p className={styles.addText}>{bannerURL === "" ? "Add an image" : "Change image"}</p>
                 </div>
             </button>
             <input type="file" accept='image/*' ref={inputRef} style={{display:"none"}} onChange={handleBannerChoice} />

@@ -86,7 +86,8 @@
       .addText {
           font-size: 14px;
           color: black;
-          text-shadow: 0 0 3px #fff;
+          font-weight: 500;
+          text-shadow: 0 0 10px  #fff;
           @media screen and (min-width: $semi-medium-device) {
             font-size: 16px;
           }
