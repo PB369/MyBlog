@@ -37,6 +37,7 @@ app.get('/articles-with-urls', (req, res) => {
 app.get('/articles-with-urls/:id', async (req, res) => {
   try {
     const article = await articleModel.getArticlesByIdWithBannersURLs(req.params.id);
+    console.log(article)
     if (!article) {
       return res.status(404).send('Artigo não encontrado');
     }

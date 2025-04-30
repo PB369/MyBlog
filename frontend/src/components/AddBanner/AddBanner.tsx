@@ -1,5 +1,5 @@
 import styles from './css/AddBanner.module.scss'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 type Props = {
     isNewArticle: boolean,
@@ -11,9 +11,15 @@ type Props = {
 
 const AddBanner = ({isNewArticle, setBannerFile, banner_name, banner_url, banner_alt}: Props) => {
     const inputRef = useRef<HTMLInputElement>(null);
-
-    const [bannerURL, setBannerURL] = useState(banner_url);
+    const [bannerURL, setBannerURL] = useState<string>(banner_url);
     const addBannerIconPath = bannerURL === "" ? "/OtherIcons/blackPlus-icon.png" : "/OtherIcons/blackChange-icon.png";
+    console.log(bannerURL)
+
+    useEffect(() => {
+        if (banner_url) {
+            setBannerURL(banner_url);
+        }
+    }, [banner_url]);
 
     const handleBtnClick = () => {
         inputRef.current?.click();

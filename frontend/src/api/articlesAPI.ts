@@ -68,5 +68,6 @@ export const getArticlesWithBanner = async () => {
 
 export const getArticlesByIdWithBanner = async (id: ArticleType["id"]) => {
   const response = await axiosAPI.get(`/articles-with-urls/${id}`);
+  console.log(response)
   return response.data;
 }

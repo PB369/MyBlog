@@ -48,8 +48,6 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
     hearts_amount: hearts_amount,
   }
 
-  console.log(article.banner_url)
-
   return (
     <div className={styles.editableArticleContainer}>
       <article className={styles.article}>

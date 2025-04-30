@@ -33,6 +33,8 @@ const ArticleEdition = () => {
     article_content: "",
   };
 
+  console.log(article.banner_url);
+
   const isNewArticle = !id;
   const { theme } = useTheme();
 

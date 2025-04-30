@@ -1,4 +1,7 @@
+const { GetObjectCommand } = require('@aws-sdk/client-s3');
 const pool = require('./db');
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
+const { generateGetURL } = require('./s3');
 
 const getArticlesWithBannersURLs = async () => {
   const result = await pool.query('SELECT * FROM articles ORDER BY id');
@@ -39,26 +42,20 @@ const getArticlesByIdWithBannersURLs = async (id) => {
     return null;
   }
 
-  if(!article.banner_url){
-    console.log(result)
-    return article;
-  }
+  // if(!article.banner_url){
+  //   console.log(result)
+  //   return article;
+  // }
 
   try {
-    const params = {
-      Bucket: process.env.AWS_BUCKET_NAME,
-      Key: article.banner_url,
-    };
-
-    const command = new GetObjectCommand(params);
-    const bannerUrl = await getSignedUrl(s3, command, { expiresIn: 1800 }); // 30 min
-
+    const bannerUrl = await generateGetURL(article.banner_name);
+    console.log(bannerUrl)
     return {
       ...article,
       banner_url: bannerUrl,
     };
   } catch (error) {
-    console.error(`Erro ao gerar presigned URL para ${article.banner_url}:`, error);
+    console.error(`Erro ao gerar presigned URL para ${article.banner_name}:`, error);
     return article; // Retorna o artigo mesmo sem a URL se houver erro
   }
 }
