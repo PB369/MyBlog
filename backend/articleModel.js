@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { GetObjectCommand } = require('@aws-sdk/client-s3');
 const pool = require('./db');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
@@ -38,7 +39,7 @@ const getArticlesByIdWithBannersURLs = async (id) => {
   const article = result.rows[0];
 
   if(!article) {
-    console.log("caiu aqui 1")
+    console.log("caiu aqui 1");
     return null;
   }
 
@@ -49,7 +50,7 @@ const getArticlesByIdWithBannersURLs = async (id) => {
 
   try {
     const bannerUrl = await generateGetURL(article.banner_name);
-    console.log(bannerUrl)
+    console.log(bannerUrl);
     return {
       ...article,
       banner_url: bannerUrl,

@@ -13,7 +13,7 @@ const AddBanner = ({isNewArticle, setBannerFile, banner_name, banner_url, banner
     const inputRef = useRef<HTMLInputElement>(null);
     const [bannerURL, setBannerURL] = useState<string>(banner_url);
     const addBannerIconPath = bannerURL === "" ? "/OtherIcons/blackPlus-icon.png" : "/OtherIcons/blackChange-icon.png";
-    console.log(bannerURL)
+    console.log(bannerURL);
 
     useEffect(() => {
         if (banner_url) {
@@ -32,7 +32,7 @@ const AddBanner = ({isNewArticle, setBannerFile, banner_name, banner_url, banner
             setBannerFile(image)
             banner_url=URL.createObjectURL(image);
             console.log(banner_url);
-            setBannerURL(URL.createObjectURL(image))
+            setBannerURL(URL.createObjectURL(image));
         }
     }
 
