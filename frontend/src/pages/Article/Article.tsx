@@ -5,7 +5,7 @@ import styles from './css/Article.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import StaticArticle from '../../components/StaticArticle/StaticArticle';
 import { useEffect, useState } from 'react';
-import { ArticleType, getArticles } from '../../api/articlesAPI';
+import { ArticleType, getArticles, getArticlesWithBanner } from '../../api/articlesAPI';
 
 const Article = () => {
   const { id } = useParams();
@@ -14,10 +14,10 @@ const Article = () => {
   const [articles, setArticles] = useState<ArticleType[] | null>(null);
   
   useEffect(()=>{
-    getArticles()
+    getArticlesWithBanner()
     .then(setArticles)
     .catch(console.error);
-  }, []);
+  }, [id]);
   
   const article = articles && articles.find(article => article.id === Number(id));
 

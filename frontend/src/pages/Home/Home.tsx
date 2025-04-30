@@ -5,16 +5,16 @@ import HomeMain from '../../components/HomeMain/HomeMain';
 import styles from './css/Home.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
-import { ArticleType, getArticles } from '../../api/articlesAPI';
+import { ArticleType, getArticles, getArticlesWithBanner } from '../../api/articlesAPI';
 
 const Home = () => {
   const [articles, setArticles] = useState<ArticleType[] | null>(null);
   
   useEffect(()=>{
-      getArticles()
-      .then(setArticles)
-      .catch(console.error);
-  }, []);
+    getArticlesWithBanner()
+    .then(setArticles)
+    .catch(console.error);
+}, []);
 
   const { theme } = useTheme();
 
