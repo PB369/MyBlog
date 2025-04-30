@@ -19,20 +19,23 @@ const SaveButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, articl
   }, 2000)};
   const timeoutId = buttonsTextReset();
 
-  const saveArticle = () => {
+  console.log("file: ", article.banner_file);
+  console.log("file name: ", article.banner_name);
+  const saveArticle = async () => {
     setShowErrorMessage(false);
+    setSaveButtonText("Saving...");
 
     if(article.banner_file !== undefined){
-      putArticleBanner(article.banner_file)
+      await putArticleBanner(article.banner_file)
       .then((response) => {
-        console.log(response);
         article.banner_name = response;
+        console.log(article.banner_name);
       })
       .catch((error) => console.error(error));
     }
 
     if(isNewArticle) {
-      createArticle(article)
+      await createArticle(article)
       .then(() => {
         setSaveButtonText("Saved!");
         buttonsTextReset();
@@ -44,7 +47,7 @@ const SaveButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, articl
         setErrorCategory(Errors.ServerError);
       });
     } else {
-      updateArticle(article)
+      await updateArticle(article)
       .then(() => {
         setSaveButtonText("Saved!");
         buttonsTextReset();

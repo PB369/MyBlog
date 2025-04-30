@@ -94,6 +94,7 @@ const getArticleById = async (id) => {
 }
 
 const createArticle = (body) => {
+  console.log(body)
   return new Promise((resolve, reject) => {
     pool.query("INSERT INTO articles (title, tags, is_published, publish_date, banner_name, banner_alt, hearts_amount, views_amount, article_content) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *", [body.title, body.tags, body.is_published, body.publish_date, body.banner_name, body.banner_alt, body.hearts_amount, body.views_amount, body.article_content], (error, results) => {
       if (error){

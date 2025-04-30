@@ -29,7 +29,7 @@ const AddBanner = ({isNewArticle, setBannerFile, banner_name, banner_url, banner
         const image = event.target.files?.[0]
         if(image){
             console.log(image);
-            setBannerFile(image)
+            setBannerFile(image);
             banner_url=URL.createObjectURL(image);
             console.log(banner_url);
             setBannerURL(URL.createObjectURL(image));
