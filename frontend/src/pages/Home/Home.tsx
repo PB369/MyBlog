@@ -5,7 +5,7 @@ import HomeMain from '../../components/HomeMain/HomeMain';
 import styles from './css/Home.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
-import { ArticleType, getArticles, getArticlesWithBanner } from '../../api/articlesAPI';
+import { ArticleType, getArticlesWithBanner } from '../../api/articlesAPI';
 
 const Home = () => {
   const [articles, setArticles] = useState<ArticleType[] | null>(null);

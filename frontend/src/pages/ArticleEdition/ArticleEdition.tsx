@@ -5,7 +5,7 @@ import styles from './css/ArticleEdition.module.scss';
 import EditableArticle from '../../components/EditableArticle/EditableArticle';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
-import { ArticleType, getArticleById, getArticlesByIdWithBanner } from '../../api/articlesAPI';
+import { ArticleType, getArticlesByIdWithBanner } from '../../api/articlesAPI';
 
 const ArticleEdition = () => {
 

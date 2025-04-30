@@ -7,7 +7,7 @@ import { Article } from '../../context/ArticlesContext';
 import styles from './css/Management.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
-import { deleteArticle, getArticles, getArticlesWithBanner } from '../../api/articlesAPI';
+import { deleteArticle, getArticlesWithBanner } from '../../api/articlesAPI';
 import ChoiceModal from '../../components/ChoiceModal/ChoiceModal';
 import { useMediaQuery } from '../../hooks/MatchMediaQuery';
 
@@ -51,7 +51,6 @@ const Management = () => {
             tags={article.tags}
             is_published={article.is_published}
             publish_date={article.publish_date}
-            banner_name={article.banner_name}
             banner_url={article.banner_url}
             banner_alt={article.banner_alt}
             views_amount={article.views_amount}

@@ -10,7 +10,6 @@ type Props = {
   tags: string[],
   is_published: boolean,
   publish_date: string,
-  banner_name: string,
   banner_url: string,
   banner_alt: string,
   views_amount: number,
@@ -18,7 +17,7 @@ type Props = {
   onShowChoiceModal: () => void,
 }
 
-const EditableArticleCard = ({id, title, tags, is_published, publish_date, banner_name, banner_url, banner_alt, views_amount, hearts_amount, onShowChoiceModal}: Props,) => {
+const EditableArticleCard = ({id, title, tags, is_published, publish_date, banner_url, banner_alt, views_amount, hearts_amount, onShowChoiceModal}: Props,) => {
   const blockedIconPath = '/LightIcons/blocked-icon.png';
   const trashIconPath = useThemedIcon("trash-icon.png");
   const redTrashIconPath = "/OtherIcons/red-trash-icon.png";

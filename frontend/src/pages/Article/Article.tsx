@@ -5,7 +5,7 @@ import styles from './css/Article.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import StaticArticle from '../../components/StaticArticle/StaticArticle';
 import { useEffect, useState } from 'react';
-import { ArticleType, getArticles, getArticlesWithBanner } from '../../api/articlesAPI';
+import { ArticleType, getArticlesWithBanner } from '../../api/articlesAPI';
 
 const Article = () => {
   const { id } = useParams();

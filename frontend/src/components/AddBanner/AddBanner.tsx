@@ -4,12 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 type Props = {
     isNewArticle: boolean,
     setBannerFile: (image: File) => void,
-    banner_name: string,
     banner_url: string,
     banner_alt: string,
 }
 
-const AddBanner = ({isNewArticle, setBannerFile, banner_name, banner_url, banner_alt}: Props) => {
+const AddBanner = ({isNewArticle, setBannerFile, banner_url, banner_alt}: Props) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [bannerURL, setBannerURL] = useState<string>(banner_url);
     const labelIconPath = bannerURL === "" ? "/OtherIcons/blackPlus-icon.png" : "/OtherIcons/blackChange-icon.png";
