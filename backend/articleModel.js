@@ -9,23 +9,17 @@ const getArticlesWithBannersURLs = async () => {
   
   const articlesWithBannersURLs = await Promise.all(
     result.rows.map(async (article) => {
-      if(!article.banner_url) return article;
+      // if(!article.banner_url) return article;
 
       try {
-        const params = {
-          Bucket: process.env.AWS_BUCKET_NAME,
-          Key: article.banner_url,
-        };
-
-        const command = new GetObjectCommand(params);
-        const bannerUrl = await getSignedUrl(s3, command, { expiresIn: 1800 });
+        const bannerUrl = await generateGetURL(article.banner_name);
 
         return {
           ...article,
           banner_url: bannerUrl,
         }
       } catch (error) {
-        console.error(`Presigned URL generation failed to ${article.banner_url}`);
+        console.error(`Presigned URL generation failed to ${article.banner_name}:`, error);
         return article;
       }
     })

@@ -52,7 +52,7 @@ const Management = () => {
             is_published={article.is_published}
             publish_date={article.publish_date}
             banner_name={article.banner_name}
-            banner_ref={article.banner_ref}
+            banner_url={article.banner_url}
             banner_alt={article.banner_alt}
             views_amount={article.views_amount}
             hearts_amount={article.hearts_amount}

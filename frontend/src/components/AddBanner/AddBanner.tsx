@@ -12,7 +12,7 @@ type Props = {
 const AddBanner = ({isNewArticle, setBannerFile, banner_name, banner_url, banner_alt}: Props) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [bannerURL, setBannerURL] = useState<string>(banner_url);
-    const addBannerIconPath = bannerURL === "" ? "/OtherIcons/blackPlus-icon.png" : "/OtherIcons/blackChange-icon.png";
+    const labelIconPath = bannerURL === "" ? "/OtherIcons/blackPlus-icon.png" : "/OtherIcons/blackChange-icon.png";
     console.log(bannerURL);
 
     useEffect(() => {
@@ -41,8 +41,8 @@ const AddBanner = ({isNewArticle, setBannerFile, banner_name, banner_url, banner
             <button className={styles.addBannerBtn} onClick={handleBtnClick}>
                 <img src={bannerURL} alt={isNewArticle ? "" :banner_alt} className={styles.banner}/>
                 <div className={styles.addDivLabel}>
-                    <div className={styles.plusIcon}>
-                        <img src={addBannerIconPath} alt="plus-icon" />
+                    <div className={styles.labelIcon}>
+                        <img src={labelIconPath} alt="plus-icon" />
                     </div>
                     <p className={styles.addText}>{bannerURL === "" ? "Add an image" : "Change image"}</p>
                 </div>

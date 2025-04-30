@@ -63,6 +63,7 @@ export const putArticleBanner = async (file: File) => {
 
 export const getArticlesWithBanner = async () => {
   const response = await axiosAPI.get('/articles-with-urls');
+  console.log(response)
   return response.data;
 }
 

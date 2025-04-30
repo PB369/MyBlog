@@ -60,19 +60,19 @@
       opacity: 0;
       transition: opacity 0.35s;
 
-      .plusIcon, .addText {
+      .labelIcon, .addText {
         text-align: center;
         text-indent: 0;
       }
 
-      .plusIcon {
+      .labelIcon {
           background-color: white;
           border-radius: 50%;
           display: flex;
           justify-content: center;
           align-items: center;
           margin-bottom: 10px;
-          box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.5);
           padding: 10px;
           
           img {
