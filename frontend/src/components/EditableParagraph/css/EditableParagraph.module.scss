@@ -1,0 +1,61 @@
+.contentContainer {
+    color: var(--text-color);
+    margin-top: 15px;
+    width: 100%;
+
+    .paragraphContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .textArea {
+        text-indent: 15px;
+        text-align: justify;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        padding: 5px 5px 10px 5px;
+        width: 100%;
+        border-radius: 4px;
+        resize: none;
+        overflow: hidden;
+        &:hover, &:focus {
+          border: 2px solid var(--border-color);
+        }
+      }
+
+      &:hover, &:focus {
+        .buttonsContainer {display: flex;}
+      }
+
+      .buttonsContainer {
+        display: none;
+
+        @media screen and (min-width: $small-device) {
+          align-self: flex-end;
+        }
+
+        margin-top: 5px;
+        .confirmIcon {
+          img {
+            width: 28px;
+          }
+        }
+  
+        .deleteIcon {
+          img {
+            width: 28px;
+          }
+        }
+      }
+    }
+
+
+    .addParagraph { 
+      text-align: center;
+
+      &:hover { 
+        cursor: pointer;
+      }
+    }
+}

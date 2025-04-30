@@ -1,28 +1,19 @@
 .errorContainer {
   margin-bottom: 40px;
   margin-top: -20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   max-width: 85%;
 }
-
 .errorContainer img {
   width: 22px;
   margin-right: 10px;
 }
-
 .errorContainer p {
   font-weight: bold;
   font-size: 14px;
   color: #EA3323;
   min-width: 70%;
   text-align: justify;
-}
-/*# sourceMappingURL=ErrorModal.module.css.map */
+}/*# sourceMappingURL=ErrorModal.module.css.map */
