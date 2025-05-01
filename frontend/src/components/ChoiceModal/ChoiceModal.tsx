@@ -1,14 +1,26 @@
 import { useEffect, useRef } from 'react';
 import styles from './css/ChoiceModal.module.scss';
 
+export enum ActionsCategory {
+  deleteParagraph = "deleteParagraph",
+  deleteArticle = "deleteArticle",
+  logout = "logout",
+}
+
 type Modal = {
-  modalType: 'delete' | 'logout',
+  category: 'deleteParagraph' | 'deleteArticle' | 'logout',
   closeModal: () => void,
   isVisible: boolean,
   confirmChoice: () => void,
 }
 
-const ChoiceModal = ({modalType, isVisible, closeModal, confirmChoice} : Modal) => {
+const modalMensages: Record<ActionsCategory, string> = {
+  [ActionsCategory.deleteArticle]: 'Do you want to delete this article?',
+  [ActionsCategory.deleteParagraph]: 'Do you want to delete this paragraph?',
+  [ActionsCategory.logout]: 'Do you want to logout?',
+}
+
+const ChoiceModal = ({category, isVisible, closeModal, confirmChoice} : Modal) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(()=>{
@@ -26,7 +38,7 @@ const ChoiceModal = ({modalType, isVisible, closeModal, confirmChoice} : Modal) 
 
   return (
     <div className={styles.modalContainer} ref={modalRef}>
-      <p>{modalType === 'delete' ? 'Do you want to delete this article?' : 'Do you want to log out?'}</p>
+      <p>{modalMensages[category]}</p>
       <div className={styles.buttonsContainer}>
         <button className={styles.cancelButton} onClick={closeModal}>Cancel</button>
         <button className={styles.yesButton} onClick={confirmChoice}>Yes</button>

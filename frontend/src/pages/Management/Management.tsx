@@ -65,7 +65,7 @@ const Management = () => {
         </>
         }
         
-        {showChoiceModal && <ChoiceModal modalType='delete' isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)} confirmChoice={handleDeleteArticle}/>}
+        {showChoiceModal && <ChoiceModal category='deleteArticle' isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)} confirmChoice={handleDeleteArticle}/>}
 
         <Link to={'/management/create'} className={styles.link}>{isDesktop ? "Create a new article" : <img src={whitePlusIconPath}/>}</Link>
       </ManagementMain>

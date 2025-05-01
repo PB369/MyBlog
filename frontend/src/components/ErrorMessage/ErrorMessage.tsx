@@ -1,4 +1,4 @@
-import styles from './css/ErrorModal.module.scss';
+import styles from './css/ErrorMessage.module.scss';
 
 export enum Errors {
   LoginValidation = "LoginValidation",

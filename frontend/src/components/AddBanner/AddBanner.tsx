@@ -30,7 +30,6 @@ const AddBanner = ({isNewArticle, setBannerFile, banner_url, banner_alt}: Props)
             console.log(image);
             setBannerFile(image);
             banner_url=URL.createObjectURL(image);
-            console.log(banner_url);
             setBannerURL(URL.createObjectURL(image));
         }
     }

@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import styles from './css/EditableArticle.module.scss';
 import { ArticleType } from '../../api/articlesAPI';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
 import SaveButton from '../Save&PublishButtons/SaveButton';
 import PublishButton from '../Save&PublishButtons/PublishButton';
+import AddParagraph from '../AddParagraph/AddParagraph';
 import AddBanner from '../AddBanner/AddBanner';
 import { useThemedIcon } from '../../hooks/ConditionalsHooks';
-import EditableParagraph from '../EditableParagraph/EditableParagraph';
 
 type Props = {
   isNewArticle: boolean,
@@ -32,6 +32,14 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const [errorCategory, setErrorCategory] = useState<Errors | null>(null);
   const [bannerFile, setBannerFile] = useState<File | undefined>(undefined);
+  const [articleContent, setArticleContent] = useState<string>(article_content);
+
+  console.log("article_content", article_content)
+  useEffect(() => {
+    if (article_content && articleContent === "") {
+      setArticleContent(article_content);
+    }
+  }, [article_content]);
 
   const article: ArticleType = {
     id: id,
@@ -43,7 +51,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
     banner_name: banner_name,
     banner_url: banner_url,
     banner_alt: banner_alt,
-    article_content: article_content,
+    article_content: articleContent,
     views_amount: views_amount,
     hearts_amount: hearts_amount,
   }
@@ -79,7 +87,11 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
         </header>
         <main>
          <AddBanner isNewArticle={isNewArticle} setBannerFile={setBannerFile} banner_url={article.banner_url} banner_alt={banner_alt}/>
-         <EditableParagraph isNewArticle={isNewArticle} content={article_content}/>
+<<<<<<< Updated upstream
+         <AddParagraph isNewArticle={isNewArticle} content={article_content}/>
+=======
+         <EditableParagraph isNewArticle={isNewArticle} content={article.article_content} setArticleContent={setArticleContent}/>
+>>>>>>> Stashed changes
         </main>
       </article>
       <div className={styles.buttonsContainer}>
