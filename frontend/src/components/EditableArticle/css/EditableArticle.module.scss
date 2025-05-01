@@ -99,50 +99,6 @@
           justify-content: space-between;
         }
       }
-  
-      .tagsContainer{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        margin: 10px 0;
-  
-        @media screen and (min-width: $small-device) {
-          margin-top: 0;
-        }
-  
-        @media screen and (min-width: $semi-medium-device) {
-          justify-content: flex-start;
-        }
-  
-        .hiddenTags {
-          visibility: hidden;
-          position: absolute;
-          top: 0;
-          left: 0;
-          pointer-events: none;
-          height: 0;
-          overflow: hidden;
-        }
-  
-        .tags {
-          font-size: 14px;
-          white-space: nowrap;
-          display: inline-block;
-          margin: 0px 5px 5px 0;
-          padding: 3px 15px;
-          border: 1px solid black;
-          border-radius: 8px;
-          align-self: center;
-          justify-content: center;
-          font-weight: bold;
-          background-color: var(--quaternary-color);
-  
-          @media screen and (min-width: $semi-medium-device) {
-            font-size: 16px;
-          }
-        }
-      }
     }
   
     main {

@@ -47,7 +47,6 @@ useEffect(() => {
     };
 }, []);
 
-
 useEffect(() => {
     adjustTextareasHeight();
 }, [title]);
