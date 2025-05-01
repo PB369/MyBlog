@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,mBAAmB,CAAC;EAClB,gBAAgB,EAAE,oBAAoB;EACtC,UAAU,EAAE,KAAK;EACjB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;CACvB",
-    "sources": [
-        "Login.module.scss"
-    ],
-    "names": [],
-    "file": "Login.module.css"
-}
+{"version":3,"sources":["Login.module.scss","Login.module.css"],"names":[],"mappings":"AAAA;EACE,sCAAA;EACA,iBAAA;EACA,aAAA;EACA,sBAAA;ACCF","file":"Login.module.css"}

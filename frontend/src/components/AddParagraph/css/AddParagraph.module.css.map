@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,KAAK,CAAC;EACF,KAAK,EAAE,iBAAiB;EACxB,UAAU,EAAE,OAAO;EACnB,WAAW,EAAE,IAAI;EACjB,UAAU,EAAE,IAAI;CACjB",
-    "sources": [
-        "AddParagraph.module.scss"
-    ],
-    "names": [],
-    "file": "AddParagraph.module.css"
-}
+{"version":3,"sources":["AddParagraph.module.scss","AddParagraph.module.css"],"names":[],"mappings":"AAAA;EACI,wBAAA;EACA,mBAAA;EACA,iBAAA;EACA,gBAAA;ACCJ","file":"AddParagraph.module.css"}

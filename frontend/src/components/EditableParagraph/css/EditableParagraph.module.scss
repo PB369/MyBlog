@@ -31,14 +31,20 @@
         .buttonsContainer {display: flex;}
       }
 
+      &.focused {
+        .buttonsContainer {
+          display: flex;
+        }
+      }
+
       .buttonsContainer {
         display: none;
-
+        margin-top: 5px;
+        
         @media screen and (min-width: $small-device) {
           align-self: flex-end;
         }
-
-        margin-top: 5px;
+        
         .confirmIcon {
           img {
             width: 28px;

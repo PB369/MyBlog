@@ -22,7 +22,7 @@ const EditableParagraph = ({content, setArticleContent}: Props) => {
     const [paragraphs, setParagraphs] = useState<Paragraph[]>([]);
     const [nextId, setNextId] = useState(0);
     const textAreaRefs = useRef<Record<number, HTMLTextAreaElement | null>>({});
-    const [isFocused, setIsFocused] = useState<boolean>(false);
+    const [focusedId, setFocusedId] = useState<number | null>(null);
     const hasInitialized = useRef(false);
 
     useEffect(() => {
@@ -51,6 +51,19 @@ const EditableParagraph = ({content, setArticleContent}: Props) => {
             }
         })
     };
+
+    useEffect(() => {
+        const handleResize = () => {
+            adjustTextareasHeight();
+        };
+    
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+    
 
     useEffect(() => {
         adjustTextareasHeight();
@@ -83,23 +96,23 @@ const EditableParagraph = ({content, setArticleContent}: Props) => {
     return (
         <div className={styles.contentContainer}>
         {paragraphs.map((p) => (
-            <div className={styles.paragraphContainer}>
+            <div className={`${styles.paragraphContainer} ${focusedId === p.id ? styles.focused : ''}`}>
                 <textarea
                     key={p.id}
                     ref={(el) => {textAreaRefs.current[p.id] = el}}
                     className={styles.textArea}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
+                    onFocus={() => setFocusedId(p.id)}
+                    onBlur={() => setFocusedId(null)}
                     onKeyDown={(e) => {if(e.key === 'Enter'){e.preventDefault(); (e.target as HTMLTextAreaElement).blur()}}}
                     value={p.text}
                     placeholder={p.text === "" ? "Empty paragraph..." : ""}
                     onChange={(e) => handleTextChange(p.id, e.target.value, e.target)}
                     // onKeyDown={(e) => e.key === "Enter" && setEditingId(null)}
                     rows={1}
-                    spellCheck={isFocused}
+                    spellCheck={focusedId === p.id}
                 />
                 <div className={styles.buttonsContainer}>
-                    <button className={styles.confirmIcon} onClick={() => setIsFocused(false)}>
+                    <button className={styles.confirmIcon} onClick={() => setFocusedId(null)}>
                         <img src={confirmIconPath} alt="delete-icon" />
                     </button>
                     
