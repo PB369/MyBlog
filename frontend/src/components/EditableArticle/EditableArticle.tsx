@@ -33,18 +33,22 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const [errorCategory, setErrorCategory] = useState<Errors | null>(null);
   const [bannerFile, setBannerFile] = useState<File | undefined>(undefined);
+  const [articleTitle, setArticleTitle] = useState<string>(title);
   const [articleContent, setArticleContent] = useState<string>(article_content);
 
-  console.log("article_content", article_content)
   useEffect(() => {
+    if (title && articleTitle === "") {
+      setArticleTitle(title);
+    }
+
     if (article_content && articleContent === "") {
       setArticleContent(article_content);
     }
-  }, [article_content]);
+  }, [title, article_content]);
 
   const article: ArticleType = {
     id: id,
-    title: title,
+    title: articleTitle,
     tags: tags,
     is_published: is_published,
     publish_date: publish_date,
@@ -78,7 +82,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
           </div>
           <div className={styles.articleInfos}>
             <div className={styles.titleAndDate}>
-              <EditableTitle isNewArticle={isNewArticle} title={article.title}/>
+              <EditableTitle isNewArticle={isNewArticle} articleTitle={article.title} setArticleTitle={setArticleTitle}/>
               <p>{isNewArticle ? "Add a publish date" : publish_date}</p>
             </div>
             <div className={styles.tagsContainer}>

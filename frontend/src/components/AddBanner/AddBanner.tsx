@@ -12,7 +12,6 @@ const AddBanner = ({isNewArticle, setBannerFile, banner_url, banner_alt}: Props)
     const inputRef = useRef<HTMLInputElement>(null);
     const [bannerURL, setBannerURL] = useState<string>(banner_url);
     const labelIconPath = bannerURL === "" ? "/OtherIcons/blackPlus-icon.png" : "/OtherIcons/blackChange-icon.png";
-    console.log(bannerURL);
 
     useEffect(() => {
         if (banner_url) {

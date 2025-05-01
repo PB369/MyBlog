@@ -63,12 +63,10 @@ export const putArticleBanner = async (file: File) => {
 
 export const getArticlesWithBanner = async () => {
   const response = await axiosAPI.get('/articles-with-urls');
-  console.log(response)
   return response.data;
 }
 
 export const getArticlesByIdWithBanner = async (id: ArticleType["id"]) => {
   const response = await axiosAPI.get(`/articles-with-urls/${id}`);
-  console.log(response)
   return response.data;
 }

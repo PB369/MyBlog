@@ -19,8 +19,6 @@ const SaveButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, articl
   }, 2000)};
   const timeoutId = buttonsTextReset();
 
-  console.log("file: ", article.banner_file);
-  console.log("file name: ", article.banner_name);
   const saveArticle = async () => {
     setShowErrorMessage(false);
     setSaveButtonText("Saving...");

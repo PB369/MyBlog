@@ -1,13 +1,45 @@
+import { useEffect, useState } from 'react'
 import styles from './css/EditableTitle.module.scss'
 
 type Props = {
   isNewArticle: boolean,
-  title: string,
+  articleTitle: string,
+  setArticleTitle: (value: string) => void,
 }
 
-const EditableTitle = ({isNewArticle, title}: Props) => {
+const EditableTitle = ({articleTitle, setArticleTitle}: Props) => {
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [title, setTitle] = useState<string>("");
+
+  useEffect(()=>{
+    if(articleTitle) {
+      setTitle(articleTitle)
+    }
+  }, [articleTitle]);
+
+  useEffect(()=>{
+    setArticleTitle(title);
+  }, [title, setArticleTitle]);
+  
+  const handleTextChange = (newTitle: string) => {
+    setTitle(newTitle);
+    setArticleTitle(title);
+  };
+
   return (
-    <h2 className={styles.title}>{isNewArticle ? "Add a title" : title}</h2>
+    <textarea
+      key={8}
+      className={styles.title}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
+      onKeyDown={(e) => {if(e.key === 'Enter'){e.preventDefault(); (e.target as HTMLTextAreaElement).blur()}}}
+      value={title}
+      placeholder={title === "" ? "Add a title" : ""}
+      onChange={(event) => handleTextChange(event.target.value)}
+      // onKeyDown={(e) => e.key === "Enter" && setEditingId(null)}
+      rows={1}
+      spellCheck={isFocused}
+    />
   )
 }
 

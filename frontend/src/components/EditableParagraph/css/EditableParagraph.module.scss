@@ -22,6 +22,9 @@
         &:hover, &:focus {
           border: 2px solid var(--border-color);
         }
+        &::placeholder {
+          color: var(--text-color);
+        }
       }
 
       &:hover, &:focus {
