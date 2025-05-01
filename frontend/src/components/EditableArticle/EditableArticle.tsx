@@ -8,6 +8,7 @@ import PublishButton from '../Save&PublishButtons/PublishButton';
 import AddBanner from '../AddBanner/AddBanner';
 import { useThemedIcon } from '../../hooks/ConditionalsHooks';
 import EditableParagraph from '../EditableParagraph/EditableParagraph';
+import EditableTitle from '../EditableTitle/EditableTitle';
 
 type Props = {
   isNewArticle: boolean,
@@ -77,7 +78,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
           </div>
           <div className={styles.articleInfos}>
             <div className={styles.titleAndDate}>
-              <h2>{isNewArticle ? "Add a title" : title}</h2>
+              <EditableTitle isNewArticle={isNewArticle} title={article.title}/>
               <p>{isNewArticle ? "Add a publish date" : publish_date}</p>
             </div>
             <div className={styles.tagsContainer}>

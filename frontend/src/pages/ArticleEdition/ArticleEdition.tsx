@@ -13,10 +13,14 @@ const ArticleEdition = () => {
 
   const [articleData, setArticleData] = useState<ArticleType | null>(null);
     
+  const isNewArticle = !id;
+
   useEffect(()=>{
-    getArticlesByIdWithBanner(Number(id))
-    .then(setArticleData)
-    .catch(console.error);
+    if(!isNewArticle){
+      getArticlesByIdWithBanner(Number(id))
+      .then(setArticleData)
+      .catch(console.error);
+    }
   }, [id]);
 
   const article  = articleData && id ? articleData : {
@@ -33,7 +37,6 @@ const ArticleEdition = () => {
     article_content: "",
   };
 
-  const isNewArticle = !id;
   const { theme } = useTheme();
 
   return (
