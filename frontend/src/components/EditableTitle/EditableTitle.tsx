@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './css/EditableTitle.module.scss'
 
 type Props = {
@@ -10,6 +10,7 @@ type Props = {
 const EditableTitle = ({articleTitle, setArticleTitle}: Props) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
+  const titleRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(()=>{
     if(articleTitle) {
@@ -26,9 +27,35 @@ const EditableTitle = ({articleTitle, setArticleTitle}: Props) => {
     setArticleTitle(title);
   };
 
+  const adjustTextareasHeight = () => {
+    const titleElement = titleRef.current
+    if (titleElement) {
+      titleElement.style.height = "auto";
+      titleElement.style.height = titleElement.scrollHeight + "px";
+    }
+};
+
+useEffect(() => {
+    const handleResize = () => {
+        adjustTextareasHeight();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+}, []);
+
+
+useEffect(() => {
+    adjustTextareasHeight();
+}, [title]);
+
   return (
     <textarea
       key={8}
+      ref={titleRef}
       className={styles.title}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
