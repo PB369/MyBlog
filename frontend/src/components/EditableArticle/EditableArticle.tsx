@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react';
 import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
 import SaveButton from '../Save&PublishButtons/SaveButton';
 import PublishButton from '../Save&PublishButtons/PublishButton';
-import AddParagraph from '../AddParagraph/AddParagraph';
 import AddBanner from '../AddBanner/AddBanner';
 import { useThemedIcon } from '../../hooks/ConditionalsHooks';
+import EditableParagraph from '../EditableParagraph/EditableParagraph';
 
 type Props = {
   isNewArticle: boolean,
@@ -87,11 +87,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
         </header>
         <main>
          <AddBanner isNewArticle={isNewArticle} setBannerFile={setBannerFile} banner_url={article.banner_url} banner_alt={banner_alt}/>
-<<<<<<< Updated upstream
-         <AddParagraph isNewArticle={isNewArticle} content={article_content}/>
-=======
          <EditableParagraph isNewArticle={isNewArticle} content={article.article_content} setArticleContent={setArticleContent}/>
->>>>>>> Stashed changes
         </main>
       </article>
       <div className={styles.buttonsContainer}>

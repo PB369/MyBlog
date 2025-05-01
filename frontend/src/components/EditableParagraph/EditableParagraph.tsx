@@ -17,7 +17,7 @@ const EditableParagraph = ({content, setArticleContent}: Props) => {
     //It's important to note that the paragraphs here are represented as textarea tags, not as p tags.
     const confirmIconPath = useThemedIcon("check-icon.png");
     const deleteIconPath = useThemedIcon("trash-v2-icon.png");
-    const copyIconPath = useThemedIcon("copy-icon.png");
+    // const copyIconPath = useThemedIcon("copy-icon.png");
     
     const [paragraphs, setParagraphs] = useState<Paragraph[]>([]);
     const [nextId, setNextId] = useState(0);
