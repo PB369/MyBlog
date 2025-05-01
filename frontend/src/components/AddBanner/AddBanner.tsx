@@ -26,7 +26,6 @@ const AddBanner = ({isNewArticle, setBannerFile, banner_url, banner_alt}: Props)
     const handleBannerChoice = (event: React.ChangeEvent<HTMLInputElement>) => {
         const image = event.target.files?.[0]
         if(image){
-            console.log(image);
             setBannerFile(image);
             banner_url=URL.createObjectURL(image);
             setBannerURL(URL.createObjectURL(image));

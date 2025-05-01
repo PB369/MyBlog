@@ -84,7 +84,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
           <div className={styles.articleInfos}>
             <div className={styles.titleAndDate}>
               <EditableTitle isNewArticle={isNewArticle} articleTitle={article.title} setArticleTitle={setArticleTitle}/>
-              <p>{isNewArticle ? "Add a publish date" : publish_date}</p>
+              <p className={styles.date}>{isNewArticle ? "Add a publish date" : publish_date}</p>
             </div>
             <EditableTags isNewArticle={isNewArticle} tags={article.tags}/>
           </div>

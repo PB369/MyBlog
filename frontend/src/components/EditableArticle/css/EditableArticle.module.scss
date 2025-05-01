@@ -93,10 +93,15 @@
         padding: 10px 0;
         color: var(--text-color);
         font-weight: bold;
+        gap: 10px;
   
         @media screen and (min-width: $small-device) {
           flex-direction: row;
           justify-content: space-between;
+        }
+
+        .date {
+          flex-shrink: 0;
         }
       }
     }

@@ -14,7 +14,7 @@ const EditableTitle = ({articleTitle, setArticleTitle}: Props) => {
 
   useEffect(()=>{
     if(articleTitle) {
-      setTitle(articleTitle)
+      setTitle(articleTitle);
     }
   }, [articleTitle]);
 
@@ -24,7 +24,6 @@ const EditableTitle = ({articleTitle, setArticleTitle}: Props) => {
   
   const handleTextChange = (newTitle: string) => {
     setTitle(newTitle);
-    setArticleTitle(title);
   };
 
   const adjustTextareasHeight = () => {

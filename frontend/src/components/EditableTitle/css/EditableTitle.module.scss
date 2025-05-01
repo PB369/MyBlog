@@ -5,6 +5,9 @@
   overflow: hidden;
   max-width: 100%;
 
+  flex-grow: 1;
+  min-width: 0;
+
   border: 2px solid transparent;
   border-radius: 4px;
   padding: 0 2px;
@@ -19,28 +22,28 @@
     color: var(--text-color);
   }
 
-  @media screen and (min-width: $semi-small-device) {
-    max-width: 100%;
-  }
+  // @media screen and (min-width: $semi-small-device) {
+  //   max-width: 100%;
+  // }
 
   @media screen and (min-width: $small-device) {
-    max-width: 70%;
+    // max-width: 56%;
     text-align: justify;
   }
 
-  @media screen and (min-width: $semi-medium-device) {
-    max-width: 78%;
-  }
+  // @media screen and (min-width: $semi-medium-device) {
+  //   max-width: 78%;
+  // }
 
-  @media screen and (min-width: $medium-device) {
-    max-width: 82%;
-  }
+  // @media screen and (min-width: $medium-device) {
+  //   max-width: 82%;
+  // }
 
-  @media screen and (min-width: $semi-large-device) {
-    max-width: 78%;
-  }
+  // @media screen and (min-width: $semi-large-device) {
+  //   max-width: 78%;
+  // }
 
-  @media screen and (min-width: $large-device) {
-    max-width: 82%;
-  }
+  // @media screen and (min-width: $large-device) {
+  //   max-width: 82%;
+  // }
 }
