@@ -1,14 +1,15 @@
 import styles from './css/EditableTags.module.scss';
 
 type Props = {
-  isNewArticle: boolean,
   tags: string[],
+  onShowAddTagsModal: () => void,
 }
 
-const EditableTags = ({isNewArticle, tags}: Props) => {
+const EditableTags = ({tags, onShowAddTagsModal}: Props) => {
   return (
     <div className={styles.tagsContainer}>
-      {isNewArticle ? <span className={styles.tags}>+</span> : tags.map((tag, index) => <span key={index} className={styles.tags}>{tag}</span>)}
+      {tags.map((tag, index) => <span key={index} className={styles.tags}>{tag}</span>)}
+      {tags.length <= 5 && <button className={`${styles.tags} ${styles.addTagsBtn}`} onClick={onShowAddTagsModal}>+</button>}
     </div>
   )
 }

@@ -88,6 +88,7 @@
       padding: 10px 0;
       color: var(--text-color);
       font-weight: bold;
+      gap: 10px;
 
       @media screen and (min-width: $small-device) {
         flex-direction: row;
@@ -99,31 +100,17 @@
         color: var(--text-color);
         text-align: justify;
         overflow: hidden;
-        max-width: 170px;
-
-        @media screen and (min-width: $semi-small-device) {
-          max-width: 230px;
-        }
+        flex-grow: 1;
+        min-width: 0;
+        text-align: center;
 
         @media screen and (min-width: $small-device) {
-          max-width: 320px;
+          text-align: justify;
         }
+      }
 
-        @media screen and (min-width: $semi-medium-device) {
-          max-width: 430px;
-        }
-
-        @media screen and (min-width: $medium-device) {
-          max-width: 370px;
-        }
-
-        @media screen and (min-width: $semi-large-device) {
-          max-width: 440px;
-        }
-
-        @media screen and (min-width: $large-device) {
-          max-width: 450px;
-        }
+      p {
+        flex-shrink: 0;
       }
     }
 

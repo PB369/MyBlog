@@ -10,6 +10,7 @@ import { useThemedIcon } from '../../hooks/ConditionalsHooks';
 import EditableParagraph from '../EditableParagraph/EditableParagraph';
 import EditableTitle from '../EditableTitle/EditableTitle';
 import EditableTags from '../EditableTags/EditableTags';
+import AddTagsModal from '../AddTagsModal/AddTagsModal';
 
 type Props = {
   isNewArticle: boolean,
@@ -35,8 +36,10 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
   const [errorCategory, setErrorCategory] = useState<Errors | null>(null);
   const [bannerFile, setBannerFile] = useState<File | undefined>(undefined);
   const [articleTitle, setArticleTitle] = useState<string>(title);
+  const [articleTags, setArticleTags] = useState<string[]>(tags);
   const [articleContent, setArticleContent] = useState<string>(article_content);
-
+  const [showAddTagsModal, setShowAddTagsModal] = useState<boolean>(false);
+  
   useEffect(() => {
     if (title && articleTitle === "") {
       setArticleTitle(title);
@@ -45,12 +48,16 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
     if (article_content && articleContent === "") {
       setArticleContent(article_content);
     }
-  }, [title, article_content]);
+
+    if (tags && articleTags) {
+      setArticleTags(tags);
+    }
+  }, [title, article_content, tags]);
 
   const article: ArticleType = {
     id: id,
     title: articleTitle,
-    tags: tags,
+    tags: articleTags,
     is_published: is_published,
     publish_date: publish_date,
     banner_file: bannerFile,
@@ -61,6 +68,10 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
     views_amount: views_amount,
     hearts_amount: hearts_amount,
   }
+
+  const handleAddTags = () => {
+      
+    }
 
   return (
     <div className={styles.editableArticleContainer}>
@@ -86,7 +97,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
               <EditableTitle isNewArticle={isNewArticle} articleTitle={article.title} setArticleTitle={setArticleTitle}/>
               <p className={styles.date}>{isNewArticle ? "Add a publish date" : publish_date}</p>
             </div>
-            <EditableTags isNewArticle={isNewArticle} tags={article.tags}/>
+            <EditableTags onShowAddTagsModal={() => setShowAddTagsModal(true)} tags={article.tags}/>
           </div>
         </header>
         <main>
@@ -100,6 +111,8 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
         <PublishButton isNewArticle={isNewArticle} article={article} setShowErrorMessage={setShowErrorMessage} setErrorCategory={setErrorCategory}/>
       </div>
       {showErrorMessage && errorCategory && <ErrorMessage category={errorCategory}/>}
+
+      {showAddTagsModal && <AddTagsModal isVisible={showAddTagsModal} confirmChoice={handleAddTags} closeModal={() => setShowAddTagsModal(false)} tags={articleTags} setArticleTags={setArticleTags}/>}
     </div>
   )
 }
