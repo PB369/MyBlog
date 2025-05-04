@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
 import styles from './css/AddTagsModal.module.scss';
 import { useThemedIcon } from '../../hooks/ConditionalsHooks';
@@ -25,15 +25,18 @@ const AddTagsModal = ({isVisible, confirmChoice, closeModal, tags, setArticleTag
   }
 
   const handleConfirmChoice = () => {
+    // Tag removal code:
     if(selectedTagsList.length > 0) {
-      setArticleTags(prev => prev.filter((tag) => !tags.includes(tag)));
+      setArticleTags(prev => prev.filter((tag) => !selectedTagsList.includes(tag)));
     }
-    
+
+    // Tag addition code:
     const modalInput = inputAddTag.current
     
-    if(modalInput && modalInput.value.length > 0 && !selectedTagsList.includes(modalInput.value)) {
+    if(modalInput && modalInput.value.length > 0 && !tags.includes(modalInput.value)) {
       setArticleTags(prev => [...prev, modalInput.value])
     }
+
     closeModal();
   }
 
