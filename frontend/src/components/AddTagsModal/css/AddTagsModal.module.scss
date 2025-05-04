@@ -95,10 +95,19 @@
           justify-content: center;
           font-weight: bold;
           background-color: var(--quaternary-color);
+
+          &:hover {
+            cursor: pointer;
+          }
       
           @media screen and (min-width: $semi-medium-device) {
             font-size: 18px;
           }
+        }
+
+        .selectedTag {
+          background-color: var(--selected-color);
+          color: var(--buttonText-color);
         }
       }
     }
