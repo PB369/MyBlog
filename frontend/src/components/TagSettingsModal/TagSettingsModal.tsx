@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
-import styles from './css/AddTagsModal.module.scss';
+import styles from './css/TagSettingsModal.module.scss';
 import { useThemedIcon } from '../../hooks/ConditionalsHooks';
 
 type Props = {
