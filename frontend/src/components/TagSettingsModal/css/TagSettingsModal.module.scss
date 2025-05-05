@@ -20,6 +20,7 @@
 
   @media screen and (min-width: $semi-medium-device) {
     min-width: auto;
+    max-width: 400px;
   }
 
   .addNewTagContainer {
@@ -82,7 +83,6 @@
         justify-content: center;
         align-items: center;
         
-
         .tags {
           font-size: 18px;
           white-space: nowrap;
@@ -98,6 +98,7 @@
 
           &:hover {
             cursor: pointer;
+            opacity: 70%;
           }
       
           @media screen and (min-width: $semi-medium-device) {
@@ -118,6 +119,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 15px;
 
     @media screen and (min-width: $small-device) {
       align-self: flex-end;

@@ -11,12 +11,12 @@ type Props = {
   setArticleTags: React.Dispatch<React.SetStateAction<string[]>>,
 }
 
-const AddTagsModal = ({isVisible, confirmChoice, closeModal, tags, setArticleTags}: Props) => {
+const TagSettingsModal = ({isVisible, confirmChoice, closeModal, tags, setArticleTags}: Props) => {
 
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const [errorCategory, setErrorCategory] = useState<Errors | null>(null);
-  const arrowHeadToLeftIconPath = useThemedIcon('arrow-head-to-left-icon.png');
-  const arrowHeadToRightIconPath = useThemedIcon('arrow-head-to-right-icon.png');
+  // const arrowHeadToLeftIconPath = useThemedIcon('arrow-head-to-left-icon.png');
+  // const arrowHeadToRightIconPath = useThemedIcon('arrow-head-to-right-icon.png');
   const [selectedTagsList, setSelectedTagsList] = useState<string[]>([]);
   const inputAddTag = useRef<HTMLInputElement | null>(null);
 
@@ -24,20 +24,59 @@ const AddTagsModal = ({isVisible, confirmChoice, closeModal, tags, setArticleTag
     setSelectedTagsList(prev => prev.includes(tagName) ? prev.filter(tag => tag !== tagName) : [...prev, tagName]);
   }
 
+  const removeTag = () => {
+
+    setArticleTags(prev => prev.filter((tag) => !selectedTagsList.includes(tag)));
+  }
+
+  const addTag = () => {
+    const modalInput = inputAddTag.current;
+    if(modalInput) {
+      setArticleTags(prev => [...prev, modalInput.value]);
+    }
+  }
+
+  const throwError = (category: Errors) => {
+    setErrorCategory(category)
+    setShowErrorMessage(true);
+  }
+
   const handleConfirmChoice = () => {
-    // Tag removal code:
-    if(selectedTagsList.length > 0) {
-      setArticleTags(prev => prev.filter((tag) => !selectedTagsList.includes(tag)));
-    }
+    const modalInput = inputAddTag.current;
+    const inputHasValue = modalInput && modalInput.value.length > 0;
+    const hasSelectedTags = selectedTagsList.length > 0;
+    const articleHasTags = tags.length > 0;
 
-    // Tag addition code:
-    const modalInput = inputAddTag.current
+    setShowErrorMessage(false);
+    setErrorCategory(null);
     
-    if(modalInput && modalInput.value.length > 0 && !tags.includes(modalInput.value)) {
-      setArticleTags(prev => [...prev, modalInput.value])
-    }
+    if (articleHasTags) {
+      if(!inputHasValue && !hasSelectedTags){
+        throwError(Errors.NoTagSettingsActionDefined);
+        return
+      }
+      if (hasSelectedTags) {
+        removeTag();
+        closeModal();
+      }
 
-    closeModal();
+      if(inputHasValue) {
+        if(!tags.includes(modalInput.value)) {
+          addTag();
+          closeModal();
+        } else {
+          throwError(Errors.TagAlreadyExist);
+        }
+      }
+
+    } else {
+      if (inputHasValue){
+        addTag();
+        closeModal();
+      } else {
+        throwError(Errors.TagNameIsMissing);
+      }
+    }
   }
 
   return (
@@ -68,4 +107,4 @@ const AddTagsModal = ({isVisible, confirmChoice, closeModal, tags, setArticleTag
   )
 }
 
-export default AddTagsModal;
+export default TagSettingsModal;

@@ -10,7 +10,7 @@ import { useThemedIcon } from '../../hooks/ConditionalsHooks';
 import EditableParagraph from '../EditableParagraph/EditableParagraph';
 import EditableTitle from '../EditableTitle/EditableTitle';
 import EditableTags from '../EditableTags/EditableTags';
-import AddTagsModal from '../AddTagsModal/AddTagsModal';
+import TagSettingsModal from '../TagSettingsModal/TagSettingsModal';
 
 type Props = {
   isNewArticle: boolean,
@@ -38,7 +38,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
   const [articleTitle, setArticleTitle] = useState<string>(title);
   const [articleTags, setArticleTags] = useState<string[]>(tags);
   const [articleContent, setArticleContent] = useState<string>(article_content);
-  const [showAddTagsModal, setShowAddTagsModal] = useState<boolean>(false);
+  const [showTagSettingsModal, setShowTagSettingsModal] = useState<boolean>(false);
   
   useEffect(() => {
     if (title && articleTitle === "") {
@@ -97,7 +97,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
               <EditableTitle isNewArticle={isNewArticle} articleTitle={article.title} setArticleTitle={setArticleTitle}/>
               <p className={styles.date}>{isNewArticle ? "Add a publish date" : publish_date}</p>
             </div>
-            <EditableTags onShowAddTagsModal={() => setShowAddTagsModal(true)} tags={article.tags}/>
+            <EditableTags onShowTagSettingsModal={() => setShowTagSettingsModal(true)} tags={article.tags}/>
           </div>
         </header>
         <main>
@@ -112,7 +112,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
       </div>
       {showErrorMessage && errorCategory && <ErrorMessage category={errorCategory}/>}
 
-      {showAddTagsModal && <AddTagsModal isVisible={showAddTagsModal} confirmChoice={handleAddTags} closeModal={() => setShowAddTagsModal(false)} tags={articleTags} setArticleTags={setArticleTags}/>}
+      {showTagSettingsModal && <TagSettingsModal isVisible={showTagSettingsModal} confirmChoice={handleAddTags} closeModal={() => setShowTagSettingsModal(false)} tags={articleTags} setArticleTags={setArticleTags}/>}
     </div>
   )
 }

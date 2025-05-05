@@ -112,7 +112,7 @@ const createArticle = (body) => {
 
 const deleteArticle = (id) => {
   return new Promise((resolve, reject) => {
-    pool.query("DELETE FROM articles WHERE id = $1", [id], (error, results) => {
+    pool.query("DELETE FROM articles WHERE id = $1", [id], (error) => {
       if(error){
         reject(error);
       }

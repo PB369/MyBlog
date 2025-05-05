@@ -41,6 +41,14 @@
     }
   }
 
+  .addTagsBtn {
+    padding: 3px 10px;
+    height: 32px;
+    img {
+      width: 20px;
+    }
+  }
+
   .addTagsBtn:hover {
     cursor: pointer;
     opacity: 80%;
