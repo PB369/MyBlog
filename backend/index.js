@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const port = 5763;
+const port = 3001;
 const articleModel = require("./articleModel");
 const { uploadFile, generatePutURL, generateGetURL } = require('./s3');
 const { v4: uuid } = require('uuid');
