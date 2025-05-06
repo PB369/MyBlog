@@ -11,6 +11,7 @@ import EditableParagraph from '../EditableParagraph/EditableParagraph';
 import EditableTitle from '../EditableTitle/EditableTitle';
 import EditableTags from '../EditableTags/EditableTags';
 import TagSettingsModal from '../TagSettingsModal/TagSettingsModal';
+import EditableDate from '../EditableDate/EditableDate';
 
 type Props = {
   isNewArticle: boolean,
@@ -95,7 +96,8 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
           <div className={styles.articleInfos}>
             <div className={styles.titleAndDate}>
               <EditableTitle isNewArticle={isNewArticle} articleTitle={article.title} setArticleTitle={setArticleTitle}/>
-              <p className={styles.date}>{isNewArticle ? "Add a publish date" : publish_date}</p>
+
+              <EditableDate isNewArticle={isNewArticle} publishDate={publish_date}/>
             </div>
             <EditableTags onShowTagSettingsModal={() => setShowTagSettingsModal(true)} tags={article.tags}/>
           </div>
