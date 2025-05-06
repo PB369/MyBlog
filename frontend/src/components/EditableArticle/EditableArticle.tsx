@@ -39,6 +39,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
   const [articleTitle, setArticleTitle] = useState<string>(title);
   const [articleTags, setArticleTags] = useState<string[]>(tags);
   const [articleContent, setArticleContent] = useState<string>(article_content);
+  const [articlePublishDate, setArticlePublishDate] = useState<string>(publish_date);
   const [showTagSettingsModal, setShowTagSettingsModal] = useState<boolean>(false);
   
   useEffect(() => {
@@ -53,14 +54,18 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
     if (tags && articleTags) {
       setArticleTags(tags);
     }
-  }, [title, article_content, tags]);
+
+    if (publish_date && articlePublishDate) {
+      setArticlePublishDate(publish_date);
+    }
+  }, [title, article_content, tags, publish_date]);
 
   const article: ArticleType = {
     id: id,
     title: articleTitle,
     tags: articleTags,
     is_published: is_published,
-    publish_date: publish_date,
+    publish_date: articlePublishDate,
     banner_file: bannerFile,
     banner_name: banner_name,
     banner_url: banner_url,
@@ -69,10 +74,6 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
     views_amount: views_amount,
     hearts_amount: hearts_amount,
   }
-
-  const handleAddTags = () => {
-      
-    }
 
   return (
     <div className={styles.editableArticleContainer}>
@@ -97,7 +98,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
             <div className={styles.titleAndDate}>
               <EditableTitle isNewArticle={isNewArticle} articleTitle={article.title} setArticleTitle={setArticleTitle}/>
 
-              <EditableDate isNewArticle={isNewArticle} publishDate={publish_date}/>
+              <EditableDate isNewArticle={isNewArticle} publishDate={publish_date} setArticlePublishDate={setArticlePublishDate}/>
             </div>
             <EditableTags onShowTagSettingsModal={() => setShowTagSettingsModal(true)} tags={article.tags}/>
           </div>
