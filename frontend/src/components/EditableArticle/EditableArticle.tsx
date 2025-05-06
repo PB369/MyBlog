@@ -106,11 +106,13 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
         </main>
       </article>
       <div className={styles.buttonsContainer}>
-        <SaveButton isNewArticle={isNewArticle} article={article} setShowErrorMessage={setShowErrorMessage} setErrorCategory={setErrorCategory}/>
+        <div className={styles.saveAndpublishContainer}>
+          <SaveButton isNewArticle={isNewArticle} article={article} setShowErrorMessage={setShowErrorMessage} setErrorCategory={setErrorCategory}/>
+          <PublishButton isNewArticle={isNewArticle} article={article} setShowErrorMessage={setShowErrorMessage} setErrorCategory={setErrorCategory}/>
+        </div>
 
-        <PublishButton isNewArticle={isNewArticle} article={article} setShowErrorMessage={setShowErrorMessage} setErrorCategory={setErrorCategory}/>
+        {showErrorMessage && errorCategory && <ErrorMessage category={errorCategory}/>}
       </div>
-      {showErrorMessage && errorCategory && <ErrorMessage category={errorCategory}/>}
 
       {showTagSettingsModal && <TagSettingsModal isVisible={showTagSettingsModal} confirmChoice={handleAddTags} closeModal={() => setShowTagSettingsModal(false)} tags={articleTags} setArticleTags={setArticleTags}/>}
     </div>
