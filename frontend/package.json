@@ -10,7 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.1.0",
+    "@mui/x-date-pickers": "^8.2.0",
     "axios": "^1.8.4",
+    "dayjs": "^1.11.13",
     "path": "^0.12.7",
     "react": "^19.0.0",
     "react-date-picker": "^11.0.0",

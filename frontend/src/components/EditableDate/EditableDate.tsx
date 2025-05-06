@@ -1,8 +1,6 @@
-import styles from './css/EditableDate.module.scss'
-import DatePicker from 'react-date-picker';
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import DatePicker from '../DatePicker/DatePicker';
+import styles from './css/EditableDate.module.scss';
 
 type Props = {
     isNewArticle: boolean,
@@ -20,11 +18,13 @@ const EditableDate = ({isNewArticle, publishDate, setArticlePublishDate}: Props)
     }, [publishDate]);
 
     const handleDateChange = (date: Date | null) => {
-
+        console.log(date)
     }
 
     return (
-        <DatePicker value={date} onChange={date => {handleDateChange(date)}}/>
+        <>
+            <DatePicker/>
+        </>
     )
 }
 
