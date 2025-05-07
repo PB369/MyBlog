@@ -3,13 +3,19 @@
     
     input {
       cursor: pointer;
-      text-align: right;
+      text-align: center;
+      width: 145px;
+
+      @media screen and (min-width: $small-device) {
+        text-align: right;
+      }
     }
     
     .calendar {
       position: absolute;
       top: 100%;
-      right: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
       border: 2px solid var(--border-color);
       border-radius: 8px;
       background: var(--tertiary-color);

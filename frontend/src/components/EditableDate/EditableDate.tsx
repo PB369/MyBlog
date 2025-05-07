@@ -105,10 +105,8 @@ const EditableDate = ({ publishDate, onDateSelect, setArticlePublishDate }: Prop
   return (
     <div className={styles.datePickerContainer}>
       <input
-        readOnly
-        value={selectedDate ? formatedDate(selectedDate) : ''}
+        value={selectedDate ? formatedDate(selectedDate) : 'Add a publish date'}
         onClick={() => setShowCalendar(!showCalendar)}
-        placeholder="Add a publish date"
         ref={inputRef}
       />
       {showCalendar && (
