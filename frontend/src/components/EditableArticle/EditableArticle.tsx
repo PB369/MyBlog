@@ -98,7 +98,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
             <div className={styles.titleAndDate}>
               <EditableTitle isNewArticle={isNewArticle} articleTitle={article.title} setArticleTitle={setArticleTitle}/>
 
-              <EditableDate isNewArticle={isNewArticle} publishDate={publish_date} setArticlePublishDate={setArticlePublishDate}/>
+              <EditableDate publishDate={publish_date} setArticlePublishDate={setArticlePublishDate}/>
             </div>
             <EditableTags onShowTagSettingsModal={() => setShowTagSettingsModal(true)} tags={article.tags}/>
           </div>
