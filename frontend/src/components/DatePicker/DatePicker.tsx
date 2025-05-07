@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import styles from './css/DatePicker.module.scss';
 
 type Props = {
-  initialDate?: string; // formato ISO ou algo reconhecível por Date
-  onDateSelect?: (date: Date) => void;
+  publishDate: string,
+  onDateSelect?: (date: Date) => void,setArticlePublishDate: Dispatch<SetStateAction<string>>,
 };
 
 const getDaysInMonth = (year: number, month: number) => {
@@ -21,7 +21,7 @@ const monthNames = [
 'July', 'August', 'September', 'October', 'November', 'December'
 ];
 
-const DatePicker = ({ initialDate, onDateSelect }: Props) => {
+const DatePicker = ({ publishDate, onDateSelect, setArticlePublishDate }: Props) => {
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [showCalendar, setShowCalendar] = useState(false);
@@ -30,17 +30,31 @@ const DatePicker = ({ initialDate, onDateSelect }: Props) => {
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
 
-  // Inicializar com data via props (apenas na montagem)
   useEffect(() => {
-    if (initialDate) {
-      const parsed = new Date(initialDate);
+    if (publishDate) {
+      const parsed = new Date(publishDate);
       if (!isNaN(parsed.getTime())) {
         setSelectedDate(parsed);
         setCurrentMonth(parsed.getMonth());
         setCurrentYear(parsed.getFullYear());
       }
     }
-  }, [initialDate]);
+  }, [publishDate]);
+  
+  const formatedDate = (date: Date) => {
+    return date.toLocaleDateString(undefined, {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+  }
+  
+  useEffect(()=>{
+    if(selectedDate){
+      const newDate: string = formatedDate(selectedDate)
+      setArticlePublishDate(newDate)
+    }
+  }, [selectedDate]);
 
   const days = getDaysInMonth(currentYear, currentMonth);
 
@@ -68,16 +82,38 @@ const DatePicker = ({ initialDate, onDateSelect }: Props) => {
     }
   };
 
+
+  const calendarRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(()=>{
+    const handleOutsideClick = (event: MouseEvent) => {
+      const clickConditionToCalendar = calendarRef.current && !calendarRef.current.contains(event.target as Node);
+
+      const clickConditionToInput = inputRef.current && !inputRef.current.contains(event.target as Node);
+
+      if(clickConditionToCalendar && clickConditionToInput) {
+        setShowCalendar(false);
+      }
+    }
+
+    if(showCalendar){document.addEventListener('mousedown', handleOutsideClick);}
+    
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+
+  }, [showCalendar]);
+
   return (
     <div className={styles.datePickerContainer}>
       <input
         readOnly
-        value={selectedDate ? selectedDate.toLocaleDateString() : ''}
+        value={selectedDate ? formatedDate(selectedDate) : ''}
         onClick={() => setShowCalendar(!showCalendar)}
         placeholder="Add a publish date"
+        ref={inputRef}
       />
       {showCalendar && (
-        <div className={styles.calendar}>
+        <div className={styles.calendar} ref={calendarRef}>
           <div className={styles.calendarHeader}>
             <button onClick={handlePrevMonth}>{'<'}</button>
             <span>{monthNames[currentMonth]} {currentYear}</span>
@@ -89,7 +125,7 @@ const DatePicker = ({ initialDate, onDateSelect }: Props) => {
                 key={day.toISOString()}
                 onClick={() => handleDateSelect(day)}
                 className={
-                  selectedDate?.toDateString() === day.toDateString() ? 'selected' : ''
+                  selectedDate?.toDateString() === day.toDateString() ? styles.selected : ''
                 }
               >
                 {day.getDate()}

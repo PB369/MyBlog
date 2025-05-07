@@ -1,0 +1,51 @@
+.datePickerContainer {
+  position: relative;
+}
+.datePickerContainer input {
+  cursor: pointer;
+  text-align: right;
+}
+.datePickerContainer .calendar {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--tertiary-color);
+  z-index: 99;
+  padding: 10px;
+  box-shadow: 0 0 8px var(--shadow-color);
+}
+.datePickerContainer .calendar .calendarHeader {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+.datePickerContainer .calendar .calendarHeader button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+.datePickerContainer .calendar .calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+.datePickerContainer .calendar .calendarGrid button {
+  padding: 5px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  color: var(--text-color);
+  font-weight: 400;
+}
+.datePickerContainer .calendar .calendarGrid button.selected {
+  background-color: #0D1333;
+  color: var(--quaternary-color);
+  border-radius: 50%;
+}/*# sourceMappingURL=DatePicker.module.css.map */

@@ -23,7 +23,7 @@ const EditableDate = ({isNewArticle, publishDate, setArticlePublishDate}: Props)
 
     return (
         <>
-            <DatePicker/>
+            <DatePicker publishDate={publishDate}/>
         </>
     )
 }
