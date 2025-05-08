@@ -117,7 +117,7 @@ const EditableArticle = ({isNewArticle, id, title, tags, is_published, publish_d
         {showErrorMessage && errorCategory && <ErrorMessage category={errorCategory}/>}
       </div>
 
-      {showTagSettingsModal && <TagSettingsModal isVisible={showTagSettingsModal} confirmChoice={handleAddTags} closeModal={() => setShowTagSettingsModal(false)} tags={articleTags} setArticleTags={setArticleTags}/>}
+      {showTagSettingsModal && <TagSettingsModal closeModal={() => setShowTagSettingsModal(false)} tags={articleTags} setArticleTags={setArticleTags}/>}
     </div>
   )
 }

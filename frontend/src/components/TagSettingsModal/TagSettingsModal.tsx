@@ -1,17 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
 import styles from './css/TagSettingsModal.module.scss';
-import { useThemedIcon } from '../../hooks/ConditionalsHooks';
 
 type Props = {
-  isVisible: boolean,
-  confirmChoice: () => void,
   closeModal: () => void,
   tags: string[],
   setArticleTags: React.Dispatch<React.SetStateAction<string[]>>,
 }
 
-const TagSettingsModal = ({isVisible, confirmChoice, closeModal, tags, setArticleTags}: Props) => {
+const TagSettingsModal = ({closeModal, tags, setArticleTags}: Props) => {
 
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const [errorCategory, setErrorCategory] = useState<Errors | null>(null);
