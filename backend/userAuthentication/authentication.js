@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcriptjs = require('bcryptjs');
 const db = require('../db');
 
-export const login = async ({req, res}) => {
+const login = async ({req, res}) => {
     try {
         const { username, password } = req.body;
     
@@ -20,4 +20,8 @@ export const login = async ({req, res}) => {
         console.error('Something went wrong with the user login', error);
         res.status(500).json({ message: 'Server error' });
     }
+}
+
+module.exports = {
+    login,
 }
