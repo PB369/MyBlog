@@ -6,6 +6,8 @@ const port = 3001;
 const articleModel = require("./articleModel");
 const { generatePutURL, generateGetURL } = require('./s3');
 const { v4: uuid } = require('uuid');
+const authentication = require('./userAuthentication/authentication');
+const tokenVerification = require('./userAuthentication/tokenVerification');
 
 app.use(express.json());
 
@@ -13,7 +15,13 @@ app.use(cors({
   origin: ["http://localhost:5173", "https://pb369-projects-myblog.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type"],
+  credentials: true,
 }));
+
+app.post('/authentication/login', authentication.login);
+app.get('/authentication/token-verification', tokenVerification, (req, res) => {
+  return res.status(200).json({ message: 'Login was a success!' });
+})
 
 app.get('/', (req, res) => {
   articleModel.getArticles()
