@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 const port = 3001;
 const articleModel = require("./articleModel");
-const { uploadFile, generatePutURL, generateGetURL } = require('./s3');
+const { generatePutURL, generateGetURL } = require('./s3');
 const { v4: uuid } = require('uuid');
 
 app.use(express.json());
