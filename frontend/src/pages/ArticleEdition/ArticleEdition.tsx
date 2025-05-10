@@ -9,33 +9,42 @@ import { ArticleType, getArticlesByIdWithBanner } from '../../api/articlesAPI';
 
 const ArticleEdition = () => {
 
+  const [articleData, setArticleData] = useState<ArticleType | null>(null);
+
   const { id } = useParams();
 
-  const [articleData, setArticleData] = useState<ArticleType | null>(null);
-    
   const isNewArticle = !id;
-
+  
+  
+  const [title, setTitle] = useState<string>("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [isPublished, setIsPublished] = useState<boolean>(false);
+  const [publishDate, setPublishDate] = useState<string>("");
+  const [bannerName, setBannerName] = useState<string>("");
+  const [bannerUrl, setBannerUrl] = useState<string>("");
+  const [bannerAlt, setBannerAlt] = useState<string>("");
+  const [heartsAmount, setheartsAmount] = useState<number>(0);
+  const [viewsAmount, setViewsAmount] = useState<number>(0);
+  const [articleContent, setArticleContent] = useState<string>("");
+  
   useEffect(()=>{
     if(!isNewArticle){
       getArticlesByIdWithBanner(Number(id))
-      .then(setArticleData)
+      .then(article => {
+        setTitle(article.title);
+        setTags(article.tags);
+        setIsPublished(article.is_published);
+        setPublishDate(article.publish_date);
+        setBannerName(article.banner_name);
+        setBannerUrl(article.banner_url);
+        setBannerAlt(article.banner_alt);
+        setheartsAmount(article.hearts_amount);
+        setViewsAmount(article.views_amount);
+        setArticleContent(article.article_content);
+      })
       .catch(console.error);
     }
   }, [id]);
-
-  const article  = articleData && id ? articleData : {
-    id: 0,
-    title: "",
-    tags: [],
-    is_published: false,
-    publish_date: "",
-    banner_name: "",
-    banner_url: "",
-    banner_alt: "",
-    hearts_amount: 0,
-    views_amount: 0,
-    article_content: "",
-  };
 
   const { theme } = useTheme();
 
@@ -47,17 +56,17 @@ const ArticleEdition = () => {
           <>
             <EditableArticle
               isNewArticle={isNewArticle}
-              id={article.id}
-              title={article.title}
-              tags={article.tags}
-              is_published={article.is_published}
-              publish_date={article.publish_date}
-              banner_name={article.banner_name}
-              banner_url={article.banner_url}
-              banner_alt={article.banner_alt}
-              article_content={article.article_content}
-              views_amount={article.views_amount}
-              hearts_amount={article.hearts_amount}
+              id={Number(id) || 0}
+              title={title}
+              tags={tags}
+              is_published={isPublished}
+              publish_date={publishDate}
+              banner_name={bannerName}
+              banner_url={bannerUrl}
+              banner_alt={bannerAlt}
+              article_content={articleContent}
+              views_amount={viewsAmount}
+              hearts_amount={heartsAmount}
             />
           </>
         : // If not, render this:
