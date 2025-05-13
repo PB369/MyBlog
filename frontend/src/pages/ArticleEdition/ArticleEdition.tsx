@@ -5,20 +5,18 @@ import styles from './css/ArticleEdition.module.scss';
 import EditableArticle from '../../components/EditableArticle/EditableArticle';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
-import { ArticleType, getArticlesByIdWithBanner } from '../../api/articlesAPI';
+import { getArticlesByIdWithBanner } from '../../api/articlesAPI';
 
 const ArticleEdition = () => {
-
-  const [articleData, setArticleData] = useState<ArticleType | null>(null);
 
   const { id } = useParams();
 
   const isNewArticle = !id;
   
-  const [title, setTitle] = useState<string>("");
-  const [tags, setTags] = useState<string[]>([]);
+  const [articleTitle, setArticleTitle] = useState<string>("");
+  const [articleTags, setArticleTags] = useState<string[]>([]);
   const [isPublished, setIsPublished] = useState<boolean>(false);
-  const [publishDate, setPublishDate] = useState<string>("");
+  const [articlePublishDate, setArticlePublishDate] = useState<string>("");
   const [bannerName, setBannerName] = useState<string>("");
   const [bannerUrl, setBannerUrl] = useState<string>("");
   const [bannerAlt, setBannerAlt] = useState<string>("");
@@ -35,10 +33,10 @@ const ArticleEdition = () => {
       setHasError(false);
       getArticlesByIdWithBanner(Number(id))
       .then(article => {
-        setTitle(article.title);
-        setTags(article.tags);
+        setArticleTitle(article.title);
+        setArticleTags(article.tags);
         setIsPublished(article.is_published);
-        setPublishDate(article.publish_date);
+        setArticlePublishDate(article.publish_date);
         setBannerName(article.banner_name);
         setBannerUrl(article.banner_url);
         setBannerAlt(article.banner_alt);
@@ -79,17 +77,17 @@ const ArticleEdition = () => {
           <EditableArticle
             isNewArticle={isNewArticle}
             id={Number(id) || 0}
-            title={title}
-            setTitle={setTitle}
-            tags={tags}
-            setTags={setTags}
+            articleTitle={articleTitle}
+            setArticleTitle={setArticleTitle}
+            articleTags={articleTags}
+            setArticleTags={setArticleTags}
             is_published={isPublished}
-            publish_date={publishDate}
-            setPublishDate={setPublishDate}
+            articlePublishDate={articlePublishDate}
+            setArticlePublishDate={setArticlePublishDate}
             banner_name={bannerName}
             banner_url={bannerUrl}
             banner_alt={bannerAlt}
-            article_content={articleContent}
+            articleContent={articleContent}
             setArticleContent={setArticleContent}
             views_amount={viewsAmount}
             hearts_amount={heartsAmount}
