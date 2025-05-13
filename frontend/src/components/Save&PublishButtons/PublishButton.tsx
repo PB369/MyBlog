@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { ArticleType, createArticle, updateArticle } from '../../api/articlesAPI';
 import { Errors } from '../ErrorMessage/ErrorMessage';
 import styles from './css/Save&PublishButtons.module.scss'
@@ -14,17 +14,9 @@ const PublishButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, art
   
   const [publishButtonText, setPublishButtonText] = useState<string | ReactNode>("Publish");
 
-  const counter = useRef(0);
-  useEffect(()=>{ //Always keep this useEffect above the useEffect that increment the counter
-    if(counter.current === 1) {
-      setPublishButtonText(article.is_published ? "Unpublish": "Publish");
-    }
+  useEffect(()=>{
+    setPublishButtonText(article.is_published ? "Unpublish": "Publish");
   }, [article.is_published]);
-
-  useEffect(()=>{ 
-    counter.current += 1;
-  })
-
 
   const buttonsTextReset = () => {return setTimeout(() => {
     setPublishButtonText(article.is_published ? "Unpublish": "Publish");

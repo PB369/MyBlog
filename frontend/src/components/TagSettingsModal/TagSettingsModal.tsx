@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
 import styles from './css/TagSettingsModal.module.scss';
 
