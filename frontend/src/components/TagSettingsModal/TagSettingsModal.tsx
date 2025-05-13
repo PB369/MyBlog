@@ -12,8 +12,6 @@ const TagSettingsModal = ({closeModal, tags, setArticleTags}: Props) => {
 
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const [errorCategory, setErrorCategory] = useState<Errors | null>(null);
-  // const arrowHeadToLeftIconPath = useThemedIcon('arrow-head-to-left-icon.png');
-  // const arrowHeadToRightIconPath = useThemedIcon('arrow-head-to-right-icon.png');
   const [selectedTagsList, setSelectedTagsList] = useState<string[]>([]);
   const inputAddTag = useRef<HTMLInputElement | null>(null);
 
@@ -46,12 +44,13 @@ const TagSettingsModal = ({closeModal, tags, setArticleTags}: Props) => {
 
     setShowErrorMessage(false);
     setErrorCategory(null);
-    
+
     if (articleHasTags) {
       if(!inputHasValue && !hasSelectedTags){
         throwError(Errors.NoTagSettingsActionDefined);
         return
       }
+      
       if (hasSelectedTags) {
         removeTag();
         closeModal();
@@ -59,13 +58,16 @@ const TagSettingsModal = ({closeModal, tags, setArticleTags}: Props) => {
 
       if(inputHasValue) {
         if(!tags.includes(modalInput.value)) {
-          addTag();
-          closeModal();
+          if(tags.length < 5) {
+            addTag();
+            closeModal();
+          } else {
+            throwError(Errors.TagsLimitReached);
+          }
         } else {
           throwError(Errors.TagAlreadyExist);
         }
       }
-
     } else {
       if (inputHasValue){
         addTag();
