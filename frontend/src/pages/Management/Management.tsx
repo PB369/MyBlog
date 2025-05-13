@@ -19,10 +19,22 @@ const Management = () => {
   const isDesktop = useMediaQuery("(min-width: 425px)");
   const whitePlusIconPath = "/OtherIcons/whitePlus-icon.png";
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<boolean>(false);
+
   useEffect(()=>{
+      setIsLoading(true);
+      setHasError(false);
       getArticlesWithBanner()
-      .then(setArticles)
-      .catch(console.error);
+      .then(articles => {
+        setArticles(articles);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        setIsLoading(false);
+        setHasError(true);
+      });
   }, []);
 
   const handleDeleteArticle = () => {
@@ -43,26 +55,41 @@ const Management = () => {
     <div className={`${styles.managementPageContainer} ${styles[theme]}`}>
       <Header/>
       <ManagementMain>
-        {articles ? articles.map((article) => (
-          <EditableArticleCard
-            key={article.id}
-            id={article.id}
-            title={article.title}
-            tags={article.tags}
-            is_published={article.is_published}
-            publish_date={article.publish_date}
-            banner_url={article.banner_url}
-            banner_alt={article.banner_alt}
-            views_amount={article.views_amount}
-            hearts_amount={article.hearts_amount}
-            onShowChoiceModal={() => {setShowChoiceModal(true); setArticleId(article.id)}}
-          />
+        {
+          isLoading ?
+          (
+            <>
+              <div></div>
+              <h2 className={styles.pageMessage}>Loading...</h2>
+            </>
+        ) 
+          : hasError ?
+          (
+            <>
+              <div></div>
+              <h2 className={styles.pageMessage}>The articles couldn't be loaded.<br/>Try again by refreshing.</h2>
+            </>
+          ) :
+            articles ? articles.map((article) => (
+              <EditableArticleCard
+                key={article.id}
+                id={article.id}
+                title={article.title}
+                tags={article.tags}
+                is_published={article.is_published}
+                publish_date={article.publish_date}
+                banner_url={article.banner_url}
+                banner_alt={article.banner_alt}
+                views_amount={article.views_amount}
+                hearts_amount={article.hearts_amount}
+                onShowChoiceModal={() => {setShowChoiceModal(true); setArticleId(article.id)}}
+              />
         ))
         :
-        <>
-          <div></div>
-          <p className={styles.pageMessage}>There are no posts yet.</p>
-        </>
+          <>
+            <div></div>
+            <h2 className={styles.pageMessage}>There are no articles yet.</h2>
+          </>
         }
         
         {showChoiceModal && <ChoiceModal category='deleteArticle' isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)} confirmChoice={handleDeleteArticle}/>}

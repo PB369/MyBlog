@@ -7,18 +7,6 @@ import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
 import { ArticleType, getArticlesByIdWithBanner } from '../../api/articlesAPI';
 
-enum PageMessagesCategory {
-  ArticleLoadingError = "ArticleLoadingError",
-  ArticleIsLoading = "ArticleIsLoading",
-  NoArticlesYet = "NoArticlesYet",
-}
-
-const PageMessages = {
-  [PageMessagesCategory.ArticleLoadingError]: "Posts couldn't be loaded. Try again later.",
-  [PageMessagesCategory.ArticleIsLoading]: "Loading...",
-  [PageMessagesCategory.NoArticlesYet]: "There are no posts yet.",
-}
-
 const ArticleEdition = () => {
 
   const [articleData, setArticleData] = useState<ArticleType | null>(null);
@@ -39,12 +27,13 @@ const ArticleEdition = () => {
   const [viewsAmount, setViewsAmount] = useState<number>(0);
   const [articleContent, setArticleContent] = useState<string>("");
 
-  const [pageMessageCategory, setPageMessageCategory] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<boolean>(false);
   
   useEffect(()=>{
     if(!isNewArticle){
       setIsLoading(true);
+      setHasError(false);
       getArticlesByIdWithBanner(Number(id))
       .then(article => {
         setTitle(article.title);
@@ -61,9 +50,9 @@ const ArticleEdition = () => {
         setIsLoading(false);
       })
       .catch(error => {
-        setPageMessageCategory(PageMessages[PageMessagesCategory.ArticleLoadingError]);
-        setIsLoading(false);
         console.error(error);
+        setIsLoading(false);
+        setHasError(true);
       });
     }
   }, [id]);
@@ -75,27 +64,37 @@ const ArticleEdition = () => {
       <Header/>
       {
         isLoading ?
-        (<h2>Loading...</h2>) 
-        :
-        
-          <>
-            <EditableArticle
-              isNewArticle={isNewArticle}
-              id={Number(id) || 0}
-              title={title}
-              tags={tags}
-              is_published={isPublished}
-              publish_date={publishDate}
-              banner_name={bannerName}
-              banner_url={bannerUrl}
-              banner_alt={bannerAlt}
-              article_content={articleContent}
-              views_amount={viewsAmount}
-              hearts_amount={heartsAmount}
-            />
-          </>
-        : // If not, render this:
-          <h2>It was not possible to load the article.</h2>
+        (
+          <div className={styles.pageMessageContainer}>
+            <div></div>
+            <h2 className={styles.pageMessage}>Loading...</h2>
+          </div>
+        ) 
+        : hasError ?
+        (
+          <div className={styles.pageMessageContainer}>
+            <div></div>
+            <h2 className={styles.pageMessage}>The article couldn't be loaded.<br/>Try again by refreshing the page.</h2>
+          </div>
+        ) :
+          <EditableArticle
+            isNewArticle={isNewArticle}
+            id={Number(id) || 0}
+            title={title}
+            setTitle={setTitle}
+            tags={tags}
+            setTags={setTags}
+            is_published={isPublished}
+            publish_date={publishDate}
+            setPublishDate={setPublishDate}
+            banner_name={bannerName}
+            banner_url={bannerUrl}
+            banner_alt={bannerAlt}
+            article_content={articleContent}
+            setArticleContent={setArticleContent}
+            views_amount={viewsAmount}
+            hearts_amount={heartsAmount}
+          />
       }
       <Footer/>
     </div>

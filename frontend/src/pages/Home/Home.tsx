@@ -9,11 +9,24 @@ import { ArticleType, getArticlesWithBanner } from '../../api/articlesAPI';
 
 const Home = () => {
   const [articles, setArticles] = useState<ArticleType[] | null>(null);
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<boolean>(false);
   
   useEffect(()=>{
+    setIsLoading(true);
+    setHasError(false);
+
     getArticlesWithBanner()
-    .then(setArticles)
-    .catch(console.error);
+    .then(articles => {
+      setArticles(articles);
+      setIsLoading(false);
+    })
+    .catch(error => {
+      console.error(error);
+      setIsLoading(false);
+      setHasError(true);
+    });
 }, []);
 
   const { theme } = useTheme();
@@ -22,7 +35,22 @@ const Home = () => {
     <div className={`${styles.homePageContainer} ${styles[theme]}`}>
       <Header/>
       <HomeMain>
-        {articles ? //This filter() and the getArticle() are not safe. Remember to replace it with a proper backend autentication logic.
+        {
+        isLoading ?
+        (
+          <div className={styles.pageMessageContainer}>
+            <div></div>
+            <h2 className={styles.pageMessage}>Loading...</h2>
+          </div>
+        ) 
+        : hasError ?
+        (
+          <div className={styles.pageMessageContainer}>
+            <div></div>
+            <h2 className={styles.pageMessage}>The articles couldn't be loaded.<br/>Try again by refreshing the page.</h2>
+          </div>
+        ) :
+        articles ? //This filter() and the getArticle() are not safe. Remember to replace it with a proper backend autentication logic.
           articles.filter((article) => article.is_published === true).map((article) => (
             <StaticArticleCard
               key={article.id}
@@ -36,7 +64,7 @@ const Home = () => {
             />
           ))
           :
-          <p className={styles.pageMessage}>There are no posts yet.</p>
+          <h2 className={styles.pageMessage}>There are no articles yet.</h2>
         }
       </HomeMain>
       <Footer/>
