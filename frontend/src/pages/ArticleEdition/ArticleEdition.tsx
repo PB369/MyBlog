@@ -7,6 +7,18 @@ import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
 import { ArticleType, getArticlesByIdWithBanner } from '../../api/articlesAPI';
 
+enum PageMessagesCategory {
+  ArticleLoadingError = "ArticleLoadingError",
+  ArticleIsLoading = "ArticleIsLoading",
+  NoArticlesYet = "NoArticlesYet",
+}
+
+const PageMessages = {
+  [PageMessagesCategory.ArticleLoadingError]: "Posts couldn't be loaded. Try again later.",
+  [PageMessagesCategory.ArticleIsLoading]: "Loading...",
+  [PageMessagesCategory.NoArticlesYet]: "There are no posts yet.",
+}
+
 const ArticleEdition = () => {
 
   const [articleData, setArticleData] = useState<ArticleType | null>(null);
@@ -26,9 +38,13 @@ const ArticleEdition = () => {
   const [heartsAmount, setheartsAmount] = useState<number>(0);
   const [viewsAmount, setViewsAmount] = useState<number>(0);
   const [articleContent, setArticleContent] = useState<string>("");
+
+  const [pageMessageCategory, setPageMessageCategory] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   
   useEffect(()=>{
     if(!isNewArticle){
+      setIsLoading(true);
       getArticlesByIdWithBanner(Number(id))
       .then(article => {
         setTitle(article.title);
@@ -41,8 +57,14 @@ const ArticleEdition = () => {
         setheartsAmount(article.hearts_amount);
         setViewsAmount(article.views_amount);
         setArticleContent(article.article_content);
+
+        setIsLoading(false);
       })
-      .catch(console.error);
+      .catch(error => {
+        setPageMessageCategory(PageMessages[PageMessagesCategory.ArticleLoadingError]);
+        setIsLoading(false);
+        console.error(error);
+      });
     }
   }, [id]);
 
@@ -52,7 +74,10 @@ const ArticleEdition = () => {
     <div className={`${styles.articleEditionPageContainer} ${styles[theme]}`}>
       <Header/>
       {
-        article ? // If the article was found, render this:
+        isLoading ?
+        (<h2>Loading...</h2>) 
+        :
+        
           <>
             <EditableArticle
               isNewArticle={isNewArticle}
