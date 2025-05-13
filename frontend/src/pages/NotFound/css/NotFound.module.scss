@@ -1,0 +1,27 @@
+.notFoundPageContainer {
+    background-color: var(--primary-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  
+    .pageMessageContainer {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+  
+      .pageMessage {
+        text-align: center;
+        font-weight: bold;
+        font-style: italic;
+        color: var(--pageMessage-color);
+        font-size: 20px;
+    
+        @media screen and (min-width: $small-device) {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+  
