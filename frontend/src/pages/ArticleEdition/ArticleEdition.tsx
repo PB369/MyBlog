@@ -15,7 +15,6 @@ const ArticleEdition = () => {
 
   const isNewArticle = !id;
   
-  
   const [title, setTitle] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const [isPublished, setIsPublished] = useState<boolean>(false);

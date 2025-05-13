@@ -12,11 +12,23 @@ const Article = () => {
   const { theme } = useTheme();
   
   const [articles, setArticles] = useState<ArticleType[] | null>(null);
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<boolean>(false);
   
   useEffect(()=>{
+    setIsLoading(true);
+    setHasError(false);
     getArticlesWithBanner()
-    .then(setArticles)
-    .catch(console.error);
+    .then(articles => {
+      setArticles(articles);
+      setIsLoading(false);
+    })
+    .catch(error => {
+      console.error(error);
+      setIsLoading(false);
+      setHasError(true);
+    });
   }, [id]);
   
   const article = articles && articles.find(article => article.id === Number(id));
@@ -25,7 +37,21 @@ const Article = () => {
     <div className={`${styles.articlePageContainer} ${styles[theme]}`}>
       <Header/>
         {
-          article ? // If the article was found, render this:
+        isLoading ?
+        (
+          <div className={styles.pageMessageContainer}>
+            <div></div>
+            <h2 className={styles.pageMessage}>Loading...</h2>
+          </div>
+        ) 
+        : hasError ?
+        (
+          <div className={styles.pageMessageContainer}>
+            <div></div>
+            <h2 className={styles.pageMessage}>The article couldn't be loaded.<br/>Try again by refreshing the page.</h2>
+          </div>
+        ) :
+          article ?
           <StaticArticle
             title={article.title}
             tags={article.tags}
@@ -36,8 +62,13 @@ const Article = () => {
             views_amount={article.views_amount}
             hearts_amount={article.hearts_amount}
           />
-        : // If not, render this:
-          <h2 className={styles.pageMessage}>It was not possible to load the article.</h2>
+          :
+          (
+            <div className={styles.pageMessageContainer}>
+              <div></div>
+              <h2 className={styles.pageMessage}>This article doesn't exists.<br/>Check if the URL  of the page is correct.</h2>
+            </div>
+          )
         }
       <Footer/>
     </div>
