@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from './css/LoginForm.module.scss';
 import { useThemedIcon } from "../../hooks/ConditionalsHooks";
 import { useState } from "react";
@@ -6,17 +6,18 @@ import { managerLogin } from "../../api/authenticationAPI";
 import ErrorMessage, { Errors } from "../ErrorMessage/ErrorMessage";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setShowErrorMessage(false);
     try {
-      
       const token = await managerLogin(username, password);
       localStorage.setItem("token", token);
+      navigate("/management");
     } catch {
       setShowErrorMessage(true);
     }
@@ -24,7 +25,7 @@ const LoginForm = () => {
 
   return (
     <div className={styles.formContainer}>
-      <form action="*" method='post' className={styles.loginForm}>
+      <form action="*" method='post' className={styles.loginForm} onSubmit={handleSubmit}>
           <h2>Administrator Login</h2>
           <fieldset>
             <label htmlFor="usernameInput">Username:</label>
@@ -40,7 +41,7 @@ const LoginForm = () => {
               <img src={useThemedIcon("padlock-icon.png")} alt="padlock-icon" />
             </div>
           </fieldset>
-          <Link to={'/management'} className={styles.link}>Access</Link>
+          <button className={styles.link}>Access</button>
           {showErrorMessage && <ErrorMessage category={Errors.LoginValidation} />}
       </form>
     </div>
