@@ -8,13 +8,14 @@ const { generatePutURL, generateGetURL } = require('./s3');
 const { v4: uuid } = require('uuid');
 const login = require('./authenticationController');
 
-app.use(express.json());
-
 app.use(cors({
   origin: ["http://localhost:5173", "https://pb369-projects-myblog.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 }));
+
+app.use(express.json());
 
 app.post('/login', login);
 
