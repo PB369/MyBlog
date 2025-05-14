@@ -1,8 +1,8 @@
-const jwt = require('jwt');
+const jwt = require('jsonwebtoken');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-export const authenticateJWT = (req, res, next) => {
+const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if(!authHeader?.startsWith("Bearer ")) return res.sendStatus(401);
 
@@ -15,3 +15,5 @@ export const authenticateJWT = (req, res, next) => {
         res.sendStatus(403);
     }
 }
+
+module.exports = authenticateJWT;

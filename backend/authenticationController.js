@@ -1,10 +1,10 @@
 const { getManager } = require('./managerModel');
 const bcrypt = require('bcryptjs');
-const jwt = require('jwt');
+const jwt = require('jsonwebtoken');
 
 const JWT_SECRET= process.env.JWT_SECRET;
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
     const { username, password } = req.body;
     try {
         const user = await getManager(username);
@@ -17,3 +17,5 @@ export const register = async (req, res) => {
         res.status(500).json({ error: "Login couldn't be done" });
     }
 }
+
+module.exports = register;
