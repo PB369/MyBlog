@@ -1,6 +1,6 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import { getManager } from './managerModel';
+const { getManager } = require('./managerModel');
+const bcrypt = require('bcryptjs');
+const jwt = require('jwt');
 
 const JWT_SECRET= process.env.JWT_SECRET;
 

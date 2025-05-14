@@ -1,5 +1,4 @@
 require('dotenv').config();
-import bcrypt from "bcryptjs";
 const pool = require('./db');
 
 export const getManager = async (username) => {
