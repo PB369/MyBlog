@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken';
 const JWT_SECRET = process.env.JWT_SECRET;
 
 export const authenticateJWT = (req, res, next) => {
-    const authHeader = req.headers.authorizaton;
-    if(!authHeader?.startsWidth("Bearer ")) return res.sendStatus(401);
+    const authHeader = req.headers.authorization;
+    if(!authHeader?.startsWith("Bearer ")) return res.sendStatus(401);
 
     const token = authHeader.split(" ")[1];
     try {

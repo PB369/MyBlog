@@ -3,10 +3,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = 3001;
-const articleModel = require("./articleModel");
-const { generatePutURL, generateGetURL } = require('./s3');
-const { v4: uuid } = require('uuid');
-const login = require('./authenticationController');
 
 app.use(cors({
   origin: ["http://localhost:5173", "https://pb369-projects-myblog.vercel.app"],
@@ -14,6 +10,11 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 }));
+
+const articleModel = require("./articleModel");
+const { generatePutURL, generateGetURL } = require('./s3');
+const { v4: uuid } = require('uuid');
+const login = require('./authenticationController');
 
 app.use(express.json());
 
