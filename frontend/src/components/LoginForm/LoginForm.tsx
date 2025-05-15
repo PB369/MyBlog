@@ -41,7 +41,7 @@ const LoginForm = () => {
               <img src={useThemedIcon("padlock-icon.png")} alt="padlock-icon" />
             </div>
           </fieldset>
-          <button className={styles.link}>Access</button>
+          <button className={styles.accessBtn}>Access</button>
           {showErrorMessage && <ErrorMessage category={Errors.LoginValidation} />}
       </form>
     </div>

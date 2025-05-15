@@ -21,11 +21,11 @@
     }
     
     @media screen and (min-width: $small-device) {
-      padding: 60px 20px;
+      padding: 60px 20px 40px 20px;
     }
     
     @media screen and (min-width: $semi-medium-device) {
-      padding: 60px 20px;
+      padding: 60px 20px 40px 20px;
       width: 60%;
     }
     
@@ -91,18 +91,18 @@
       } 
     }
   
-    .link {
+    .accessBtn {
       background-color: var(--button-color);
       color: var(--buttonText-color);
       width: 150px;
       text-align: center;
       font-weight: bold;
-      margin: 10px auto 0 auto;
+      margin: 10px auto 10px auto;
       padding: 8px 25px;
       border-radius: 8px;
 
       @media screen and (min-width: $small-device) {
-        margin: 20px auto 0 auto;
+        margin: 20px auto 20px auto;
       }
     }
   }
