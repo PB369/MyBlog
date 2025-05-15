@@ -61,6 +61,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+
+    @media screen and (min-width: $small-device) {
+      width: 90%;
+    }
 
     p {
       margin-bottom: 5px;

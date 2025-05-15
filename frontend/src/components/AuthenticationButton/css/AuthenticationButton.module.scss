@@ -1,14 +1,19 @@
-.link {
+.authenticationBtnContainer {
+    position: relative;
+    height: 42px;
+}
+
+.authenticationBtn {
     color: var(--quaternary-color);
     font-weight: bold;
 }
 
-.link:hover {
+.authenticationBtn:hover {
     cursor: pointer;
     opacity: 80%;
 }
 
-.link {
+.authenticationBtn {
     margin-right: 10px;
     @media screen and (min-width: ($semi-medium-device + 1px)) {
       font-size: 20px;

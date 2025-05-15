@@ -37,7 +37,7 @@ const ChoiceModal = ({category, isVisible, closeModal, confirmChoice} : Modal) =
   }, [isVisible, closeModal]);
 
   return (
-    <div className={styles.modalContainer} ref={modalRef}>
+    <div className={category === 'logout' ? styles.absoluteModalContainer: styles.centralizedModalContainer} ref={modalRef}>
       <p>{modalMensages[category]}</p>
       <div className={styles.buttonsContainer}>
         <button className={styles.cancelButton} onClick={closeModal}>Cancel</button>

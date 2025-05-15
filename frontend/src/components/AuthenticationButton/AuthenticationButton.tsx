@@ -3,6 +3,7 @@ import { useMediaQuery } from "../../hooks/MatchMediaQuery";
 import { useThemedIcon } from "../../hooks/ConditionalsHooks";
 import { useEffect, useState } from "react";
 import styles from './css/AuthenticationButton.module.scss'
+import ChoiceModal from "../ChoiceModal/ChoiceModal";
 
 const AuthenticationButton = () => {
     const isMobile = useMediaQuery("(max-width: 768px)");
@@ -10,27 +11,32 @@ const AuthenticationButton = () => {
     const themedLogoutIcon = useThemedIcon("logout-icon.png");
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const navigate = useNavigate();
+    const [showChoiceModal, setShowChoiceModal] = useState<boolean>(false);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         setIsAuthenticated(!!token);
     }, []);
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
+        navigate('/');
+    }
+
     const handleClick = () => {
         if (isAuthenticated) {
-            localStorage.removeItem('token');
-            setIsAuthenticated(false);
-            navigate('/');
+            setShowChoiceModal(true);
         } else {
             navigate('/login');
         }
     };
 
     return (
-        <>
+        <div className={styles.authenticationBtnContainer}>
             <button
             onClick={handleClick}
-            className={styles.link}>
+            className={styles.authenticationBtn}>
                 {
                     isMobile && isAuthenticated ?
                         <img src={themedLogoutIcon} alt=''/> 
@@ -42,7 +48,9 @@ const AuthenticationButton = () => {
                         'Login'
                 }
             </button>
-        </>
+
+            {showChoiceModal && <ChoiceModal category="logout" isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)} confirmChoice={handleLogout}/>}
+        </div>
     )
 }
 
