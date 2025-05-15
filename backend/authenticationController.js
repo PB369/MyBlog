@@ -13,11 +13,11 @@ const register = async (req, res) => {
             return res.status(401).json({ error: "Invalid credentials" });
         }
         console.log("Credentiais compatíveis");
-        const token = jwt.sign({ id: user }, JWT_SECRET, { expiresIn: '2h' });
+        const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '2h' });
         console.log("Token: ", token);
         res.json({ token });
-    } catch {
-        console.log("ErroErro");
+    } catch (err) {
+        console.log("ErroErro", err);
         res.status(500).json({ error: "Login couldn't be done" });
     }
 }
