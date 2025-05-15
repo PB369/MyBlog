@@ -1,4 +1,4 @@
-const { getManager } = require('./managerModel');
+const getManager = require('./managerModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
