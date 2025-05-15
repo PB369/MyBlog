@@ -39,34 +39,13 @@
     align-items: center;
   }
 
-  h1, .link {
+  h1 {
     color: var(--quaternary-color);
     font-weight: bold;
   }
 
-  h1:hover, .link:hover {
+  h1:hover {
     cursor: pointer;
-    opacity: 80%;
-  }
-
-  .link {
-    margin-right: 10px;
-    @media screen and (min-width: ($semi-medium-device + 1px)) {
-      font-size: 20px;
-      padding: 0 20px;
-      margin-right: 20px;
-      border: 3px solid var(--quaternary-color);
-    }
-  }
-
-  img {
-    width: 34px;
-    @media screen and (min-width: $small-device) {
-      width: 42px;
-    }
-  }
-
-  img:hover {
     opacity: 80%;
   }
 }

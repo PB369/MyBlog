@@ -7,6 +7,7 @@ import Article from './pages/Article/Article'
 import ArticlesLayout from './layouts/ArticlesLayout'
 import Management from './pages/Management/Management'
 import ArticleEdition from './pages/ArticleEdition/ArticleEdition'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 function App() {
 
@@ -19,9 +20,22 @@ function App() {
         <Route element={<ArticlesLayout/>}>
           <Route path='/' element={<Home/>}/>
           <Route path="/articles/:id" element={<Article/>}/>
-          <Route path='/management' element={<Management/>}/>
-          <Route path='/management/create' element={<ArticleEdition/>}/>
-          <Route path='/management/edit/:id' element={<ArticleEdition/>}/>
+
+          <Route path='/management' element={
+            <ProtectedRoute>
+              <Management/>
+            </ProtectedRoute>
+          }/>
+          <Route path='/management/create' element={
+            <ProtectedRoute>
+              <ArticleEdition/>
+            </ProtectedRoute>
+          }/>
+          <Route path='/management/edit/:id' element={
+            <ProtectedRoute>
+              <ArticleEdition/>
+            </ProtectedRoute>
+          }/>
         </Route>
       </Routes>
     </Router>
