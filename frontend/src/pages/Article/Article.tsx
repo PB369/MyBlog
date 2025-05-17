@@ -1,18 +1,19 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import styles from './css/Article.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import StaticArticle from '../../components/StaticArticle/StaticArticle';
 import { useEffect, useState } from 'react';
-import { ArticleType, getArticlesWithBanner } from '../../api/articlesAPI';
+import { ArticleType, getArticlesWithBanner, incrementViewsAmount, updateArticle } from '../../api/articlesAPI';
 
 const Article = () => {
   const { id } = useParams();
   const { theme } = useTheme();
+  const pageURL = useLocation();
   
   const [articles, setArticles] = useState<ArticleType[] | null>(null);
-
+  
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
   
@@ -32,6 +33,14 @@ const Article = () => {
   }, [id]);
   
   const article = articles && articles.find(article => article.id === Number(id));
+  
+  useEffect(() => {
+    if(pageURL.pathname === `/articles/${id}` && article){
+      article.views_amount ++;
+      updateArticle(article)
+      .catch(error => console.error(error));
+    }
+  }, [article]);
 
   return (
     <div className={`${styles.articlePageContainer} ${styles[theme]}`}>
