@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styles from './css/StaticArticle.module.scss';
 import { useThemedIcon } from '../../hooks/ConditionalsHooks';
+import { useEffect, useState } from 'react';
+import { ArticleType, updateArticle } from '../../api/articlesAPI';
 
 type Props = {
+  article: ArticleType,
   title: string,
   tags: string[],
   publish_date: string,
@@ -13,10 +16,45 @@ type Props = {
   hearts_amount: number,
 }
 
-const StaticArticle = ({title, tags, publish_date, banner_url, banner_alt, article_content, views_amount, hearts_amount}: Props) => {
+const StaticArticle = ({article, title, tags, publish_date, banner_url, banner_alt, article_content, views_amount, hearts_amount}: Props) => {
   const arrowIconPath = useThemedIcon("arrow-icon.png");
   const eyeIconPath = useThemedIcon("eye-icon.png");
-  const heartIconPath = "/OtherIcons/heart-icon.png";
+  const [heartIconPath, setHeartIconPath] = useState<string>("");
+  const [isLiked, setIsLiked] = useState<boolean>(Boolean(localStorage.getItem('IsLiked')));
+  const [heartsAmount, setHeartsAmount] = useState<number>(hearts_amount);
+  const {id} = useParams();
+
+  useEffect(()=>{
+    const localIsLiked = localStorage.getItem(`article-${id}-IsLiked`);
+    if(localIsLiked === "true"){
+      setIsLiked(true);
+      setHeartIconPath("/OtherIcons/filled-heart-icon.png");
+    } else {
+      setHeartIconPath("/OtherIcons/heart-icon.png");
+      setIsLiked(false);
+    }
+  }, [id]);
+
+  const handleArticleHeart = () => {
+    const oppositeIsLiked = !isLiked;
+    const updatedArticle = { ...article };
+    
+    if(oppositeIsLiked) {
+      updatedArticle.hearts_amount ++;
+      setHeartIconPath("/OtherIcons/filled-heart-icon.png");
+      setHeartsAmount(prev => prev + 1);
+    } else {
+      updatedArticle.hearts_amount --;
+      setHeartIconPath("/OtherIcons/heart-icon.png");
+      setHeartsAmount(prev => Math.max(0, prev - 1));
+    }
+
+    setIsLiked(oppositeIsLiked);
+    localStorage.setItem(`article-${id}-IsLiked`, String(oppositeIsLiked));
+
+    updateArticle(updatedArticle)
+    .catch(error => console.error(error));
+  }
   
   return (
     <article className={styles.article}>
@@ -26,13 +64,15 @@ const StaticArticle = ({title, tags, publish_date, banner_url, banner_alt, artic
             <img src={arrowIconPath} alt="arrow-icon" />
           </Link>
           <div className={styles.viewAndHeart}>
-            <div className={styles.viewDiv}>
+            <div className={styles.viewContainer}>
               <img src={eyeIconPath} alt="eye-icon" />
               <p>{views_amount}</p>
             </div>
-            <div className={styles.heartDiv}>
-              <img src={heartIconPath} alt="heart-icon" />
-              <p>{hearts_amount}</p>
+            <div className={styles.heartContainer}>
+              <button className={styles.heartBtn} onClick={handleArticleHeart}>
+                <img src={heartIconPath} alt="heart-icon" />
+              </button>
+              <p>{heartsAmount}</p>
             </div>
           </div>
         </div>

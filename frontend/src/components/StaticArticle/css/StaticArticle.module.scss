@@ -39,7 +39,7 @@
       }
 
       .viewAndHeart {
-        .viewDiv, .heartDiv {
+        .viewContainer, .heartContainer {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -60,7 +60,7 @@
           }
         }
 
-        .heartDiv img:hover {
+        .heartContainer .heartBtn img:hover {
           cursor: pointer;
           opacity: 80%;
         }

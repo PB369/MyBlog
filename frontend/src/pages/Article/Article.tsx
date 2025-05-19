@@ -5,7 +5,7 @@ import styles from './css/Article.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import StaticArticle from '../../components/StaticArticle/StaticArticle';
 import { useEffect, useState } from 'react';
-import { ArticleType, getArticlesWithBanner, incrementViewsAmount, updateArticle } from '../../api/articlesAPI';
+import { ArticleType, getArticlesWithBanner, updateArticle } from '../../api/articlesAPI';
 
 const Article = () => {
   const { id } = useParams();
@@ -62,6 +62,7 @@ const Article = () => {
         ) :
           article ?
           <StaticArticle
+            article={article}
             title={article.title}
             tags={article.tags}
             publish_date={article.publish_date}

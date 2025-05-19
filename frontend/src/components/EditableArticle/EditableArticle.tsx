@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './css/EditableArticle.module.scss';
 import { ArticleType } from '../../api/articlesAPI';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import ErrorMessage, { Errors } from '../ErrorMessage/ErrorMessage';
 import SaveButton from '../Save&PublishButtons/SaveButton';
 import PublishButton from '../Save&PublishButtons/PublishButton';
