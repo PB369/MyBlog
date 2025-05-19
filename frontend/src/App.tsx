@@ -43,15 +43,3 @@ function App() {
 }
 
 export default App
-
-/*
-
--criar funcionalidade de criar, editar e remover artigo
-
--criar funcionalidades de salvar e publicar artigo
-
--criar autenticação para administrador
-
--logout para administrador
-
-*/

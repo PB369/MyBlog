@@ -1,9 +1,7 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './css/Header.module.scss';
 import { useTheme } from '../../context/ThemeContext';
-import { useMediaQuery } from '../../hooks/MatchMediaQuery';
 import { useCheckDarkMode, useThemedIcon } from '../../hooks/ConditionalsHooks';
-import { useEffect, useState } from 'react';
 import AuthenticationButton from '../AuthenticationButton/AuthenticationButton';
 
 
