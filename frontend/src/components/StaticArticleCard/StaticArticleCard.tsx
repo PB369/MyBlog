@@ -34,14 +34,14 @@ const StaticArticleCard = ({id, title, tags, publish_date, banner_url, banner_al
               <h4>{title}</h4>
               <p className={styles.publishDate}>{publish_date}</p>
             </div>
-            <p className={styles.articleText}>
+            <div className={styles.articleText}>
               {article_content.split('-&@&-').map((text, index, arr) =>
                 (<div key={index}>
                   <p>{text}</p>
                   {index !== (arr.length - 1) && <br/>}
                 </div>)
               )}
-            </p>
+            </div>
           </div>
           <Link to={`/articles/${typeof(id) === "number" ? id.toString() : undefined}`} className={styles.link}>Read it all</Link>
         </div>

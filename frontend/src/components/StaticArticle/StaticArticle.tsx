@@ -19,7 +19,7 @@ type Props = {
 const StaticArticle = ({article, title, tags, publish_date, banner_url, banner_alt, article_content, views_amount, hearts_amount}: Props) => {
   const arrowIconPath = useThemedIcon("arrow-icon.png");
   const eyeIconPath = useThemedIcon("eye-icon.png");
-  const [heartIconPath, setHeartIconPath] = useState<string>("");
+  const [heartIconPath, setHeartIconPath] = useState<string | undefined>(undefined);
   const [isLiked, setIsLiked] = useState<boolean>(Boolean(localStorage.getItem('IsLiked')));
   const [heartsAmount, setHeartsAmount] = useState<number>(hearts_amount);
   const {id} = useParams();

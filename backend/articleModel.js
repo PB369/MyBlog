@@ -1,7 +1,6 @@
 require('dotenv').config();
 const { GetObjectCommand } = require('@aws-sdk/client-s3');
 const pool = require('./db');
-const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 const { generateGetURL } = require('./s3');
 
 const getArticlesWithBannersURLs = async () => {
@@ -9,8 +8,6 @@ const getArticlesWithBannersURLs = async () => {
   
   const articlesWithBannersURLs = await Promise.all(
     result.rows.map(async (article) => {
-      // if(!article.banner_url) return article;
-
       try {
         const bannerUrl = await generateGetURL(article.banner_name);
 
@@ -37,11 +34,6 @@ const getArticlesByIdWithBannersURLs = async (id) => {
     return null;
   }
 
-  // if(!article.banner_url){
-  //   console.log(result)
-  //   return article;
-  // }
-
   try {
     const bannerUrl = await generateGetURL(article.banner_name);
     console.log(bannerUrl);
@@ -50,8 +42,8 @@ const getArticlesByIdWithBannersURLs = async (id) => {
       banner_url: bannerUrl,
     };
   } catch (error) {
-    console.error(`Erro ao gerar presigned URL para ${article.banner_name}:`, error);
-    return article; // Retorna o artigo mesmo sem a URL se houver erro
+    console.error(`Error when tried to generate the presigned URL ${article.banner_name}:`, error);
+    return article;
   }
 }
 
