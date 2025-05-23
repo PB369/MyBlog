@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './css/EditableArticleCard.module.scss';
 import { useThemedIcon } from '../../hooks/ConditionalsHooks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCheckEllipsisTag } from '../../hooks/EllipsisTagHook';
 
 type Props = {
@@ -22,10 +22,14 @@ const EditableArticleCard = ({id, title, tags, is_published, publish_date, banne
   const trashIconPath = useThemedIcon("trash-v1-icon.png");
   const redTrashIconPath = "/OtherIcons/red-trash-icon.png";
   const heartIconPath = "/OtherIcons/heart-icon.png";
-  
+  const [bannerUrl, setBannerUrl] = useState<string | undefined>(undefined);
   const urlPage: string = useLocation().pathname;
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags, urlPage);
+
+  useEffect(()=>{
+    setBannerUrl(banner_url)
+  }, [banner_url])
 
 
   return (
@@ -62,7 +66,7 @@ const EditableArticleCard = ({id, title, tags, is_published, publish_date, banne
             </div>
           </div>
         </div>
-        <img src={banner_url ? banner_url : blockedIconPath} alt={banner_alt} className={styles.articleBanner}/>
+        <img src={bannerUrl ? bannerUrl : blockedIconPath} alt={banner_alt} className={styles.articleBanner}/>
       </article>
       <div className={styles.editAndDelete}>
         <Link to={`edit/${id.toString()}`} className={styles.editButton}>
