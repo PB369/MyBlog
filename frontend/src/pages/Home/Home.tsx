@@ -41,6 +41,7 @@ const Home = () => {
           <div className={styles.pageMessageContainer}>
             <div></div>
             <h2 className={styles.pageMessage}>Loading...</h2>
+            <p className={styles.pageMessage}>(This may take up to 1 minute due to deployment platform limitations.)</p>
           </div>
         ) 
         : hasError ?
