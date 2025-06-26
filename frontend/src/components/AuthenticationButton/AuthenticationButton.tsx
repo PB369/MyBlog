@@ -4,6 +4,7 @@ import { useThemedIcon } from "../../hooks/ConditionalsHooks";
 import { useEffect, useState } from "react";
 import styles from './css/AuthenticationButton.module.scss'
 import ChoiceModal from "../ChoiceModal/ChoiceModal";
+import { isGuest } from "../../utils/checkGuestMode";
 
 const AuthenticationButton = () => {
     const isMobile = useMediaQuery("(max-width: 768px)");
@@ -21,11 +22,12 @@ const AuthenticationButton = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         setIsAuthenticated(false);
+        localStorage.setItem('isGuest', "false");
         navigate('/');
     }
 
     const handleClick = () => {
-        if (isAuthenticated) {
+        if (isAuthenticated || isGuest()) {
             setShowChoiceModal(true);
         } else {
             navigate('/login');
@@ -38,11 +40,11 @@ const AuthenticationButton = () => {
             onClick={handleClick}
             className={styles.authenticationBtn}>
                 {
-                    isMobile && isAuthenticated ?
+                    isMobile && (isAuthenticated || isGuest()) ?
                         <img src={themedLogoutIcon} alt=''/> 
-                    : isMobile && !isAuthenticated ?
+                    : isMobile && (!isAuthenticated || !isGuest()) ?
                         <img src={themedLoginIcon} alt=''/> 
-                    : isAuthenticated ?
+                    :  (isAuthenticated || isGuest()) ?
                         'Logout' 
                     : 
                         'Login'
