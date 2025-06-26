@@ -10,12 +10,15 @@ import { useEffect, useState } from 'react';
 import { deleteArticle, getArticlesWithBanner } from '../../api/articlesAPI';
 import ChoiceModal from '../../components/ChoiceModal/ChoiceModal';
 import { useMediaQuery } from '../../hooks/MatchMediaQuery';
+import { isGuest } from '../../utils/checkGuestMode';
+import WarningModal from '../../components/WarningModal/WarningModal';
 
 const Management = () => {
 
   const [articles, setArticles] = useState<Article[] | null>(null);
   const [articleId, setArticleId] = useState<number | null>(null);
   const [showChoiceModal, setShowChoiceModal] = useState<boolean>(false);
+  const [showWarningModal, setShowWarningModal] = useState<boolean>(false);
   const isDesktop = useMediaQuery("(min-width: 425px)");
   const whitePlusIconPath = "/OtherIcons/whitePlus-icon.png";
 
@@ -25,16 +28,29 @@ const Management = () => {
   useEffect(()=>{
       setIsLoading(true);
       setHasError(false);
-      getArticlesWithBanner()
-      .then(articles => {
-        setArticles(articles);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.error(error);
-        setIsLoading(false);
-        setHasError(true);
-      });
+      
+      if(isGuest()){
+        setShowWarningModal(true);
+        const guestArticles = localStorage.getItem("guestArticles");
+        if(guestArticles) {
+          setArticles(JSON.parse(guestArticles));
+          setIsLoading(false);
+        } else {
+          setArticles([]);
+          setIsLoading(false);
+        }
+      } else {
+        getArticlesWithBanner()
+        .then(articles => {
+          setArticles(articles);
+          setIsLoading(false);
+        })
+        .catch(error => {
+          console.error(error);
+          setIsLoading(false);
+          setHasError(true);
+        });
+      }
   }, []);
 
   const handleDeleteArticle = () => {
@@ -93,6 +109,8 @@ const Management = () => {
         }
         
         {showChoiceModal && <ChoiceModal category='deleteArticle' isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)} confirmChoice={handleDeleteArticle}/>}
+
+        {showWarningModal && <WarningModal category='guestModeIsTrue' isVisible={showWarningModal} closeModal={() => setShowWarningModal(false)}/>}
 
         <Link to={'/management/create'} className={styles.link}>{isDesktop ? "Create a new article" : <img src={whitePlusIconPath}/>}</Link>
       </ManagementMain>

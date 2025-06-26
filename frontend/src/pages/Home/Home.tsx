@@ -6,6 +6,7 @@ import styles from './css/Home.module.scss';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
 import { ArticleType, getArticlesWithBanner } from '../../api/articlesAPI';
+import { isGuest } from '../../utils/checkGuestMode';
 
 const Home = () => {
   const [articles, setArticles] = useState<ArticleType[] | null>(null);
@@ -17,16 +18,27 @@ const Home = () => {
     setIsLoading(true);
     setHasError(false);
 
-    getArticlesWithBanner()
-    .then(articles => {
-      setArticles(articles);
-      setIsLoading(false);
-    })
-    .catch(error => {
-      console.error(error);
-      setIsLoading(false);
-      setHasError(true);
-    });
+    if(isGuest()){
+      const guestArticles = localStorage.getItem("guestArticles");
+      if(guestArticles) {
+        setArticles(JSON.parse(guestArticles));
+        setIsLoading(false);
+      } else {
+        setArticles([]);
+        setIsLoading(false);
+      }
+    } else {
+      getArticlesWithBanner()
+      .then(articles => {
+        setArticles(articles);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        setIsLoading(false);
+        setHasError(true);
+      });
+    }
 }, []);
 
   const { theme } = useTheme();
