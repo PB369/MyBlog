@@ -45,7 +45,6 @@
     h2 {
       text-align: center;
       color: var(--text-color);
-      text-decoration: underline;
       margin-bottom: 15px;
       font-size: 20px;
 
@@ -102,7 +101,19 @@
       border-radius: 8px;
 
       @media screen and (min-width: $small-device) {
-        margin: 20px auto 20px auto;
+        margin: 20px auto 15px auto;
+      }
+    }
+    
+    .guestBtn {
+      text-align: center;
+      color: var(--text-color);
+      text-align: center;
+      font-weight: bold;
+      border-bottom: 1px solid var(--text-color);
+
+      @media screen and (min-width: $small-device) {
+        margin: 0px auto 20px auto;
       }
     }
   }
