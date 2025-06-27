@@ -31,7 +31,6 @@ const EditableArticleCard = ({id, title, tags, is_published, publish_date, banne
     setBannerUrl(banner_url)
   }, [banner_url])
 
-
   return (
     <div className={styles.articleCardContainer}>
       <article className={styles.article}>

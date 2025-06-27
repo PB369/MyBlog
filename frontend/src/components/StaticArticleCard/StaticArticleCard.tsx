@@ -15,6 +15,8 @@ type Props = {
 const StaticArticleCard = ({id, title, tags, publish_date, banner_url, banner_alt, article_content}: Props) => {
   const urlPage: string = useLocation().pathname;
   const { hasEllipsis, visibleTags, divRef } = useCheckEllipsisTag(tags, urlPage);
+  const blockedIconPath = '/LightIcons/blocked-icon.png';
+
   return (
     <>
       <article className={`${styles.article}`}>
@@ -45,7 +47,7 @@ const StaticArticleCard = ({id, title, tags, publish_date, banner_url, banner_al
           </div>
           <Link to={`/articles/${typeof(id) === "number" ? id.toString() : undefined}`} className={styles.link}>Read it all</Link>
         </div>
-        <img src={banner_url} alt={banner_alt}/>
+        <img src={banner_url ? banner_url : blockedIconPath} alt={banner_alt}/>
       </article>
     </>
   )
