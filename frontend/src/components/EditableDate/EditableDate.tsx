@@ -32,8 +32,9 @@ const EditableDate = ({ publishDate, onDateSelect, setArticlePublishDate }: Prop
 
   useEffect(() => {
     if (publishDate) {
-      const parsed = new Date(publishDate);
-      if (!isNaN(parsed.getTime())) {
+      console.log(publishDate)
+      const parsed = parseDateString(publishDate);
+      if (parsed) {
         setSelectedDate(parsed);
         setCurrentMonth(parsed.getMonth());
         setCurrentYear(parsed.getFullYear());
@@ -48,6 +49,19 @@ const EditableDate = ({ publishDate, onDateSelect, setArticlePublishDate }: Prop
       year: 'numeric',
     });
   }
+
+  const parseDateString = (dateString: string): Date | null => {
+  const parts = dateString.split('/');
+  if (parts.length !== 3) return null;
+
+  const day = parseInt(parts[0], 10);
+  const month = parseInt(parts[1], 10) - 1; // meses começam do 0
+  const year = parseInt(parts[2], 10);
+
+  const date = new Date(year, month, day);
+  return isNaN(date.getTime()) ? null : date;
+};
+
   
   useEffect(()=>{
     if(selectedDate){
