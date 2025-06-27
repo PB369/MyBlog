@@ -12,7 +12,7 @@ const ArticleEdition = () => {
 
   const { id } = useParams();
 
-  const isNewArticle = !id;
+  const [isNewArticle, setIsNewArticle] = useState(!id);
   
   const [articleTitle, setArticleTitle] = useState<string>("");
   const [articleTags, setArticleTags] = useState<string[]>([]);
@@ -102,6 +102,7 @@ const ArticleEdition = () => {
         ) :
           <EditableArticle
             isNewArticle={isNewArticle}
+            setIsNewArticle={setIsNewArticle}
             id={Number(id) || 0}
             articleTitle={articleTitle}
             setArticleTitle={setArticleTitle}

@@ -15,6 +15,7 @@ import EditableDate from '../EditableDate/EditableDate';
 
 type Props = {
   isNewArticle: boolean,
+  setIsNewArticle: React.Dispatch<React.SetStateAction<boolean>>,
   id: number,
   articleTitle: string,
   setArticleTitle: (value: string) => void,
@@ -32,7 +33,7 @@ type Props = {
   hearts_amount: number,
 }
 
-const EditableArticle = ({isNewArticle, id, articleTitle, setArticleTitle, articleTags, setArticleTags, is_published, articlePublishDate, setArticlePublishDate, banner_name, banner_url, banner_alt, articleContent, setArticleContent, views_amount, hearts_amount}: Props) => {
+const EditableArticle = ({isNewArticle, setIsNewArticle, id, articleTitle, setArticleTitle, articleTags, setArticleTags, is_published, articlePublishDate, setArticlePublishDate, banner_name, banner_url, banner_alt, articleContent, setArticleContent, views_amount, hearts_amount}: Props) => {
   const arrowIconPath = useThemedIcon("arrow-icon.png");
   const eyeIconPath = useThemedIcon("eye-icon.png");
   const heartIconPath = "/OtherIcons/heart-icon.png";
@@ -92,8 +93,8 @@ const EditableArticle = ({isNewArticle, id, articleTitle, setArticleTitle, artic
       </article>
       <div className={styles.buttonsContainer}>
         <div className={styles.saveAndpublishContainer}>
-          <SaveButton isNewArticle={isNewArticle} article={article} setShowErrorMessage={setShowErrorMessage} setErrorCategory={setErrorCategory}/>
-          <PublishButton isNewArticle={isNewArticle} article={article} setShowErrorMessage={setShowErrorMessage} setErrorCategory={setErrorCategory}/>
+          <SaveButton isNewArticle={isNewArticle} setIsNewArticle={setIsNewArticle} article={article} setShowErrorMessage={setShowErrorMessage} setErrorCategory={setErrorCategory}/>
+          <PublishButton isNewArticle={isNewArticle} setIsNewArticle={setIsNewArticle} article={article} setShowErrorMessage={setShowErrorMessage} setErrorCategory={setErrorCategory}/>
         </div>
 
         {showErrorMessage && errorCategory && <ErrorMessage category={errorCategory}/>}

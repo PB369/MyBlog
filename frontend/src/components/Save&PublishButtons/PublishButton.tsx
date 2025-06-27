@@ -6,12 +6,13 @@ import { isGuest } from '../../utils/checkGuestMode';
 
 type Props = {
   isNewArticle: boolean,
+  setIsNewArticle: React.Dispatch<React.SetStateAction<boolean>>
   setShowErrorMessage: (argument: boolean) => void,
   setErrorCategory: (argument: Errors) => void,
   article: ArticleType,
 }
 
-const PublishButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, article}: Props) => {
+const PublishButton = ({isNewArticle, setIsNewArticle, setShowErrorMessage, setErrorCategory, article}: Props) => {
   
   const [publishButtonText, setPublishButtonText] = useState<string | ReactNode>("Publish");
 
@@ -37,11 +38,14 @@ const PublishButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, art
           id: isNewArticle ? Date.now() : article.id,
         };
 
-        const newList = isNewArticle
-          ? [...guestArticles, updatedArticle]
-          : guestArticles.map((a: ArticleType) =>
-              a.id === article.id ? updatedArticle : a
-            );
+        let newList: ArticleType[];
+
+        if(isNewArticle){
+          newList = [...guestArticles, updatedArticle]
+          setIsNewArticle(false);
+        } else {
+          newList = guestArticles.map((a: ArticleType) => a.id === article.id ? updatedArticle : a);
+        }
 
         localStorage.setItem("guestArticles", JSON.stringify(newList));
         setPublishButtonText("Published!");
@@ -58,6 +62,7 @@ const PublishButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, art
       createArticle(article)
       .then(() => {
         setPublishButtonText("Published!");
+        setIsNewArticle(false);
         buttonsTextReset();
       })
       .catch((error) => {

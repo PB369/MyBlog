@@ -56,13 +56,23 @@ const Management = () => {
 
   const handleDeleteArticle = () => {
     if(articleId !== null) {
-      deleteArticle(articleId)
-      .then(() => {
-        setArticles(prev => prev ? prev.filter(article => article.id !== articleId) : []);
+      if (isGuest()) {
+        setArticles(prev => {
+          const updated = prev ? prev.filter(article => article.id !== articleId) : [];
+          localStorage.setItem("guestArticles", JSON.stringify(updated));
+          return updated;
+        });
         setShowChoiceModal(false);
         setArticleId(null);
-      })
-      .catch(console.error);
+      } else {
+        deleteArticle(articleId)
+          .then(() => {
+            setArticles(prev => prev ? prev.filter(article => article.id !== articleId) : []);
+            setShowChoiceModal(false);
+            setArticleId(null);
+          })
+          .catch(console.error);
+      }
     }
   }
 

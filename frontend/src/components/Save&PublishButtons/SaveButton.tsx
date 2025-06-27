@@ -6,12 +6,13 @@ import { isGuest } from '../../utils/checkGuestMode';
 
 type Props = {
   isNewArticle: boolean,
+  setIsNewArticle: React.Dispatch<React.SetStateAction<boolean>>,
   setShowErrorMessage: (argument: boolean) => void,
   setErrorCategory: (argument: Errors) => void,
   article: ArticleType,
 }
 
-const SaveButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, article}: Props) => {
+const SaveButton = ({isNewArticle, setIsNewArticle, setShowErrorMessage, setErrorCategory, article}: Props) => {
 
   const [saveButtonText, setSaveButtonText] = useState<string | ReactNode>("Save");
 
@@ -35,11 +36,14 @@ const SaveButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, articl
         banner_file: undefined,
       };
 
-      const newList = isNewArticle
-        ? [...guestArticles, updatedArticle]
-        : guestArticles.map((a: ArticleType) =>
-            a.id === article.id ? updatedArticle : a
-          );
+      let newList: ArticleType[];
+
+      if(isNewArticle){
+        newList = [...guestArticles, updatedArticle]
+        setIsNewArticle(false);
+      } else {
+        newList = guestArticles.map((a: ArticleType) => a.id === article.id ? updatedArticle : a);
+      }
 
       localStorage.setItem("guestArticles", JSON.stringify(newList));
       setSaveButtonText("Saved!");

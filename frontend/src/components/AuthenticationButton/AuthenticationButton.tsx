@@ -21,8 +21,9 @@ const AuthenticationButton = () => {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        setIsAuthenticated(false);
         localStorage.setItem('isGuest', "false");
+        setIsAuthenticated(false);
+        setShowChoiceModal(false)
         navigate('/');
     }
 
