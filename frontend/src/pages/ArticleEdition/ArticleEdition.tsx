@@ -5,7 +5,8 @@ import styles from './css/ArticleEdition.module.scss';
 import EditableArticle from '../../components/EditableArticle/EditableArticle';
 import { useTheme } from '../../context/ThemeContext';
 import { useEffect, useState } from 'react';
-import { getArticlesByIdWithBanner } from '../../api/articlesAPI';
+import { ArticleType, getArticlesByIdWithBanner } from '../../api/articlesAPI';
+import { isGuest } from '../../utils/checkGuestMode';
 
 const ArticleEdition = () => {
 
@@ -31,26 +32,51 @@ const ArticleEdition = () => {
     if(!isNewArticle){
       setIsLoading(true);
       setHasError(false);
-      getArticlesByIdWithBanner(Number(id))
-      .then(article => {
-        setArticleTitle(article.title);
-        setArticleTags(article.tags);
-        setIsPublished(article.is_published);
-        setArticlePublishDate(article.publish_date);
-        setBannerName(article.banner_name);
-        setBannerUrl(article.banner_url);
-        setBannerAlt(article.banner_alt);
-        setheartsAmount(article.hearts_amount);
-        setViewsAmount(article.views_amount);
-        setArticleContent(article.article_content);
 
+      if(isGuest()){
+        const articles = localStorage.getItem("guestArticles");
+        const parsed = articles ? JSON.parse(articles) : [];
+        const article = parsed.find((a: ArticleType) => a.id === Number(id));
+
+        if(article){
+          setArticleTitle(article.title);
+          setArticleTags(article.tags);
+          setIsPublished(article.is_published);
+          setArticlePublishDate(article.publish_date);
+          setBannerName(article.banner_name);
+          setBannerUrl(article.banner_url);
+          setBannerAlt(article.banner_alt);
+          setheartsAmount(article.hearts_amount);
+          setViewsAmount(article.views_amount);
+          setArticleContent(article.article_content);
+
+          setIsLoading(false);
+        } else {
+          setHasError(true);
+        }
         setIsLoading(false);
-      })
-      .catch(error => {
-        console.error(error);
-        setIsLoading(false);
-        setHasError(true);
-      });
+      } else {
+        getArticlesByIdWithBanner(Number(id))
+        .then(article => {
+          setArticleTitle(article.title);
+          setArticleTags(article.tags);
+          setIsPublished(article.is_published);
+          setArticlePublishDate(article.publish_date);
+          setBannerName(article.banner_name);
+          setBannerUrl(article.banner_url);
+          setBannerAlt(article.banner_alt);
+          setheartsAmount(article.hearts_amount);
+          setViewsAmount(article.views_amount);
+          setArticleContent(article.article_content);
+  
+          setIsLoading(false);
+        })
+        .catch(error => {
+          console.error(error);
+          setIsLoading(false);
+          setHasError(true);
+        });
+      }
     }
   }, [id]);
 

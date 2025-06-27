@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { ArticleType, createArticle, updateArticle } from '../../api/articlesAPI';
 import { Errors } from '../ErrorMessage/ErrorMessage';
 import styles from './css/Save&PublishButtons.module.scss'
+import { isGuest } from '../../utils/checkGuestMode';
 
 type Props = {
   isNewArticle: boolean,
@@ -25,6 +26,34 @@ const PublishButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, art
   const publishArticle = () => {
     setShowErrorMessage(false);
     article.is_published = true;
+
+    if (isGuest()) {
+      try {
+        const stored = localStorage.getItem("guestArticles");
+        const guestArticles = stored ? JSON.parse(stored) : [];
+
+        const updatedArticle = {
+          ...article,
+          id: isNewArticle ? Date.now() : article.id,
+        };
+
+        const newList = isNewArticle
+          ? [...guestArticles, updatedArticle]
+          : guestArticles.map((a: ArticleType) =>
+              a.id === article.id ? updatedArticle : a
+            );
+
+        localStorage.setItem("guestArticles", JSON.stringify(newList));
+        setPublishButtonText("Published!");
+        buttonsTextReset();
+      } catch (error) {
+        console.error(error);
+        setShowErrorMessage(true);
+        setErrorCategory(Errors.ServerError);
+      }
+      return;
+    }
+
     if(isNewArticle) {
       createArticle(article)
       .then(() => {
@@ -55,6 +84,31 @@ const PublishButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, art
   const unpublishArticle = () => {
     setShowErrorMessage(false);
     article.is_published = false;
+
+    if (isGuest()) {
+      try {
+        const stored = localStorage.getItem("guestArticles");
+        const guestArticles = stored ? JSON.parse(stored) : [];
+
+        const updatedArticle = {
+          ...article,
+        };
+
+        const newList = guestArticles.map((a: ArticleType) =>
+          a.id === article.id ? updatedArticle : a
+        );
+
+        localStorage.setItem("guestArticles", JSON.stringify(newList));
+        setPublishButtonText("Unpublished!");
+        buttonsTextReset();
+      } catch (error) {
+        console.error(error);
+        setShowErrorMessage(true);
+        setErrorCategory(Errors.ServerError);
+      }
+      return;
+    }
+
     updateArticle(article)
     .then(() => {
       setPublishButtonText("Unpublished!");

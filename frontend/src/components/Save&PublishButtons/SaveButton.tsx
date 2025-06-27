@@ -2,6 +2,7 @@ import { ReactNode, useState } from 'react';
 import styles from './css/Save&PublishButtons.module.scss'
 import { ArticleType, createArticle, putArticleBanner, updateArticle } from '../../api/articlesAPI';
 import { Errors } from '../ErrorMessage/ErrorMessage';
+import { isGuest } from '../../utils/checkGuestMode';
 
 type Props = {
   isNewArticle: boolean,
@@ -23,11 +24,39 @@ const SaveButton = ({isNewArticle, setShowErrorMessage, setErrorCategory, articl
     setShowErrorMessage(false);
     setSaveButtonText("Saving...");
 
+    if (isGuest()) {
+    try {
+      const stored = localStorage.getItem("guestArticles");
+      const guestArticles = stored ? JSON.parse(stored) : [];
+
+      const updatedArticle = {
+        ...article,
+        id: isNewArticle ? Date.now() : article.id,
+        banner_file: undefined,
+      };
+
+      const newList = isNewArticle
+        ? [...guestArticles, updatedArticle]
+        : guestArticles.map((a: ArticleType) =>
+            a.id === article.id ? updatedArticle : a
+          );
+
+      localStorage.setItem("guestArticles", JSON.stringify(newList));
+      setSaveButtonText("Saved!");
+      buttonsTextReset();
+      clearTimeout(timeoutId);
+    } catch (error) {
+      console.error(error);
+      setShowErrorMessage(true);
+      setErrorCategory(Errors.ServerError);
+    }
+    return;
+  }
+
     if(article.banner_file !== undefined){
       await putArticleBanner(article.banner_file)
       .then((response) => {
         article.banner_name = response;
-        console.log(article.banner_name);
       })
       .catch((error) => console.error(error));
     }

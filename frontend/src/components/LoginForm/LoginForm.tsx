@@ -19,6 +19,7 @@ const LoginForm = () => {
       const token = await managerLogin(username, password);
       localStorage.setItem("token", token);
       localStorage.setItem("isGuest", "false");
+      localStorage.setItem("showGuestWarning", "false");
       navigate("/management");
     } catch {
       setShowErrorMessage(true);
@@ -32,6 +33,7 @@ const LoginForm = () => {
       const articles = await getArticlesWithBanner();
       localStorage.setItem("guestArticles", JSON.stringify(articles));
       localStorage.setItem("isGuest", "true");
+      localStorage.setItem("showGuestWarning", "true");
       navigate("/management");
     } catch {
       setShowErrorMessage(true);

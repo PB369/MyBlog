@@ -12,7 +12,7 @@ type Modal = {
 }
 
 const modalMensages: Record<WarningCategory, string> = {
-  [WarningCategory.guestModeIsTrue]: 'Guest Mode is enabled. You will be able to experience all the features of a real administrator, but the changes will only be saved on your device and will not reflect the real application data. To exit Guest Mode, click the logout button and then confirm it.',
+  [WarningCategory.guestModeIsTrue]: 'Guest Mode is enabled. You will be able to experience all the features of a real administrator, but the changes will not reflect the real application data and article banners will not be saved. To exit Guest Mode, click the logout button and then confirm it. After that, all modified data will be reset.',
 }
 
 const WarningModal = ({category, isVisible, closeModal} : Modal) => {

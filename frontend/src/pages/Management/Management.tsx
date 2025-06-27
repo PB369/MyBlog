@@ -28,9 +28,10 @@ const Management = () => {
   useEffect(()=>{
       setIsLoading(true);
       setHasError(false);
+      const showGuestWarning: boolean = localStorage.getItem("showGuestWarning") === "true";
       
       if(isGuest()){
-        setShowWarningModal(true);
+        setShowWarningModal(showGuestWarning);
         const guestArticles = localStorage.getItem("guestArticles");
         if(guestArticles) {
           setArticles(JSON.parse(guestArticles));
@@ -110,7 +111,7 @@ const Management = () => {
         
         {showChoiceModal && <ChoiceModal category='deleteArticle' isVisible={showChoiceModal} closeModal={() => setShowChoiceModal(false)} confirmChoice={handleDeleteArticle}/>}
 
-        {showWarningModal && <WarningModal category='guestModeIsTrue' isVisible={showWarningModal} closeModal={() => setShowWarningModal(false)}/>}
+        {showWarningModal && <WarningModal category='guestModeIsTrue' isVisible={showWarningModal} closeModal={() => {setShowWarningModal(false); localStorage.setItem("showGuestWarning", "false")}}/>}
 
         <Link to={'/management/create'} className={styles.link}>{isDesktop ? "Create a new article" : <img src={whitePlusIconPath}/>}</Link>
       </ManagementMain>
