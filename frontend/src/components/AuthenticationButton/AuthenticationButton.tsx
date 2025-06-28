@@ -24,7 +24,11 @@ const AuthenticationButton = () => {
         localStorage.setItem('isGuest', "false");
         setIsAuthenticated(false);
         setShowChoiceModal(false)
-        navigate('/');
+        if (window.location.pathname === '/') {
+            window.location.reload();
+        } else {
+            navigate('/');
+        }
     }
 
     const handleClick = () => {
