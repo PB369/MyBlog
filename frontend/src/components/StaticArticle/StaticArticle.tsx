@@ -3,6 +3,7 @@ import styles from './css/StaticArticle.module.scss';
 import { useThemedIcon } from '../../hooks/ConditionalsHooks';
 import { useEffect, useState } from 'react';
 import { ArticleType, updateArticle } from '../../api/articlesAPI';
+import { isGuest } from '../../utils/checkGuestMode';
 
 type Props = {
   article: ArticleType,
@@ -36,24 +37,26 @@ const StaticArticle = ({article, title, tags, publish_date, banner_url, banner_a
   }, [id]);
 
   const handleArticleHeart = () => {
-    const oppositeIsLiked = !isLiked;
-    const updatedArticle = { ...article };
-    
-    if(oppositeIsLiked) {
-      updatedArticle.hearts_amount ++;
-      setHeartIconPath("/OtherIcons/filled-heart-icon.png");
-      setHeartsAmount(prev => prev + 1);
-    } else {
-      updatedArticle.hearts_amount --;
-      setHeartIconPath("/OtherIcons/heart-icon.png");
-      setHeartsAmount(prev => Math.max(0, prev - 1));
+    if(!isGuest()){
+      const oppositeIsLiked = !isLiked;
+      const updatedArticle = { ...article };
+      
+      if(oppositeIsLiked) {
+        updatedArticle.hearts_amount ++;
+        setHeartIconPath("/OtherIcons/filled-heart-icon.png");
+        setHeartsAmount(prev => prev + 1);
+      } else {
+        updatedArticle.hearts_amount --;
+        setHeartIconPath("/OtherIcons/heart-icon.png");
+        setHeartsAmount(prev => Math.max(0, prev - 1));
+      }
+  
+      setIsLiked(oppositeIsLiked);
+      localStorage.setItem(`article-${id}-IsLiked`, String(oppositeIsLiked));
+  
+      updateArticle(updatedArticle)
+      .catch(error => console.error(error));
     }
-
-    setIsLiked(oppositeIsLiked);
-    localStorage.setItem(`article-${id}-IsLiked`, String(oppositeIsLiked));
-
-    updateArticle(updatedArticle)
-    .catch(error => console.error(error));
   }
   
   return (
